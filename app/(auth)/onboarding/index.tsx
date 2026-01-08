@@ -25,11 +25,11 @@ import { Badge, TradeBadge } from "@/components/ui/Badge";
 
 const { width, height } = Dimensions.get("window");
 
-// Mock live trades data
+// Mock live trades data - shorter names to fit
 const LIVE_TRADES = [
   { initials: "NP", name: "N. Pelosi", ticker: "NVDA", type: "buy" as const, amount: "$1M+", change: "+18.2%" },
-  { initials: "MT", name: "M. Tuberville", ticker: "AAPL", type: "buy" as const, amount: "$500K", change: "+5.4%" },
-  { initials: "DT", name: "D. Trump Jr", ticker: "TSLA", type: "sell" as const, amount: "$250K", change: "-3.1%" },
+  { initials: "TT", name: "T. Tuberville", ticker: "AAPL", type: "buy" as const, amount: "$500K", change: "+5.4%" },
+  { initials: "DC", name: "D. Crenshaw", ticker: "TSLA", type: "sell" as const, amount: "$250K", change: "-3.1%" },
 ];
 
 export default function WelcomeScreen() {
@@ -101,10 +101,17 @@ export default function WelcomeScreen() {
             </Text>
           </Animated.View>
 
-          {/* Main headline */}
+          {/* App name */}
           <Animated.View entering={FadeInDown.delay(400).springify()}>
-            <Text variant="h1" align="center" className="mb-3">
-              Track What{"\n"}Politicians Trade
+            <Text variant="h1" align="center" className="mb-2">
+              PolitiTrades
+            </Text>
+          </Animated.View>
+
+          {/* Tagline */}
+          <Animated.View entering={FadeInDown.delay(450).springify()}>
+            <Text variant="xl" align="center" className="mb-3 text-text-secondary">
+              Track What Politicians Trade
             </Text>
           </Animated.View>
 
@@ -209,12 +216,14 @@ function TradeRow({
       </View>
 
       {/* Info */}
-      <View className="flex-1">
-        <View className="flex-row items-center gap-2 mb-0.5">
-          <Text variant="base" className="font-semibold">{name}</Text>
-          <TradeBadge type={type} size="xs" />
+      <View className="flex-1 mr-3">
+        <View className="flex-row items-center mb-0.5">
+          <Text variant="sm" className="font-semibold">{name}</Text>
+          <View className="ml-2">
+            <TradeBadge type={type} size="xs" />
+          </View>
         </View>
-        <View className="flex-row items-center gap-2">
+        <View className="flex-row items-center gap-1">
           <Text variant="sm" className={`font-mono font-semibold ${type === "buy" ? "text-profit" : "text-loss"}`}>
             {ticker}
           </Text>

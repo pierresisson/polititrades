@@ -80,8 +80,8 @@
   "premium": {
     "title": "Go Premium",
     "subtitle": "Unlock all features",
-    "price": "€14.90/month",
-    "priceYearly": "€149/year",
+    "price": "€7.99/month",
+    "priceYearly": "€59.99/year",
     "features": {
       "realTimeAlerts": "Real-time trade alerts",
       "advancedFilters": "Advanced filters & analytics",
