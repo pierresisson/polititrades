@@ -48,11 +48,11 @@ const buttonTextVariants = cva("font-medium text-center", {
       subtle: "text-text-secondary",
     },
     size: {
-      xs: "text-xs",
+      xs: "text-sm",
       sm: "text-sm",
-      md: "text-sm",
+      md: "text-base",
       lg: "text-base",
-      xl: "text-base",
+      xl: "text-lg",
     },
   },
   defaultVariants: {
