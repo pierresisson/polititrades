@@ -26,17 +26,17 @@ export const unstable_settings = {
 
 SplashScreen.preventAutoHideAsync();
 
-// Custom dark theme - Professional Finance Style (Navy/Slate)
+// Custom dark theme - Refined Charcoal (Editorial Style)
 const PolitiTradesDarkTheme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
-    primary: "#1E3A5F",
-    background: "#0D1117",
-    card: "#161B22",
-    text: "#F0F6FC",
-    border: "#30363D",
-    notification: "#FFB800",
+    primary: "#5B7A99",
+    background: "#09090B",
+    card: "#111113",
+    text: "#FAFAFA",
+    border: "#27272A",
+    notification: "#F59E0B",
   },
 };
 

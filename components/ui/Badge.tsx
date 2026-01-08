@@ -4,33 +4,40 @@ import { cn } from "@/lib/utils";
 import { Text } from "./Text";
 
 const badgeVariants = cva(
-  "flex-row items-center justify-center rounded-full",
+  "flex-row items-center justify-center",
   {
     variants: {
       variant: {
-        default: "bg-surface-secondary",
-        profit: "bg-profit-muted",
-        loss: "bg-loss-muted",
-        buy: "bg-profit-muted",
-        sell: "bg-loss-muted",
-        accent: "bg-accent/20",
-        primary: "bg-primary/20",
-        outline: "bg-transparent border border-background-border",
+        default: "bg-surface-secondary rounded-sm",
+        profit: "bg-profit-muted rounded-sm",
+        loss: "bg-loss-muted rounded-sm",
+        buy: "bg-profit-muted rounded-sm",
+        sell: "bg-loss-muted rounded-sm",
+        accent: "bg-accent/12 rounded-sm",
+        primary: "bg-primary/12 rounded-sm",
+        outline: "bg-transparent border border-background-border rounded-sm",
+        // Pill variants
+        "pill-profit": "bg-profit-muted rounded-full",
+        "pill-loss": "bg-loss-muted rounded-full",
+        "pill-accent": "bg-accent/12 rounded-full",
+        // Dot indicator style
+        dot: "bg-transparent",
       },
       size: {
-        sm: "px-2 py-0.5",
-        md: "px-3 py-1",
-        lg: "px-4 py-1.5",
+        xs: "px-1 py-px",
+        sm: "px-1.5 py-0.5",
+        md: "px-2 py-0.5",
+        lg: "px-2.5 py-1",
       },
     },
     defaultVariants: {
       variant: "default",
-      size: "md",
+      size: "sm",
     },
   }
 );
 
-const badgeTextVariants = cva("font-semibold uppercase tracking-wide", {
+const badgeTextVariants = cva("font-semibold uppercase", {
   variants: {
     variant: {
       default: "text-text-secondary",
@@ -41,16 +48,21 @@ const badgeTextVariants = cva("font-semibold uppercase tracking-wide", {
       accent: "text-accent",
       primary: "text-primary-light",
       outline: "text-text-secondary",
+      "pill-profit": "text-profit",
+      "pill-loss": "text-loss",
+      "pill-accent": "text-accent",
+      dot: "text-text-secondary",
     },
     size: {
-      sm: "text-xs",
-      md: "text-xs",
-      lg: "text-sm",
+      xs: "text-2xs tracking-wider",
+      sm: "text-2xs tracking-wide",
+      md: "text-xs tracking-wide",
+      lg: "text-xs tracking-wide",
     },
   },
   defaultVariants: {
     variant: "default",
-    size: "md",
+    size: "sm",
   },
 });
 
@@ -63,7 +75,7 @@ interface BadgeProps extends VariantProps<typeof badgeVariants> {
 export function Badge({ label, variant, size, icon, className }: BadgeProps) {
   return (
     <View className={cn(badgeVariants({ variant, size }), className)}>
-      {icon && <View className="mr-1">{icon}</View>}
+      {icon && <View className="mr-0.5">{icon}</View>}
       <Text className={cn(badgeTextVariants({ variant, size }))}>{label}</Text>
     </View>
   );
@@ -71,10 +83,10 @@ export function Badge({ label, variant, size, icon, className }: BadgeProps) {
 
 export function TradeBadge({
   type,
-  size = "md",
+  size = "sm",
 }: {
   type: "buy" | "sell";
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg";
 }) {
   return (
     <Badge label={type === "buy" ? "BUY" : "SELL"} variant={type} size={size} />
@@ -83,19 +95,56 @@ export function TradeBadge({
 
 export function ChangeBadge({
   value,
-  size = "md",
+  size = "sm",
 }: {
   value: number;
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg";
 }) {
   const isPositive = value >= 0;
   const sign = isPositive ? "+" : "";
 
   return (
     <Badge
-      label={`${sign}${value.toFixed(2)}%`}
-      variant={isPositive ? "profit" : "loss"}
+      label={`${sign}${value.toFixed(1)}%`}
+      variant={isPositive ? "pill-profit" : "pill-loss"}
       size={size}
     />
+  );
+}
+
+// Status dot indicator
+export function StatusDot({
+  status,
+  label,
+}: {
+  status: "live" | "delayed" | "closed";
+  label?: string;
+}) {
+  const colorMap = {
+    live: "bg-profit",
+    delayed: "bg-accent",
+    closed: "bg-text-muted",
+  };
+
+  return (
+    <View className="flex-row items-center gap-1">
+      <View className={cn("w-1.5 h-1.5 rounded-full", colorMap[status])} />
+      {label && <Text variant="caption">{label}</Text>}
+    </View>
+  );
+}
+
+// Compact inline tag
+export function Tag({
+  label,
+  className,
+}: {
+  label: string;
+  className?: string;
+}) {
+  return (
+    <View className={cn("bg-surface-tertiary/50 px-1.5 py-px rounded-sm", className)}>
+      <Text variant="caption" className="uppercase tracking-wider">{label}</Text>
+    </View>
   );
 }

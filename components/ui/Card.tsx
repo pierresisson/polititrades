@@ -2,19 +2,26 @@ import { View, Pressable } from "react-native";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const cardVariants = cva("rounded-lg overflow-hidden", {
+const cardVariants = cva("overflow-hidden", {
   variants: {
     variant: {
-      default: "bg-background-card border border-background-border",
-      elevated: "bg-background-elevated",
+      default: "bg-background-card border border-background-border rounded-md",
+      elevated: "bg-background-elevated rounded-md",
       ghost: "bg-transparent",
-      gradient: "bg-background-card border-l-2 border-l-primary",
+      // Refined accent variants
+      "accent-left": "bg-background-card border-l-2 border-l-primary rounded-md",
+      "accent-profit": "bg-background-card border-l border-l-profit rounded-sm",
+      "accent-loss": "bg-background-card border-l border-l-loss rounded-sm",
+      // Minimal
+      subtle: "bg-surface-secondary/30 rounded-sm",
+      outline: "bg-transparent border border-background-border rounded-md",
     },
     padding: {
       none: "p-0",
-      sm: "p-3",
-      md: "p-4",
-      lg: "p-6",
+      xs: "p-1.5",
+      sm: "p-2",
+      md: "p-3",
+      lg: "p-4",
     },
   },
   defaultVariants: {
@@ -44,7 +51,7 @@ export function Card({
 
   if (onPress) {
     return (
-      <Pressable onPress={onPress} className="active:opacity-90">
+      <Pressable onPress={onPress} className="active:opacity-80">
         {content}
       </Pressable>
     );
@@ -62,7 +69,7 @@ export function CardHeader({
 }) {
   return (
     <View
-      className={cn("flex-row items-center justify-between mb-3", className)}
+      className={cn("flex-row items-center justify-between mb-2", className)}
     >
       {children}
     </View>
@@ -89,11 +96,43 @@ export function CardFooter({
   return (
     <View
       className={cn(
-        "flex-row items-center justify-between mt-3 pt-3 border-t border-background-border",
+        "flex-row items-center justify-between mt-2 pt-2 border-t border-background-border",
         className
       )}
     >
       {children}
     </View>
   );
+}
+
+// Compact row card for lists
+export function ListCard({
+  children,
+  onPress,
+  className,
+}: {
+  children: React.ReactNode;
+  onPress?: () => void;
+  className?: string;
+}) {
+  const content = (
+    <View
+      className={cn(
+        "flex-row items-center py-2 px-2.5 border-b border-background-border/50",
+        className
+      )}
+    >
+      {children}
+    </View>
+  );
+
+  if (onPress) {
+    return (
+      <Pressable onPress={onPress} className="active:bg-surface-secondary/50">
+        {content}
+      </Pressable>
+    );
+  }
+
+  return content;
 }

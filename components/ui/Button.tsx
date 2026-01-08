@@ -4,23 +4,27 @@ import { cn } from "@/lib/utils";
 import { haptics } from "@/lib/haptics";
 
 const buttonVariants = cva(
-  "flex-row items-center justify-center rounded-lg active:opacity-80",
+  "flex-row items-center justify-center active:opacity-70",
   {
     variants: {
       variant: {
-        primary: "bg-primary",
-        secondary: "bg-surface-secondary border border-background-border",
+        primary: "bg-primary rounded-md",
+        secondary: "bg-surface-secondary border border-background-border rounded-md",
         ghost: "bg-transparent",
-        profit: "bg-profit",
-        loss: "bg-loss",
-        accent: "bg-accent",
-        outline: "bg-transparent border border-primary",
+        profit: "bg-profit rounded-md",
+        loss: "bg-loss rounded-md",
+        accent: "bg-accent rounded-md",
+        outline: "bg-transparent border border-primary/40 rounded-md",
+        // New minimal variants
+        link: "bg-transparent",
+        subtle: "bg-surface-secondary/50 rounded-sm",
       },
       size: {
-        sm: "h-9 px-3",
-        md: "h-11 px-4",
-        lg: "h-14 px-6",
-        xl: "h-16 px-8",
+        xs: "h-6 px-2",
+        sm: "h-7 px-2.5",
+        md: "h-8 px-3",
+        lg: "h-9 px-4",
+        xl: "h-10 px-5",
       },
     },
     defaultVariants: {
@@ -30,7 +34,7 @@ const buttonVariants = cva(
   }
 );
 
-const buttonTextVariants = cva("font-semibold text-center", {
+const buttonTextVariants = cva("font-medium text-center", {
   variants: {
     variant: {
       primary: "text-white",
@@ -40,12 +44,15 @@ const buttonTextVariants = cva("font-semibold text-center", {
       loss: "text-white",
       accent: "text-text-inverse",
       outline: "text-primary-light",
+      link: "text-primary-light",
+      subtle: "text-text-secondary",
     },
     size: {
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
-      xl: "text-xl",
+      xs: "text-2xs",
+      sm: "text-xs",
+      md: "text-sm",
+      lg: "text-sm",
+      xl: "text-base",
     },
   },
   defaultVariants: {
@@ -88,7 +95,7 @@ export function Button({
     <Pressable
       className={cn(
         buttonVariants({ variant, size }),
-        disabled && "opacity-50",
+        disabled && "opacity-40",
         className
       )}
       onPress={handlePress}
@@ -96,20 +103,49 @@ export function Button({
     >
       {loading ? (
         <ActivityIndicator
-          color={variant === "accent" ? "#0D1117" : "#F0F6FC"}
+          color={variant === "accent" ? "#09090B" : "#FAFAFA"}
           size="small"
         />
       ) : (
         <>
-          {leftIcon && <View className="mr-2">{leftIcon}</View>}
+          {leftIcon && <View className="mr-1.5">{leftIcon}</View>}
           <Text
             className={cn(buttonTextVariants({ variant, size }), textClassName)}
           >
             {label}
           </Text>
-          {rightIcon && <View className="ml-2">{rightIcon}</View>}
+          {rightIcon && <View className="ml-1.5">{rightIcon}</View>}
         </>
       )}
+    </Pressable>
+  );
+}
+
+// Compact icon-only button variant
+export function IconTextButton({
+  icon,
+  label,
+  onPress,
+  className,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  onPress: () => void;
+  className?: string;
+}) {
+  return (
+    <Pressable
+      className={cn(
+        "flex-row items-center gap-1 active:opacity-70",
+        className
+      )}
+      onPress={() => {
+        haptics.light();
+        onPress();
+      }}
+    >
+      {icon}
+      <Text className="text-xs text-text-secondary font-medium">{label}</Text>
     </Pressable>
   );
 }

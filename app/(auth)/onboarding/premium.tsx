@@ -1,36 +1,17 @@
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
-import Animated, { FadeInDown, FadeInUp, ZoomIn } from "react-native-reanimated";
+import Animated, {
+  FadeIn,
+  FadeInUp,
+  ZoomIn,
+} from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
 
 import { Button } from "@/components/ui/Button";
 import { Text } from "@/components/ui/Text";
-import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { useSettingsStore, usePaywallStore } from "@/lib/store";
-
-interface PremiumFeatureProps {
-  text: string;
-  delay: number;
-}
-
-function PremiumFeature({ text, delay }: PremiumFeatureProps) {
-  return (
-    <Animated.View
-      entering={FadeInUp.delay(delay).springify()}
-      className="flex-row items-center mb-4"
-    >
-      <View className="w-6 h-6 rounded-full bg-accent/20 items-center justify-center mr-3">
-        <Ionicons name="checkmark" size={14} color="#FFB800" />
-      </View>
-      <Text variant="body" className="flex-1">
-        {text}
-      </Text>
-    </Animated.View>
-  );
-}
 
 export default function PremiumScreen() {
   const router = useRouter();
@@ -56,150 +37,171 @@ export default function PremiumScreen() {
   };
 
   const premiumFeatures = [
-    t("premium.features.realTimeAlerts"),
-    t("premium.features.advancedFilters"),
-    t("premium.features.exportData"),
-    t("premium.features.historicalData"),
-    t("premium.features.prioritySupport"),
+    { key: "realTimeAlerts", icon: "flash" as const },
+    { key: "advancedFilters", icon: "options" as const },
+    { key: "exportData", icon: "download" as const },
+    { key: "historicalData", icon: "time" as const },
+    { key: "prioritySupport", icon: "headset" as const },
   ];
 
   return (
-    <View className="flex-1">
-      <ScrollView
-        className="flex-1 px-6"
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 200 }}
+    <View className="flex-1 bg-background">
+      {/* Compact Header */}
+      <Animated.View
+        entering={FadeIn.delay(100)}
+        className="flex-row items-center justify-between px-4 pt-3 pb-2"
       >
-        {/* Premium Badge */}
-        <Animated.View
-          entering={ZoomIn.delay(200).springify()}
-          className="items-center mt-6 mb-6"
+        <Pressable
+          onPress={handleBack}
+          className="flex-row items-center gap-1 active:opacity-70"
         >
-          <View className="w-20 h-20 rounded-full bg-accent/20 items-center justify-center mb-4">
-            <Ionicons name="diamond" size={40} color="#FFB800" />
+          <Ionicons name="chevron-back" size={16} color="#A1A1AA" />
+          <Text variant="secondary-xs">Back</Text>
+        </Pressable>
+        <View className="flex-row items-center gap-1">
+          <View className="w-1.5 h-1.5 rounded-full bg-primary" />
+          <View className="w-1.5 h-1.5 rounded-full bg-primary" />
+          <View className="w-1.5 h-1.5 rounded-full bg-primary" />
+        </View>
+        <Pressable onPress={handleSkip} className="active:opacity-70">
+          <Text variant="secondary-xs">{t("onboarding.skip")}</Text>
+        </Pressable>
+      </Animated.View>
+
+      <View className="h-px bg-background-border" />
+
+      <ScrollView
+        className="flex-1"
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 140 }}
+      >
+        {/* Premium Badge - Compact */}
+        <Animated.View
+          entering={ZoomIn.delay(150).duration(300)}
+          className="items-center pt-6 pb-4"
+        >
+          <View className="w-12 h-12 rounded-lg bg-accent/12 items-center justify-center mb-2">
+            <Ionicons name="diamond" size={22} color="#F59E0B" />
           </View>
-          <Badge label="PREMIUM" variant="accent" size="lg" />
+          <Badge label="PREMIUM" variant="accent" size="sm" />
         </Animated.View>
 
         {/* Header */}
         <Animated.View
-          entering={FadeInDown.delay(300).springify()}
-          className="items-center mb-8"
+          entering={FadeInUp.delay(200).duration(400)}
+          className="px-4 items-center mb-4"
         >
-          <Text variant="h1" align="center" className="mb-2">
+          <Text variant="h2" align="center" className="mb-1">
             {t("onboarding.premium.title")}
           </Text>
-          <Text variant="secondary" align="center">
+          <Text variant="secondary-sm" align="center">
             {t("onboarding.premium.subtitle")}
           </Text>
         </Animated.View>
 
-        {/* Premium Features */}
-        <Animated.View entering={FadeInUp.delay(400).springify()}>
-          <Card variant="gradient" className="mb-6">
-            <Text variant="label" className="mb-4">
-              {t("onboarding.premium.whatYouGet")}
-            </Text>
+        {/* Features List - Compact */}
+        <Animated.View
+          entering={FadeInUp.delay(300).duration(400)}
+          className="px-4 mb-5"
+        >
+          <View className="bg-background-card border border-background-border rounded-md overflow-hidden">
             {premiumFeatures.map((feature, index) => (
-              <PremiumFeature
-                key={feature}
-                text={feature}
-                delay={500 + index * 100}
-              />
+              <View
+                key={feature.key}
+                className={`flex-row items-center px-3 py-2.5 ${
+                  index < premiumFeatures.length - 1
+                    ? "border-b border-background-border/50"
+                    : ""
+                }`}
+              >
+                <View className="w-5 h-5 rounded bg-accent/12 items-center justify-center mr-2.5">
+                  <Ionicons name={feature.icon} size={11} color="#F59E0B" />
+                </View>
+                <Text variant="body-sm">
+                  {t(`premium.features.${feature.key}`)}
+                </Text>
+                <View className="flex-1" />
+                <Ionicons name="checkmark" size={14} color="#34D399" />
+              </View>
             ))}
-          </Card>
+          </View>
         </Animated.View>
 
-        {/* Pricing Cards */}
-        <Animated.View entering={FadeInUp.delay(800).springify()}>
-          <View className="flex-row gap-3">
+        {/* Pricing Cards - Side by side, compact */}
+        <Animated.View
+          entering={FadeInUp.delay(400).duration(400)}
+          className="px-4"
+        >
+          <View className="flex-row gap-2">
             {/* Monthly */}
-            <Card className="flex-1 items-center">
+            <Pressable className="flex-1 bg-background-card border border-background-border rounded-md p-3 active:opacity-80">
               <Text variant="label" className="mb-2">
                 {t("onboarding.premium.monthly")}
               </Text>
-              <Text variant="h3" className="text-text">
+              <Text variant="h3" className="text-text mb-0.5">
                 {t("premium.price")}
               </Text>
               <Text variant="caption">{t("onboarding.premium.perMonth")}</Text>
-            </Card>
+            </Pressable>
 
             {/* Yearly - Recommended */}
-            <Card className="flex-1 items-center border-accent border-2">
+            <Pressable className="flex-1 bg-background-card border-2 border-accent rounded-md p-3 relative active:opacity-80">
               <Badge
                 label={t("onboarding.premium.save")}
                 variant="accent"
-                size="sm"
-                className="absolute -top-3"
+                size="xs"
+                className="absolute -top-2 right-2"
               />
-              <Text variant="label" className="mb-2 mt-2">
+              <Text variant="label" className="mb-2 mt-1">
                 {t("onboarding.premium.yearly")}
               </Text>
-              <Text variant="h3" className="text-accent">
+              <Text variant="h3" className="text-accent mb-0.5">
                 {t("premium.priceYearly")}
               </Text>
-              <Text variant="caption">12,42/mois</Text>
-            </Card>
+              <Text variant="caption">~12.42/mo</Text>
+            </Pressable>
           </View>
         </Animated.View>
 
         {/* Trust Indicators */}
         <Animated.View
-          entering={FadeInUp.delay(1000).springify()}
-          className="mt-6 items-center"
+          entering={FadeInUp.delay(500).duration(400)}
+          className="px-4 mt-4"
         >
-          <View className="flex-row items-center mb-2">
-            <Ionicons name="shield-checkmark" size={16} color="#8B949E" />
-            <Text variant="caption" className="ml-2">
-              {t("onboarding.premium.cancelAnytime")}
-            </Text>
+          <View className="flex-row items-center justify-center gap-4">
+            <View className="flex-row items-center gap-1">
+              <Ionicons name="shield-checkmark-outline" size={11} color="#71717A" />
+              <Text variant="caption">
+                {t("onboarding.premium.cancelAnytime")}
+              </Text>
+            </View>
           </View>
-          <View className="flex-row items-center">
-            <Ionicons name="lock-closed" size={16} color="#8B949E" />
-            <Text variant="caption" className="ml-2">
+          <View className="flex-row items-center justify-center mt-1.5">
+            <Ionicons name="lock-closed-outline" size={11} color="#71717A" />
+            <Text variant="caption" className="ml-1">
               {t("onboarding.premium.securePayment")}
             </Text>
           </View>
         </Animated.View>
       </ScrollView>
 
-      {/* Bottom CTAs */}
-      <LinearGradient
-        colors={["transparent", "#0D1117"]}
-        className="absolute bottom-0 left-0 right-0 px-6 pb-6 pt-12"
-      >
-        <Animated.View entering={FadeInUp.delay(1100).springify()}>
-          <Button
-            label={t("premium.startTrial")}
-            variant="accent"
-            size="xl"
-            onPress={handleStartTrial}
-            className="mb-3"
-            leftIcon={<Ionicons name="sparkles" size={20} color="#0D1117" />}
-          />
-          <Button
-            label={t("onboarding.skip")}
-            variant="ghost"
-            size="lg"
-            onPress={handleSkip}
-            textClassName="text-text-secondary"
-          />
-        </Animated.View>
-
-        {/* Back button */}
-        <Animated.View
-          entering={FadeInUp.delay(1200).springify()}
-          className="absolute top-4 left-6"
+      {/* Bottom CTAs - Compact */}
+      <View className="absolute bottom-0 left-0 right-0 px-4 pb-4 pt-3 bg-background border-t border-background-border">
+        <Button
+          label={t("premium.startTrial")}
+          variant="accent"
+          size="lg"
+          onPress={handleStartTrial}
+          className="w-full mb-2"
+          leftIcon={<Ionicons name="sparkles" size={13} color="#09090B" />}
+        />
+        <Pressable
+          onPress={handleSkip}
+          className="py-2 items-center active:opacity-70"
         >
-          <Button
-            label={t("onboarding.back")}
-            variant="ghost"
-            size="sm"
-            onPress={handleBack}
-            leftIcon={<Ionicons name="arrow-back" size={16} color="#8B949E" />}
-          />
-        </Animated.View>
-      </LinearGradient>
+          <Text variant="secondary-xs">{t("onboarding.skip")}</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
