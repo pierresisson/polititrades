@@ -1,0 +1,110 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "all": "All",
+    "none": "None"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "signup": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithApple": "Continue with Apple",
+    "or": "or"
+  },
+  "tabs": {
+    "home": "Home",
+    "trades": "Trades",
+    "alerts": "Alerts",
+    "profile": "Profile"
+  },
+  "home": {
+    "title": "PolitiTrades",
+    "subtitle": "Track the Insiders",
+    "recentTrades": "Recent Trades",
+    "topMovers": "Top Movers",
+    "trending": "Trending Politicians",
+    "seeAll": "See All"
+  },
+  "trades": {
+    "title": "Insider Trades",
+    "buy": "Buy",
+    "sell": "Sell",
+    "amount": "Amount",
+    "date": "Date",
+    "politician": "Politician",
+    "ticker": "Ticker",
+    "sector": "Sector",
+    "filingDate": "Filing Date",
+    "transactionDate": "Transaction Date",
+    "estimatedValue": "Estimated Value",
+    "type": "Type",
+    "noTrades": "No trades found"
+  },
+  "alerts": {
+    "title": "Alerts",
+    "newTrade": "New Trade Alert",
+    "configure": "Configure Alerts",
+    "threshold": "Minimum Amount",
+    "politicians": "Politicians",
+    "sectors": "Sectors",
+    "noAlerts": "No alerts yet"
+  },
+  "profile": {
+    "title": "Profile",
+    "subscription": "Subscription",
+    "premium": "Premium",
+    "free": "Free",
+    "upgradeToPremium": "Upgrade to Premium",
+    "settings": "Settings",
+    "language": "Language",
+    "notifications": "Notifications",
+    "about": "About",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "version": "Version"
+  },
+  "premium": {
+    "title": "Go Premium",
+    "subtitle": "Unlock all features",
+    "price": "€14.90/month",
+    "priceYearly": "€149/year",
+    "features": {
+      "realTimeAlerts": "Real-time trade alerts",
+      "advancedFilters": "Advanced filters & analytics",
+      "exportData": "Export data (CSV, API)",
+      "historicalData": "Full historical data",
+      "prioritySupport": "Priority support"
+    },
+    "startTrial": "Start 7-day free trial",
+    "subscribe": "Subscribe Now"
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Welcome to PolitiTrades",
+      "subtitle": "Track insider trades from politicians and executives"
+    },
+    "features": {
+      "title": "Stay Informed",
+      "subtitle": "Get real-time alerts when key figures make moves"
+    },
+    "premium": {
+      "title": "Premium Access",
+      "subtitle": "Advanced analytics, exports, and more"
+    },
+    "getStarted": "Get Started"
+  }
+}

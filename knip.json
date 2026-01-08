@@ -1,0 +1,13 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
+  "project": ["**/*.{ts,tsx}"],
+  "ignore": ["**/*.d.ts", "types/database.types.ts"],
+  "ignoreDependencies": [
+    "expo-*",
+    "@expo/*",
+    "react-native-*",
+    "nativewind",
+    "tailwindcss"
+  ]
+}

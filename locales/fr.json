@@ -1,0 +1,110 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "all": "Tout",
+    "none": "Aucun"
+  },
+  "auth": {
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "signup": "Inscription",
+    "email": "Email",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "continueWithGoogle": "Continuer avec Google",
+    "continueWithApple": "Continuer avec Apple",
+    "or": "ou"
+  },
+  "tabs": {
+    "home": "Accueil",
+    "trades": "Trades",
+    "alerts": "Alertes",
+    "profile": "Profil"
+  },
+  "home": {
+    "title": "PolitiTrades",
+    "subtitle": "Suivez les Initiés",
+    "recentTrades": "Trades Récents",
+    "topMovers": "Top Mouvements",
+    "trending": "Politiciens Tendance",
+    "seeAll": "Voir Tout"
+  },
+  "trades": {
+    "title": "Trades d'Initiés",
+    "buy": "Achat",
+    "sell": "Vente",
+    "amount": "Montant",
+    "date": "Date",
+    "politician": "Politicien",
+    "ticker": "Ticker",
+    "sector": "Secteur",
+    "filingDate": "Date de déclaration",
+    "transactionDate": "Date de transaction",
+    "estimatedValue": "Valeur estimée",
+    "type": "Type",
+    "noTrades": "Aucun trade trouvé"
+  },
+  "alerts": {
+    "title": "Alertes",
+    "newTrade": "Nouvelle Alerte Trade",
+    "configure": "Configurer les Alertes",
+    "threshold": "Montant Minimum",
+    "politicians": "Politiciens",
+    "sectors": "Secteurs",
+    "noAlerts": "Aucune alerte"
+  },
+  "profile": {
+    "title": "Profil",
+    "subscription": "Abonnement",
+    "premium": "Premium",
+    "free": "Gratuit",
+    "upgradeToPremium": "Passer Premium",
+    "settings": "Paramètres",
+    "language": "Langue",
+    "notifications": "Notifications",
+    "about": "À propos",
+    "privacyPolicy": "Politique de confidentialité",
+    "termsOfService": "Conditions d'utilisation",
+    "version": "Version"
+  },
+  "premium": {
+    "title": "Passez Premium",
+    "subtitle": "Débloquez toutes les fonctionnalités",
+    "price": "14,90€/mois",
+    "priceYearly": "149€/an",
+    "features": {
+      "realTimeAlerts": "Alertes trades en temps réel",
+      "advancedFilters": "Filtres avancés & analytics",
+      "exportData": "Export données (CSV, API)",
+      "historicalData": "Historique complet",
+      "prioritySupport": "Support prioritaire"
+    },
+    "startTrial": "Essai gratuit 7 jours",
+    "subscribe": "S'abonner"
+  },
+  "onboarding": {
+    "welcome": {
+      "title": "Bienvenue sur PolitiTrades",
+      "subtitle": "Suivez les trades d'initiés des politiciens et dirigeants"
+    },
+    "features": {
+      "title": "Restez Informé",
+      "subtitle": "Recevez des alertes en temps réel quand les personnalités clés font des moves"
+    },
+    "premium": {
+      "title": "Accès Premium",
+      "subtitle": "Analytics avancées, exports et plus encore"
+    },
+    "getStarted": "Commencer"
+  }
+}
