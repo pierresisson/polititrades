@@ -95,16 +95,47 @@
   "onboarding": {
     "welcome": {
       "title": "Bienvenue sur PolitiTrades",
-      "subtitle": "Suivez les trades d'initiés des politiciens et dirigeants"
+      "subtitle": "Suivez les trades d'initiés des politiciens et dirigeants en temps réel",
+      "feature1": "Alertes trades en temps réel",
+      "feature2": "Suivez politiciens & dirigeants",
+      "feature3": "Analytics avancées & insights"
     },
     "features": {
       "title": "Restez Informé",
-      "subtitle": "Recevez des alertes en temps réel quand les personnalités clés font des moves"
+      "subtitle": "Recevez des alertes en temps réel quand les personnalités clés font des moves",
+      "realTimeAlerts": {
+        "title": "Alertes Temps Réel",
+        "description": "Soyez notifié instantanément des trades importants des politiciens et dirigeants"
+      },
+      "smartSearch": {
+        "title": "Recherche Intelligente",
+        "description": "Trouvez des trades par politicien, ticker, secteur ou type de transaction"
+      },
+      "analytics": {
+        "title": "Analytics Portfolio",
+        "description": "Visualisez les patterns de trading et répartitions sectorielles"
+      },
+      "historical": {
+        "title": "Données Historiques",
+        "description": "Accédez à des années d'historique pour identifier les tendances"
+      },
+      "exampleAlert": "Exemple d'Alerte",
+      "sinceFiling": "depuis le dépôt"
     },
     "premium": {
       "title": "Accès Premium",
-      "subtitle": "Analytics avancées, exports et plus encore"
+      "subtitle": "Analytics avancées, exports et plus encore",
+      "whatYouGet": "Ce que vous obtenez",
+      "monthly": "Mensuel",
+      "yearly": "Annuel",
+      "perMonth": "par mois",
+      "save": "ÉCONOMISEZ 17%",
+      "cancelAnytime": "Annulez à tout moment. Sans engagement.",
+      "securePayment": "Paiement sécurisé via App Store"
     },
+    "continue": "Continuer",
+    "back": "Retour",
+    "skip": "Plus tard",
     "getStarted": "Commencer"
   }
 }

@@ -8,7 +8,7 @@ import {
   useFonts,
 } from "@expo-google-fonts/inter";
 import { DarkTheme, ThemeProvider } from "@react-navigation/native";
-import { Stack } from "expo-router";
+import { Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -16,28 +16,47 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import "react-native-reanimated";
 
 import "@/lib/i18n";
+import { useSettingsStore } from "@/lib/store";
 
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
-  initialRouteName: "(tabs)",
+  initialRouteName: "(auth)",
 };
 
 SplashScreen.preventAutoHideAsync();
 
-// Custom dark theme matching our design
+// Custom dark theme - Professional Finance Style (Navy/Slate)
 const PolitiTradesDarkTheme = {
   ...DarkTheme,
   colors: {
     ...DarkTheme.colors,
-    primary: "#0D9488",
-    background: "#0F172A",
-    card: "#1E293B",
-    text: "#F8FAFC",
-    border: "#334155",
-    notification: "#F59E0B",
+    primary: "#1E3A5F",
+    background: "#0D1117",
+    card: "#161B22",
+    text: "#F0F6FC",
+    border: "#30363D",
+    notification: "#FFB800",
   },
 };
+
+function useProtectedRoute() {
+  const hasCompletedOnboarding = useSettingsStore(
+    (state) => state.hasCompletedOnboarding
+  );
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    const inAuthGroup = segments[0] === "(auth)";
+
+    if (hasCompletedOnboarding && inAuthGroup) {
+      router.replace("/(tabs)");
+    } else if (!hasCompletedOnboarding && !inAuthGroup) {
+      router.replace("/(auth)/onboarding");
+    }
+  }, [hasCompletedOnboarding, segments, router]);
+}
 
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({
@@ -46,6 +65,8 @@ export default function RootLayout() {
     Inter_600SemiBold,
     Inter_700Bold,
   });
+
+  useProtectedRoute();
 
   useEffect(() => {
     if (fontError) throw fontError;
@@ -66,6 +87,7 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <ThemeProvider value={PolitiTradesDarkTheme}>
           <Stack>
+            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="modal" options={{ presentation: "modal" }} />
           </Stack>

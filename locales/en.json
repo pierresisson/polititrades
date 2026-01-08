@@ -95,16 +95,47 @@
   "onboarding": {
     "welcome": {
       "title": "Welcome to PolitiTrades",
-      "subtitle": "Track insider trades from politicians and executives"
+      "subtitle": "Track insider trades from politicians and corporate executives in real-time",
+      "feature1": "Real-time trade alerts",
+      "feature2": "Track politicians & executives",
+      "feature3": "Advanced analytics & insights"
     },
     "features": {
       "title": "Stay Informed",
-      "subtitle": "Get real-time alerts when key figures make moves"
+      "subtitle": "Get real-time alerts when key figures make moves",
+      "realTimeAlerts": {
+        "title": "Real-Time Alerts",
+        "description": "Get notified instantly when politicians or executives make significant trades"
+      },
+      "smartSearch": {
+        "title": "Smart Search",
+        "description": "Find trades by politician, ticker, sector, or transaction type"
+      },
+      "analytics": {
+        "title": "Portfolio Analytics",
+        "description": "See aggregated trading patterns and sector breakdowns"
+      },
+      "historical": {
+        "title": "Historical Data",
+        "description": "Access years of trading history to identify patterns"
+      },
+      "exampleAlert": "Example Alert",
+      "sinceFiling": "since filing"
     },
     "premium": {
       "title": "Premium Access",
-      "subtitle": "Advanced analytics, exports, and more"
+      "subtitle": "Advanced analytics, exports, and more",
+      "whatYouGet": "What you get",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "perMonth": "per month",
+      "save": "SAVE 17%",
+      "cancelAnytime": "Cancel anytime. No questions asked.",
+      "securePayment": "Secure payment via App Store"
     },
+    "continue": "Continue",
+    "back": "Back",
+    "skip": "Maybe Later",
     "getStarted": "Get Started"
   }
 }

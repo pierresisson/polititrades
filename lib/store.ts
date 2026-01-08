@@ -86,9 +86,11 @@ interface SettingsState {
   language: "en" | "fr";
   notificationsEnabled: boolean;
   alertThreshold: number; // Minimum trade value for alerts (in USD)
+  hasCompletedOnboarding: boolean;
   setLanguage: (language: "en" | "fr") => void;
   setNotificationsEnabled: (enabled: boolean) => void;
   setAlertThreshold: (threshold: number) => void;
+  setHasCompletedOnboarding: (completed: boolean) => void;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -97,10 +99,13 @@ export const useSettingsStore = create<SettingsState>()(
       language: "en",
       notificationsEnabled: true,
       alertThreshold: 50000,
+      hasCompletedOnboarding: false,
       setLanguage: (language) => set({ language }),
       setNotificationsEnabled: (notificationsEnabled) =>
         set({ notificationsEnabled }),
       setAlertThreshold: (alertThreshold) => set({ alertThreshold }),
+      setHasCompletedOnboarding: (hasCompletedOnboarding) =>
+        set({ hasCompletedOnboarding }),
     }),
     {
       name: "settings-storage",

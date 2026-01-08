@@ -1,56 +1,56 @@
 export const colors = {
-  // Primary - Deep Navy Blue (Investment Bank Style)
+  // Primary - Slate Blue (Editorial/FT Style)
   primary: {
-    DEFAULT: "#1E3A5F",
-    light: "#2D5A8A",
-    dark: "#0F1F33",
-    50: "#E6EBF2",
-    100: "#C2D1E3",
-    500: "#1E3A5F",
-    600: "#163049",
-    700: "#0F2238",
-    900: "#0A1520",
+    DEFAULT: "#5B7A99",
+    light: "#7C9AB8",
+    dark: "#3D5A75",
+    50: "#F4F7FA",
+    100: "#E1E8EF",
+    500: "#5B7A99",
+    600: "#4A6580",
+    700: "#3D5A75",
+    900: "#1E2D3A",
   },
-  // Profit - Finance Green
+  // Profit - Muted Emerald (sophisticated green)
   profit: {
-    DEFAULT: "#00C853",
-    light: "#69F0AE",
-    dark: "#00A844",
-    muted: "#1B4D3E",
+    DEFAULT: "#34D399",
+    light: "#6EE7B7",
+    dark: "#10B981",
+    muted: "#0D2E24",
   },
-  // Loss - Finance Red
+  // Loss - Coral Red (refined)
   loss: {
-    DEFAULT: "#FF5252",
-    light: "#FF867F",
-    dark: "#D32F2F",
-    muted: "#4D1B1B",
+    DEFAULT: "#F87171",
+    light: "#FCA5A5",
+    dark: "#EF4444",
+    muted: "#2D1515",
   },
-  // Background - Dark Slate (Bloomberg-style)
+  // Background - Deep Charcoal (Terminal aesthetic)
   background: {
-    DEFAULT: "#0D1117",
-    card: "#161B22",
-    elevated: "#21262D",
-    hover: "#2D333B",
-    border: "#30363D",
+    DEFAULT: "#09090B",
+    card: "#111113",
+    elevated: "#18181B",
+    hover: "#27272A",
+    border: "#27272A",
   },
-  // Text - High contrast
+  // Text - Refined contrast
   text: {
-    DEFAULT: "#F0F6FC",
-    secondary: "#8B949E",
-    muted: "#6E7681",
-    inverse: "#0D1117",
+    DEFAULT: "#FAFAFA",
+    secondary: "#A1A1AA",
+    muted: "#71717A",
+    inverse: "#09090B",
   },
-  // Accent - Gold (Premium, Alerts)
+  // Accent - Amber (Premium, subtle warmth)
   accent: {
-    DEFAULT: "#FFB800",
-    light: "#FFD54F",
-    dark: "#CC9400",
+    DEFAULT: "#F59E0B",
+    light: "#FBBF24",
+    dark: "#D97706",
   },
-  // Surface colors for cards/containers
+  // Surface colors - subtle layering
   surface: {
-    primary: "#161B22",
-    secondary: "#21262D",
-    tertiary: "#2D333B",
+    primary: "#111113",
+    secondary: "#18181B",
+    tertiary: "#27272A",
   },
 } as const;
 
@@ -65,60 +65,72 @@ export const semanticColors = {
 } as const;
 
 export const gradients = {
-  primary: ["#1E3A5F", "#2D5A8A"],
-  dark: ["#0D1117", "#161B22"],
-  premium: ["#FFB800", "#FFD54F"],
-  profit: ["#00A844", "#00C853"],
-  loss: ["#D32F2F", "#FF5252"],
-  card: ["rgba(30, 58, 95, 0.1)", "rgba(30, 58, 95, 0.05)"],
+  primary: ["#3D5A75", "#5B7A99"],
+  dark: ["#09090B", "#111113"],
+  premium: ["#D97706", "#F59E0B"],
+  profit: ["#10B981", "#34D399"],
+  loss: ["#EF4444", "#F87171"],
+  card: ["rgba(91, 122, 153, 0.06)", "rgba(91, 122, 153, 0.02)"],
+  subtle: ["rgba(255,255,255,0.02)", "rgba(255,255,255,0.005)"],
 } as const;
 
 export const shadows = {
+  none: {
+    shadowColor: "transparent",
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
+  xs: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.15,
+    shadowRadius: 1,
+    elevation: 1,
+  },
   sm: {
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.3,
+    shadowOpacity: 0.2,
     shadowRadius: 2,
     elevation: 2,
   },
   card: {
-    shadowColor: "#1E3A5F",
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
-    elevation: 4,
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 3,
   },
   lg: {
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.25,
-    shadowRadius: 16,
-    elevation: 8,
-  },
-  glow: {
-    shadowColor: "#1E3A5F",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.5,
-    shadowRadius: 20,
-    elevation: 10,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    elevation: 6,
   },
 } as const;
 
-// Typography scale
+// Typography scale - COMPACT / Editorial
 export const typography = {
   fontFamily: {
     sans: "System",
-    mono: "Menlo",
+    mono: "SF Mono, Menlo",
+    display: "System",
   },
+  // Reduced font sizes for compact UI
   fontSize: {
-    xs: 11,
-    sm: 13,
-    base: 15,
-    lg: 17,
-    xl: 20,
-    "2xl": 24,
-    "3xl": 30,
-    "4xl": 36,
+    "2xs": 9,
+    xs: 10,
+    sm: 11,
+    base: 12,
+    md: 13,
+    lg: 14,
+    xl: 16,
+    "2xl": 18,
+    "3xl": 22,
+    "4xl": 26,
   },
   fontWeight: {
     regular: "400" as const,
@@ -127,28 +139,47 @@ export const typography = {
     bold: "700" as const,
   },
   lineHeight: {
-    tight: 1.2,
-    normal: 1.5,
-    relaxed: 1.75,
+    none: 1,
+    tight: 1.15,
+    snug: 1.25,
+    normal: 1.4,
+    relaxed: 1.6,
+  },
+  letterSpacing: {
+    tighter: -0.5,
+    tight: -0.25,
+    normal: 0,
+    wide: 0.5,
+    wider: 1,
+    widest: 2,
   },
 } as const;
 
+// Tighter spacing scale
 export const spacing = {
-  xs: 4,
-  sm: 8,
-  md: 16,
-  lg: 24,
-  xl: 32,
-  "2xl": 48,
-  "3xl": 64,
+  px: 1,
+  "0.5": 2,
+  1: 4,
+  "1.5": 6,
+  2: 8,
+  "2.5": 10,
+  3: 12,
+  4: 16,
+  5: 20,
+  6: 24,
+  8: 32,
+  10: 40,
+  12: 48,
 } as const;
 
+// Smaller border radius for refined look
 export const borderRadius = {
   none: 0,
-  sm: 6,
-  md: 10,
-  lg: 14,
-  xl: 20,
-  "2xl": 28,
+  xs: 2,
+  sm: 4,
+  md: 6,
+  lg: 8,
+  xl: 12,
+  "2xl": 16,
   full: 9999,
 } as const;

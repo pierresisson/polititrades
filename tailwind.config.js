@@ -8,86 +8,89 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Primary - Deep Navy (Investment Bank Style)
+        // Primary - Slate Blue (Editorial/FT Style)
         primary: {
-          DEFAULT: "#1E3A5F",
-          light: "#2D5A8A",
-          dark: "#0F1F33",
-          50: "#E6EBF2",
-          100: "#C2D1E3",
-          500: "#1E3A5F",
-          600: "#163049",
-          700: "#0F2238",
-          900: "#0A1520",
+          DEFAULT: "#5B7A99",
+          light: "#7C9AB8",
+          dark: "#3D5A75",
+          50: "#F4F7FA",
+          100: "#E1E8EF",
+          500: "#5B7A99",
+          600: "#4A6580",
+          700: "#3D5A75",
+          900: "#1E2D3A",
         },
-        // Profit green
+        // Profit - Muted Emerald
         profit: {
-          DEFAULT: "#00C853",
-          light: "#69F0AE",
-          dark: "#00A844",
-          muted: "#1B4D3E",
+          DEFAULT: "#34D399",
+          light: "#6EE7B7",
+          dark: "#10B981",
+          muted: "#0D2E24",
         },
-        // Loss red
+        // Loss - Coral Red
         loss: {
-          DEFAULT: "#FF5252",
-          light: "#FF867F",
-          dark: "#D32F2F",
-          muted: "#4D1B1B",
+          DEFAULT: "#F87171",
+          light: "#FCA5A5",
+          dark: "#EF4444",
+          muted: "#2D1515",
         },
-        // Background - Dark Slate (Bloomberg-style)
+        // Background - Deep Charcoal
         background: {
-          DEFAULT: "#0D1117",
-          card: "#161B22",
-          elevated: "#21262D",
-          hover: "#2D333B",
-          border: "#30363D",
+          DEFAULT: "#09090B",
+          card: "#111113",
+          elevated: "#18181B",
+          hover: "#27272A",
+          border: "#27272A",
         },
-        // Text
+        // Text - Refined contrast
         text: {
-          DEFAULT: "#F0F6FC",
-          secondary: "#8B949E",
-          muted: "#6E7681",
-          inverse: "#0D1117",
+          DEFAULT: "#FAFAFA",
+          secondary: "#A1A1AA",
+          muted: "#71717A",
+          inverse: "#09090B",
         },
-        // Accent - Gold
+        // Accent - Amber
         accent: {
-          DEFAULT: "#FFB800",
-          light: "#FFD54F",
-          dark: "#CC9400",
+          DEFAULT: "#F59E0B",
+          light: "#FBBF24",
+          dark: "#D97706",
         },
         // Surface
         surface: {
-          primary: "#161B22",
-          secondary: "#21262D",
-          tertiary: "#2D333B",
+          primary: "#111113",
+          secondary: "#18181B",
+          tertiary: "#27272A",
         },
       },
       fontFamily: {
-        // System fonts (SF Pro on iOS)
         sans: ["System"],
         mono: ["Menlo"],
-        // Keep Inter available for fallback
         inter: ["Inter_400Regular"],
         "inter-medium": ["Inter_500Medium"],
         "inter-semibold": ["Inter_600SemiBold"],
         "inter-bold": ["Inter_700Bold"],
       },
+      // COMPACT typography - smaller, denser
       fontSize: {
-        xs: ["11px", { lineHeight: "14px" }],
-        sm: ["13px", { lineHeight: "18px" }],
-        base: ["15px", { lineHeight: "22px" }],
-        lg: ["17px", { lineHeight: "24px" }],
-        xl: ["20px", { lineHeight: "28px" }],
-        "2xl": ["24px", { lineHeight: "32px" }],
-        "3xl": ["30px", { lineHeight: "38px" }],
-        "4xl": ["36px", { lineHeight: "44px" }],
+        "2xs": ["9px", { lineHeight: "12px" }],
+        xs: ["10px", { lineHeight: "13px" }],
+        sm: ["11px", { lineHeight: "14px" }],
+        base: ["12px", { lineHeight: "16px" }],
+        md: ["13px", { lineHeight: "17px" }],
+        lg: ["14px", { lineHeight: "18px" }],
+        xl: ["16px", { lineHeight: "20px" }],
+        "2xl": ["18px", { lineHeight: "22px" }],
+        "3xl": ["22px", { lineHeight: "26px" }],
+        "4xl": ["26px", { lineHeight: "30px" }],
       },
+      // Tighter border radius
       borderRadius: {
-        sm: "6px",
-        md: "10px",
-        lg: "14px",
-        xl: "20px",
-        "2xl": "28px",
+        xs: "2px",
+        sm: "4px",
+        md: "6px",
+        lg: "8px",
+        xl: "12px",
+        "2xl": "16px",
         pill: "9999px",
       },
       borderWidth: {
@@ -95,9 +98,35 @@ module.exports = {
         hairline: "0.5px",
       },
       opacity: {
+        4: "0.04",
+        6: "0.06",
         8: "0.08",
         12: "0.12",
         16: "0.16",
+      },
+      // Tighter spacing
+      spacing: {
+        "0.5": "2px",
+        "1": "4px",
+        "1.5": "6px",
+        "2": "8px",
+        "2.5": "10px",
+        "3": "12px",
+        "3.5": "14px",
+        "4": "16px",
+        "5": "20px",
+        "6": "24px",
+        "8": "32px",
+        "10": "40px",
+        "12": "48px",
+      },
+      letterSpacing: {
+        tighter: "-0.05em",
+        tight: "-0.025em",
+        normal: "0",
+        wide: "0.025em",
+        wider: "0.05em",
+        widest: "0.1em",
       },
     },
   },
