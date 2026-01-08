@@ -1,14 +1,13 @@
 -- PolitiTrades Initial Schema
 -- Run this migration to set up the database
 
--- Enable UUID extension
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+-- gen_random_uuid() is native in PostgreSQL 13+ (no extension needed)
 
 -- ============================================
 -- PROFILES TABLE
 -- ============================================
 CREATE TABLE IF NOT EXISTS profiles (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL UNIQUE,
   email TEXT,
   full_name TEXT,
@@ -57,7 +56,7 @@ CREATE OR REPLACE TRIGGER on_auth_user_created
 -- POLITICIANS TABLE
 -- ============================================
 CREATE TABLE IF NOT EXISTS politicians (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name TEXT NOT NULL,
   party TEXT,
   state TEXT,
@@ -85,7 +84,7 @@ CREATE INDEX idx_politicians_country ON politicians(country);
 -- INSIDER TRADES TABLE
 -- ============================================
 CREATE TABLE IF NOT EXISTS insider_trades (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   politician_id UUID REFERENCES politicians(id) ON DELETE CASCADE NOT NULL,
   ticker TEXT NOT NULL,
   company_name TEXT,
@@ -120,7 +119,7 @@ CREATE INDEX idx_trades_type ON insider_trades(transaction_type);
 -- USER ALERTS TABLE
 -- ============================================
 CREATE TABLE IF NOT EXISTS user_alerts (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
   politician_id UUID REFERENCES politicians(id) ON DELETE CASCADE,
   sector TEXT,
@@ -154,7 +153,7 @@ CREATE INDEX idx_alerts_user ON user_alerts(user_id);
 -- PUSH TOKENS TABLE
 -- ============================================
 CREATE TABLE IF NOT EXISTS push_tokens (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
   token TEXT NOT NULL,
   platform TEXT NOT NULL, -- 'ios', 'android'
