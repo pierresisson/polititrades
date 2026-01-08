@@ -40,7 +40,7 @@ const PolitiTradesDarkTheme = {
   },
 };
 
-function useProtectedRoute() {
+function useProtectedRoute(isReady: boolean) {
   const hasCompletedOnboarding = useSettingsStore(
     (state) => state.hasCompletedOnboarding
   );
@@ -48,6 +48,8 @@ function useProtectedRoute() {
   const router = useRouter();
 
   useEffect(() => {
+    if (!isReady) return;
+
     const inAuthGroup = segments[0] === "(auth)";
 
     if (hasCompletedOnboarding && inAuthGroup) {
@@ -55,7 +57,7 @@ function useProtectedRoute() {
     } else if (!hasCompletedOnboarding && !inAuthGroup) {
       router.replace("/(auth)/onboarding");
     }
-  }, [hasCompletedOnboarding, segments, router]);
+  }, [hasCompletedOnboarding, segments, router, isReady]);
 }
 
 export default function RootLayout() {
@@ -66,7 +68,7 @@ export default function RootLayout() {
     Inter_700Bold,
   });
 
-  useProtectedRoute();
+  useProtectedRoute(fontsLoaded);
 
   useEffect(() => {
     if (fontError) throw fontError;
