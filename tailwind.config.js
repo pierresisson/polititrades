@@ -70,18 +70,18 @@ module.exports = {
         "inter-semibold": ["Inter_600SemiBold"],
         "inter-bold": ["Inter_700Bold"],
       },
-      // COMPACT typography - smaller, denser
+      // iOS HIG compliant typography - 17pt body minimum
       fontSize: {
-        "2xs": ["9px", { lineHeight: "12px" }],
-        xs: ["10px", { lineHeight: "13px" }],
-        sm: ["11px", { lineHeight: "14px" }],
-        base: ["12px", { lineHeight: "16px" }],
-        md: ["13px", { lineHeight: "17px" }],
-        lg: ["14px", { lineHeight: "18px" }],
-        xl: ["16px", { lineHeight: "20px" }],
-        "2xl": ["18px", { lineHeight: "22px" }],
-        "3xl": ["22px", { lineHeight: "26px" }],
-        "4xl": ["26px", { lineHeight: "30px" }],
+        "2xs": ["11px", { lineHeight: "14px" }],   // minimum iOS (notes)
+        xs: ["13px", { lineHeight: "17px" }],      // small captions
+        sm: ["15px", { lineHeight: "20px" }],      // secondary text
+        base: ["17px", { lineHeight: "24px" }],    // body (iOS default)
+        md: ["17px", { lineHeight: "24px" }],      // body alt
+        lg: ["20px", { lineHeight: "26px" }],      // emphasized
+        xl: ["22px", { lineHeight: "28px" }],      // subheadline
+        "2xl": ["26px", { lineHeight: "32px" }],   // headline
+        "3xl": ["30px", { lineHeight: "36px" }],   // large title
+        "4xl": ["34px", { lineHeight: "40px" }],   // display (iOS large title)
       },
       // Tighter border radius
       borderRadius: {

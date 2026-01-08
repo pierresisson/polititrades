@@ -112,25 +112,25 @@ export const shadows = {
   },
 } as const;
 
-// Typography scale - COMPACT / Editorial
+// Typography scale - iOS HIG compliant
 export const typography = {
   fontFamily: {
     sans: "System",
     mono: "SF Mono, Menlo",
     display: "System",
   },
-  // Reduced font sizes for compact UI
+  // iOS compliant font sizes - 17pt body minimum
   fontSize: {
-    "2xs": 9,
-    xs: 10,
-    sm: 11,
-    base: 12,
-    md: 13,
-    lg: 14,
-    xl: 16,
-    "2xl": 18,
-    "3xl": 22,
-    "4xl": 26,
+    "2xs": 11,  // minimum iOS
+    xs: 13,     // small captions
+    sm: 15,     // secondary
+    base: 17,   // body (iOS default)
+    md: 17,     // body alt
+    lg: 20,     // emphasized
+    xl: 22,     // subheadline
+    "2xl": 26,  // headline
+    "3xl": 30,  // large title
+    "4xl": 34,  // display
   },
   fontWeight: {
     regular: "400" as const,
