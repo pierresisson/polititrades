@@ -7,7 +7,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 import {
   Text,
-  Headline,
   SectionHeader,
   StatsRow,
   TradeRow,
@@ -18,8 +17,8 @@ import {
 import { colors } from "@/constants/theme";
 import { useSettingsStore, usePaywallStore } from "@/lib/store";
 import {
-  mockTrades,
-  mockPoliticians,
+  MOCK_POLITICIANS,
+  MOCK_TRADES,
   getRecentTrades,
   getTopMovers,
   getTodayStats,
@@ -53,7 +52,6 @@ export default function HomeScreen() {
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    // Simulate refresh
     setTimeout(() => setRefreshing(false), 1000);
   }, []);
 
@@ -92,7 +90,7 @@ export default function HomeScreen() {
           <View className="flex-row items-center justify-between mb-4">
             <View>
               <Text variant="secondary-sm">{getGreeting(t)}</Text>
-              <Headline level={1}>PolitiTrades</Headline>
+              <Text variant="h1">PolitiTrades</Text>
             </View>
             <Pressable
               onPress={() => router.push("/(tabs)/settings")}
@@ -106,7 +104,7 @@ export default function HomeScreen() {
             </Pressable>
           </View>
 
-          {/* Trial Banner - show if not premium */}
+          {/* Trial Banner */}
           {!isPremium && (
             <TrialBanner
               expiresAt={trialExpiresAt}
@@ -122,7 +120,7 @@ export default function HomeScreen() {
           <StatsRow
             items={[
               {
-                label: t("home.tradesCount", { count: "" }).replace("trades", "").trim(),
+                label: "Trades",
                 value: todayStats.totalTrades,
                 format: "number",
               },
@@ -141,12 +139,11 @@ export default function HomeScreen() {
           />
         </View>
 
-        {/* Top Movers - Horizontal scroll */}
+        {/* Top Movers */}
         <View className="mb-6">
           <SectionHeader
             title={t("home.topMovers")}
-            action={t("home.seeAll")}
-            onActionPress={() => router.push("/(tabs)/moves")}
+            action={{ label: t("home.seeAll"), onPress: () => router.push("/(tabs)/moves") }}
             className="px-4"
           />
           <ScrollView
@@ -157,15 +154,8 @@ export default function HomeScreen() {
             {topMovers.map((politician) => (
               <PersonalityCard
                 key={politician.id}
+                politician={politician}
                 variant="mini"
-                name={politician.name}
-                role={politician.role}
-                party={politician.party}
-                imageUrl={politician.imageUrl}
-                stats={{
-                  avgReturn: politician.stats.avgReturn,
-                  totalTrades: politician.stats.totalTrades,
-                }}
                 onPress={() => handlePoliticianPress(politician.id)}
               />
             ))}
@@ -176,25 +166,15 @@ export default function HomeScreen() {
         <View className="px-4 mb-6">
           <SectionHeader
             title={t("home.recentTrades")}
-            action={t("home.seeAll")}
-            onActionPress={() => router.push("/(tabs)/moves")}
+            action={{ label: t("home.seeAll"), onPress: () => router.push("/(tabs)/moves") }}
           />
           <View className="bg-surface-primary rounded-2xl overflow-hidden">
-            {recentTrades.map((trade, index) => (
+            {recentTrades.map((trade) => (
               <TradeRow
                 key={trade.id}
+                trade={trade}
                 variant="compact"
-                politicianName={trade.politicianName}
-                politicianParty={trade.politicianParty as "D" | "R" | "I"}
-                ticker={trade.ticker}
-                companyName={trade.companyName}
-                tradeType={trade.tradeType as "buy" | "sell"}
-                amount={trade.amount}
-                estimatedValue={trade.estimatedValue}
-                filedAt={new Date(trade.filedAt)}
-                returnSinceFiling={trade.returnSinceFiling}
                 onPress={() => handleTradePress(trade.id)}
-                showDivider={index < recentTrades.length - 1}
               />
             ))}
           </View>
@@ -204,32 +184,28 @@ export default function HomeScreen() {
         <View className="px-4 mb-6">
           <SectionHeader
             title={t("home.yourWatchlist")}
-            action={t("home.seeAll")}
-            onActionPress={() => router.push("/(tabs)/watchlist")}
+            action={{ label: t("home.seeAll"), onPress: () => router.push("/(tabs)/watchlist") }}
           />
           <ScrollView
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ gap: 12 }}
           >
-            {mockPoliticians.slice(0, 4).map((politician) => (
+            {MOCK_POLITICIANS.slice(0, 4).map((politician) => (
               <Pressable
                 key={politician.id}
                 onPress={() => handlePoliticianPress(politician.id)}
                 className="items-center"
               >
                 <Avatar
-                  initials={politician.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                  imageUrl={politician.imageUrl}
+                  initials={politician.initials}
+                  imageUrl={politician.photoUrl}
                   size="lg"
                   party={politician.party}
                   showPartyIndicator
                 />
                 <Text variant="caption" className="mt-2 text-center">
-                  {politician.name.split(" ")[1]}
+                  {politician.shortName}
                 </Text>
               </Pressable>
             ))}
