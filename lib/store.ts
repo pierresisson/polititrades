@@ -118,15 +118,125 @@ export const useSettingsStore = create<SettingsState>()(
 interface PaywallState {
   isPaywallOpen: boolean;
   isPremium: boolean;
+  trialExpiresAt: Date | null;
   openPaywall: () => void;
   closePaywall: () => void;
   setIsPremium: (isPremium: boolean) => void;
+  setTrialExpiresAt: (date: Date | null) => void;
 }
 
-export const usePaywallStore = create<PaywallState>()((set) => ({
-  isPaywallOpen: false,
-  isPremium: false,
-  openPaywall: () => set({ isPaywallOpen: true }),
-  closePaywall: () => set({ isPaywallOpen: false }),
-  setIsPremium: (isPremium) => set({ isPremium }),
+export const usePaywallStore = create<PaywallState>()(
+  persist(
+    (set) => ({
+      isPaywallOpen: false,
+      isPremium: false,
+      trialExpiresAt: null,
+      openPaywall: () => set({ isPaywallOpen: true }),
+      closePaywall: () => set({ isPaywallOpen: false }),
+      setIsPremium: (isPremium) => set({ isPremium }),
+      setTrialExpiresAt: (trialExpiresAt) => set({ trialExpiresAt }),
+    }),
+    {
+      name: "paywall-storage",
+      storage: createJSONStorage(() => AsyncStorage),
+      partialize: (state) => ({
+        isPremium: state.isPremium,
+        trialExpiresAt: state.trialExpiresAt,
+      }),
+    }
+  )
+);
+
+// Watchlist State (persisted)
+interface WatchlistState {
+  followedPoliticians: string[];
+  followedTickers: string[];
+  addPolitician: (id: string) => void;
+  removePolitician: (id: string) => void;
+  addTicker: (symbol: string) => void;
+  removeTicker: (symbol: string) => void;
+  isFollowingPolitician: (id: string) => boolean;
+  isFollowingTicker: (symbol: string) => boolean;
+}
+
+export const useWatchlistStore = create<WatchlistState>()(
+  persist(
+    (set, get) => ({
+      followedPoliticians: [],
+      followedTickers: [],
+      addPolitician: (id) => {
+        const current = get().followedPoliticians;
+        if (!current.includes(id)) {
+          set({ followedPoliticians: [...current, id] });
+        }
+      },
+      removePolitician: (id) =>
+        set({
+          followedPoliticians: get().followedPoliticians.filter((p) => p !== id),
+        }),
+      addTicker: (symbol) => {
+        const current = get().followedTickers;
+        if (!current.includes(symbol)) {
+          set({ followedTickers: [...current, symbol] });
+        }
+      },
+      removeTicker: (symbol) =>
+        set({
+          followedTickers: get().followedTickers.filter((t) => t !== symbol),
+        }),
+      isFollowingPolitician: (id) => get().followedPoliticians.includes(id),
+      isFollowingTicker: (symbol) => get().followedTickers.includes(symbol),
+    }),
+    {
+      name: "watchlist-storage",
+      storage: createJSONStorage(() => AsyncStorage),
+    }
+  )
+);
+
+// Search State (persisted for recent searches)
+interface SearchState {
+  recentSearches: string[];
+  addRecentSearch: (query: string) => void;
+  clearRecentSearches: () => void;
+}
+
+export const useSearchStore = create<SearchState>()(
+  persist(
+    (set, get) => ({
+      recentSearches: [],
+      addRecentSearch: (query) => {
+        const current = get().recentSearches.filter((s) => s !== query);
+        set({ recentSearches: [query, ...current].slice(0, 10) });
+      },
+      clearRecentSearches: () => set({ recentSearches: [] }),
+    }),
+    {
+      name: "search-storage",
+      storage: createJSONStorage(() => AsyncStorage),
+    }
+  )
+);
+
+// UI State (not persisted - ephemeral)
+type PaywallVariant = "A" | "B" | "C";
+
+interface UIState {
+  isFilterSheetOpen: boolean;
+  paywallVariant: PaywallVariant;
+  activeModal: string | null;
+  openFilterSheet: () => void;
+  closeFilterSheet: () => void;
+  setPaywallVariant: (variant: PaywallVariant) => void;
+  setActiveModal: (modal: string | null) => void;
+}
+
+export const useUIStore = create<UIState>()((set) => ({
+  isFilterSheetOpen: false,
+  paywallVariant: "A",
+  activeModal: null,
+  openFilterSheet: () => set({ isFilterSheetOpen: true }),
+  closeFilterSheet: () => set({ isFilterSheetOpen: false }),
+  setPaywallVariant: (paywallVariant) => set({ paywallVariant }),
+  setActiveModal: (activeModal) => set({ activeModal }),
 }));

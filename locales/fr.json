@@ -10,106 +10,302 @@
     "edit": "Modifier",
     "search": "Rechercher",
     "filter": "Filtrer",
+    "filters": "Filtres",
     "sort": "Trier",
     "all": "Tout",
-    "none": "Aucun"
+    "none": "Aucun",
+    "seeAll": "Voir tout",
+    "viewAll": "Tout afficher",
+    "done": "Terminé",
+    "apply": "Appliquer",
+    "reset": "Réinitialiser",
+    "clear": "Effacer",
+    "close": "Fermer",
+    "share": "Partager",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "more": "Plus"
   },
   "auth": {
     "login": "Connexion",
     "logout": "Déconnexion",
-    "signup": "Inscription",
+    "logoutConfirm": "Êtes-vous sûr de vouloir vous déconnecter ?",
+    "signup": "S'inscrire",
+    "signIn": "Se connecter",
     "email": "Email",
     "password": "Mot de passe",
     "forgotPassword": "Mot de passe oublié ?",
     "continueWithGoogle": "Continuer avec Google",
     "continueWithApple": "Continuer avec Apple",
-    "or": "ou"
+    "or": "ou",
+    "alreadyHaveAccount": "Vous avez déjà un compte ?",
+    "noAccount": "Vous n'avez pas de compte ?"
   },
   "tabs": {
     "home": "Accueil",
-    "trades": "Trades",
-    "alerts": "Alertes",
-    "profile": "Profil"
+    "moves": "Mouvements",
+    "search": "Recherche",
+    "watchlist": "Suivi",
+    "settings": "Paramètres"
   },
   "home": {
-    "title": "PolitiTrades",
-    "subtitle": "Suivez les Initiés",
-    "recentTrades": "Trades Récents",
+    "greeting": {
+      "morning": "Bonjour",
+      "afternoon": "Bon après-midi",
+      "evening": "Bonsoir"
+    },
+    "todaysActivity": "Activité du jour",
     "topMovers": "Top Mouvements",
-    "trending": "Politiciens Tendance",
-    "seeAll": "Voir Tout"
+    "yourWatchlist": "Votre Suivi",
+    "recentNews": "Actualités",
+    "recentTrades": "Trades Récents",
+    "trending": "Tendances",
+    "seeAll": "Voir tout",
+    "noActivity": "Aucune activité aujourd'hui",
+    "marketClosed": "Marchés fermés",
+    "tradesCount": "{{count}} trades",
+    "volume": "Volume",
+    "activePoliticians": "Politiciens actifs"
   },
-  "trades": {
-    "title": "Trades d'Initiés",
-    "buy": "Achat",
-    "sell": "Vente",
-    "amount": "Montant",
-    "date": "Date",
-    "politician": "Politicien",
-    "ticker": "Ticker",
-    "sector": "Secteur",
-    "filingDate": "Date de déclaration",
-    "transactionDate": "Date de transaction",
+  "moves": {
+    "title": "Mouvements",
+    "subtitle": "Derniers trades d'initiés",
+    "filters": "Filtres",
+    "all": "Tous",
+    "buys": "Achats",
+    "sells": "Ventes",
+    "today": "Aujourd'hui",
+    "thisWeek": "Cette semaine",
+    "thisMonth": "Ce mois",
+    "allTime": "Historique",
+    "noTrades": "Aucun trade ne correspond à vos filtres",
+    "noTradesYet": "Aucun trade pour le moment",
+    "clearFilters": "Effacer les filtres",
+    "filterByType": "Type de trade",
+    "filterByPeriod": "Période",
+    "filterByAmount": "Montant",
+    "filterBySource": "Source",
+    "applyFilters": "Appliquer",
+    "resetFilters": "Réinitialiser"
+  },
+  "tradeDetail": {
+    "title": "Détails du trade",
+    "filedOn": "Déclaré le",
+    "tradedOn": "Exécuté le",
     "estimatedValue": "Valeur estimée",
-    "type": "Type",
-    "noTrades": "Aucun trade trouvé"
+    "returnSinceFiling": "Rendement depuis déclaration",
+    "sector": "Secteur",
+    "source": "Source",
+    "viewSource": "Voir la déclaration SEC",
+    "viewOnSEC": "Voir sur SEC",
+    "relatedTrades": "Trades associés",
+    "similarTrades": "Trades similaires",
+    "aboutCompany": "À propos de {{company}}",
+    "otherTrades": "Autres trades sur {{ticker}}",
+    "recentActivity": "Activité récente"
+  },
+  "personality": {
+    "title": "Profil",
+    "overview": "Aperçu",
+    "trades": "Trades",
+    "holdings": "Positions",
+    "stats": "Statistiques",
+    "totalTrades": "Total Trades",
+    "avgReturn": "Rendement moy.",
+    "winRate": "Taux de réussite",
+    "totalValue": "Valeur totale",
+    "topSector": "Secteur principal",
+    "tradingStyle": "Style de trading",
+    "follow": "Suivre",
+    "following": "Suivi",
+    "unfollow": "Ne plus suivre",
+    "setAlert": "Créer une alerte",
+    "viewAllTrades": "Voir les {{count}} trades",
+    "noTrades": "Aucun trade enregistré",
+    "recentTrades": "Trades récents"
+  },
+  "ticker": {
+    "title": "Détails de l'action",
+    "price": "Prix",
+    "change": "Variation",
+    "insiderActivity": "Activité des initiés",
+    "tradesThisMonth": "{{count}} trades ce mois",
+    "netActivity": "Net : {{amount}}",
+    "bullish": "haussier",
+    "bearish": "baissier",
+    "relatedNews": "Actualités liées"
+  },
+  "search": {
+    "title": "Recherche",
+    "placeholder": "Rechercher politiciens, actions...",
+    "placeholderFull": "Rechercher politiciens, actions, actualités...",
+    "recent": "Recherches récentes",
+    "suggested": "Suggestions",
+    "trending": "Tendances",
+    "politicians": "Politiciens",
+    "tickers": "Actions",
+    "news": "Actualités",
+    "noResults": "Aucun résultat pour \"{{query}}\"",
+    "tryDifferent": "Essayez une autre recherche",
+    "clearRecent": "Effacer"
+  },
+  "watchlist": {
+    "title": "Suivi",
+    "politicians": "Politiciens",
+    "tickers": "Actions",
+    "alerts": "Alertes",
+    "empty": "Votre liste de suivi est vide",
+    "emptyDescription": "Suivez des politiciens ou des actions pour les voir ici et recevoir des mises à jour.",
+    "addFirst": "Commencer à suivre",
+    "explore": "Explorer",
+    "removeConfirm": "Retirer du suivi ?",
+    "removed": "Retiré du suivi"
   },
   "alerts": {
     "title": "Alertes",
-    "newTrade": "Nouvelle Alerte Trade",
-    "configure": "Configurer les Alertes",
-    "threshold": "Montant Minimum",
-    "politicians": "Politiciens",
-    "sectors": "Secteurs",
-    "noAlerts": "Aucune alerte"
+    "create": "Créer une alerte",
+    "newTrade": "Alerte nouveau trade",
+    "priceThreshold": "Alerte de prix",
+    "newsMention": "Mention dans l'actualité",
+    "configure": "Configurer",
+    "selectTarget": "Sélectionner la cible",
+    "alertType": "Type d'alerte",
+    "newTradeFrom": "Nouveau trade d'une personne",
+    "anyTradeOn": "Tout trade sur une action",
+    "enabled": "Activée",
+    "disabled": "Désactivée",
+    "noAlerts": "Aucune alerte",
+    "noAlertsDescription": "Créez des alertes pour être notifié quand des politiciens tradent des actions spécifiques.",
+    "dailyDigest": "Résumé quotidien",
+    "digestTime": "8h00"
   },
-  "profile": {
-    "title": "Profil",
+  "news": {
+    "title": "Actualités",
+    "latest": "Dernières",
+    "featured": "À la une",
+    "relatedTo": "Lié à",
+    "readMore": "Lire la suite",
+    "openInBrowser": "Ouvrir dans le navigateur",
+    "noNews": "Aucune actualité disponible",
+    "minutesAgo": "il y a {{count}}min",
+    "hoursAgo": "il y a {{count}}h",
+    "daysAgo": "il y a {{count}}j"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "account": "Compte",
     "subscription": "Abonnement",
-    "premium": "Premium",
-    "free": "Gratuit",
-    "upgradeToPremium": "Passer Premium",
-    "settings": "Paramètres",
-    "language": "Langue",
+    "manageSubscription": "Gérer l'abonnement",
+    "preferences": "Préférences",
     "notifications": "Notifications",
-    "about": "À propos",
-    "privacyPolicy": "Politique de confidentialité",
+    "pushNotifications": "Notifications push",
+    "emailNotifications": "Notifications par email",
+    "language": "Langue",
+    "appearance": "Apparence",
+    "darkMode": "Mode sombre",
+    "support": "Assistance",
+    "helpCenter": "Centre d'aide",
+    "contactSupport": "Contacter le support",
+    "rateApp": "Noter l'app",
+    "legal": "Mentions légales",
     "termsOfService": "Conditions d'utilisation",
-    "version": "Version"
+    "privacyPolicy": "Politique de confidentialité",
+    "disclaimer": "Avertissement",
+    "about": "À propos",
+    "version": "Version",
+    "signOut": "Se déconnecter",
+    "deleteAccount": "Supprimer le compte",
+    "deleteAccountConfirm": "Êtes-vous sûr ? Cette action est irréversible."
   },
   "premium": {
-    "title": "Passez Premium",
-    "subtitle": "Débloquez toutes les fonctionnalités",
-    "price": "7,99€/mois",
-    "priceYearly": "59,99€/an",
+    "title": "Passer Premium",
+    "unlockTitle": "Débloquer Premium",
+    "subtitle": "Profitez de l'expérience complète PolitiTrades",
+    "monthly": "Mensuel",
+    "yearly": "Annuel",
+    "bestValue": "Meilleure offre",
+    "save": "Économisez {{percent}}%",
+    "perMonth": "/mois",
+    "perYear": "/an",
+    "startTrial": "Essai gratuit de 7 jours",
+    "subscribe": "S'abonner",
+    "continue": "Continuer",
+    "restore": "Restaurer les achats",
+    "alreadyPremium": "Vous êtes déjà Premium !",
     "features": {
-      "realTimeAlerts": "Alertes trades en temps réel",
-      "advancedFilters": "Filtres avancés & analytics",
-      "exportData": "Export données (CSV, API)",
+      "realTimeAlerts": "Alertes en temps réel",
+      "advancedFilters": "Filtres avancés",
+      "exportData": "Export des données (CSV)",
       "historicalData": "Historique complet",
-      "prioritySupport": "Support prioritaire"
+      "prioritySupport": "Support prioritaire",
+      "unlimitedWatchlist": "Suivi illimité",
+      "apiAccess": "Accès API"
     },
-    "startTrial": "Essai gratuit 7 jours",
-    "subscribe": "S'abonner"
+    "trust": {
+      "cancelAnytime": "Annulez à tout moment",
+      "securePayment": "Paiement sécurisé via App Store",
+      "noCommitment": "Sans engagement"
+    }
+  },
+  "trial": {
+    "banner": "{{days}} jours restants",
+    "bannerHours": "{{hours}}h {{minutes}}m restantes",
+    "expired": "Essai terminé",
+    "expiredMessage": "Votre essai est terminé. Passez à Premium pour continuer.",
+    "upgrade": "Passer à Premium",
+    "endsSoon": "L'essai se termine bientôt",
+    "fullAccess": "Accès complet restant",
+    "features": {
+      "unlimited": "Accès illimité aux trades",
+      "profiles": "Tous les profils politiciens",
+      "alerts": "Alertes en temps réel",
+      "news": "Actualités & analyses"
+    }
+  },
+  "empty": {
+    "noTrades": "Aucun trade trouvé",
+    "noNews": "Aucune actualité disponible",
+    "noResults": "Aucun résultat",
+    "noData": "Aucune donnée disponible",
+    "tryDifferent": "Essayez une autre recherche",
+    "checkBack": "Revenez plus tard"
+  },
+  "time": {
+    "justNow": "À l'instant",
+    "minutesAgo": "il y a {{count}}min",
+    "hoursAgo": "il y a {{count}}h",
+    "daysAgo": "il y a {{count}}j",
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "thisWeek": "Cette semaine",
+    "thisMonth": "Ce mois"
+  },
+  "errors": {
+    "generic": "Une erreur est survenue",
+    "network": "Erreur réseau. Vérifiez votre connexion.",
+    "notFound": "Non trouvé",
+    "unauthorized": "Veuillez vous connecter pour continuer",
+    "serverError": "Erreur serveur. Réessayez plus tard.",
+    "loadFailed": "Échec du chargement"
   },
   "onboarding": {
     "welcome": {
-      "title": "Bienvenue sur PolitiTrades",
-      "subtitle": "Suivez les trades d'initiés des politiciens et dirigeants en temps réel",
-      "feature1": "Alertes trades en temps réel",
+      "title": "Suivez les Trades d'Initiés",
+      "subtitle": "Voyez ce que les politiciens et dirigeants achètent avant le marché.",
+      "feature1": "Déclarations SEC en temps réel",
       "feature2": "Suivez politiciens & dirigeants",
-      "feature3": "Analytics avancées & insights"
+      "feature3": "Alertes intelligentes & analytics"
     },
     "features": {
       "title": "Restez Informé",
-      "subtitle": "Recevez des alertes en temps réel quand les personnalités clés font des moves",
+      "subtitle": "Recevez des alertes en temps réel quand des personnalités bougent",
       "realTimeAlerts": {
         "title": "Alertes Temps Réel",
-        "description": "Soyez notifié instantanément des trades importants des politiciens et dirigeants"
+        "description": "Soyez notifié instantanément quand des politiciens ou dirigeants font des trades importants"
       },
       "smartSearch": {
         "title": "Recherche Intelligente",
-        "description": "Trouvez des trades par politicien, ticker, secteur ou type de transaction"
+        "description": "Trouvez des trades par politicien, action, secteur ou type de transaction"
       },
       "analytics": {
         "title": "Analytics Portfolio",
@@ -119,23 +315,37 @@
         "title": "Données Historiques",
         "description": "Accédez à des années d'historique pour identifier les tendances"
       },
-      "exampleAlert": "Exemple d'Alerte",
-      "sinceFiling": "depuis le dépôt"
+      "exampleAlert": "Exemple d'alerte",
+      "sinceFiling": "depuis déclaration"
+    },
+    "trial": {
+      "title": "Votre Essai Commence Maintenant",
+      "subtitle": "Explorez tout ce que PolitiTrades peut offrir"
     },
     "premium": {
       "title": "Accès Premium",
-      "subtitle": "Analytics avancées, exports et plus encore",
+      "subtitle": "Analytics avancés, exports, et plus",
       "whatYouGet": "Ce que vous obtenez",
       "monthly": "Mensuel",
       "yearly": "Annuel",
       "perMonth": "par mois",
-      "save": "-37%",
-      "cancelAnytime": "Annulez à tout moment. Sans engagement.",
-      "securePayment": "Paiement sécurisé via App Store"
+      "save": "ÉCONOMISEZ {{percent}}%",
+      "cancelAnytime": "Annulez à tout moment. Sans justification.",
+      "securePayment": "Paiement sécurisé via App Store",
+      "recommended": "Recommandé"
     },
     "continue": "Continuer",
     "back": "Retour",
     "skip": "Plus tard",
-    "getStarted": "Commencer"
+    "getStarted": "Commencer",
+    "startExploring": "Commencer à Explorer",
+    "enableNotifications": "Activer les Notifications",
+    "notNow": "Pas maintenant"
+  },
+  "disclaimer": {
+    "notFinancialAdvice": "Ce n'est pas un conseil financier",
+    "dataSource": "Données issues des déclarations SEC",
+    "verifyBefore": "Vérifiez avant d'agir",
+    "full": "Cette application fournit des informations à titre éducatif uniquement. Elle ne constitue pas un conseil financier. Faites toujours vos propres recherches avant de prendre des décisions d'investissement."
   }
 }

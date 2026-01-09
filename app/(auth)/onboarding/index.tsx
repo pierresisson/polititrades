@@ -70,7 +70,7 @@ export default function WelcomeScreen() {
       {/* Subtle accent glow at top */}
       <View
         className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full opacity-20"
-        style={{ backgroundColor: "#5B7A99", filter: "blur(100px)" }}
+        style={{ backgroundColor: "#0D9488", filter: "blur(100px)" }}
       />
 
       {/* Content */}

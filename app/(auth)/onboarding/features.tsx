@@ -81,7 +81,7 @@ export default function FeaturesScreen() {
           />
           <FeatureCard
             icon="search"
-            iconColor="#7C9AB8"
+            iconColor="#0D9488"
             title={t("onboarding.features.smartSearch.title")}
             description="Filter by ticker, name"
             delay={250}

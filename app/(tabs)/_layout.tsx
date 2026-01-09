@@ -1,57 +1,139 @@
-import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import React from "react";
+import { Tabs } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { colors } from "@/constants/theme";
+import { useTranslation } from "react-i18next";
+import { Platform, View } from "react-native";
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
-
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+// Tab bar icon component
+function TabBarIcon({
+  name,
+  color,
+  focused,
+}: {
+  name: React.ComponentProps<typeof Ionicons>["name"];
   color: string;
+  focused: boolean;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  return (
+    <View className="items-center justify-center">
+      <Ionicons name={name} size={24} color={color} />
+      {focused && (
+        <View className="absolute -bottom-1 w-1 h-1 rounded-full bg-primary" />
+      )}
+    </View>
+  );
 }
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const { t } = useTranslation();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-      }}>
+        tabBarActiveTintColor: colors.primary.DEFAULT,
+        tabBarInactiveTintColor: colors.text.muted,
+        tabBarStyle: {
+          backgroundColor: colors.background.DEFAULT,
+          borderTopColor: colors.background.border,
+          borderTopWidth: 1,
+          height: Platform.OS === "ios" ? 88 : 64,
+          paddingTop: 8,
+          paddingBottom: Platform.OS === "ios" ? 28 : 8,
+        },
+        tabBarLabelStyle: {
+          fontFamily: "Inter_500Medium",
+          fontSize: 11,
+          marginTop: 4,
+        },
+        headerStyle: {
+          backgroundColor: colors.background.DEFAULT,
+          borderBottomColor: colors.background.border,
+          borderBottomWidth: 1,
+        },
+        headerTitleStyle: {
+          fontFamily: "Inter_600SemiBold",
+          fontSize: 17,
+          color: colors.text.DEFAULT,
+        },
+        headerShadowVisible: false,
+        headerShown: true,
+      }}
+    >
+      {/* Home Tab */}
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          title: t("tabs.home"),
+          headerTitle: "",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "home" : "home-outline"}
+              color={color}
+              focused={focused}
+            />
           ),
         }}
       />
+
+      {/* Moves Tab */}
       <Tabs.Screen
-        name="two"
+        name="moves"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: t("tabs.moves"),
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "trending-up" : "trending-up-outline"}
+              color={color}
+              focused={focused}
+            />
+          ),
+        }}
+      />
+
+      {/* Search Tab */}
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: t("tabs.search"),
+          headerShown: false,
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "search" : "search-outline"}
+              color={color}
+              focused={focused}
+            />
+          ),
+        }}
+      />
+
+      {/* Watchlist Tab */}
+      <Tabs.Screen
+        name="watchlist"
+        options={{
+          title: t("tabs.watchlist"),
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "heart" : "heart-outline"}
+              color={color}
+              focused={focused}
+            />
+          ),
+        }}
+      />
+
+      {/* Settings Tab */}
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: t("tabs.settings"),
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "settings" : "settings-outline"}
+              color={color}
+              focused={focused}
+            />
+          ),
         }}
       />
     </Tabs>

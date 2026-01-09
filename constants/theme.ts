@@ -1,31 +1,35 @@
 export const colors = {
-  // Primary - Slate Blue (Editorial/FT Style)
+  // Primary - Teal (Revolut-like)
   primary: {
-    DEFAULT: "#5B7A99",
-    light: "#7C9AB8",
-    dark: "#3D5A75",
-    50: "#F4F7FA",
-    100: "#E1E8EF",
-    500: "#5B7A99",
-    600: "#4A6580",
-    700: "#3D5A75",
-    900: "#1E2D3A",
+    DEFAULT: "#0D9488",
+    light: "#14B8A6",
+    dark: "#0F766E",
+    50: "#F0FDFA",
+    100: "#CCFBF1",
+    500: "#0D9488",
+    600: "#0F766E",
+    700: "#115E59",
+    900: "#134E4A",
+    muted: "#115E59",
+    subtle: "rgba(13, 148, 136, 0.1)",
   },
-  // Profit - Muted Emerald (sophisticated green)
+  // Profit - Soft Green (calm finance)
   profit: {
-    DEFAULT: "#34D399",
-    light: "#6EE7B7",
-    dark: "#10B981",
-    muted: "#0D2E24",
+    DEFAULT: "#22C55E",
+    light: "#4ADE80",
+    dark: "#16A34A",
+    muted: "#166534",
+    subtle: "rgba(34, 197, 94, 0.1)",
   },
-  // Loss - Coral Red (refined)
+  // Loss - Soft Red (calm finance)
   loss: {
-    DEFAULT: "#F87171",
-    light: "#FCA5A5",
-    dark: "#EF4444",
-    muted: "#2D1515",
+    DEFAULT: "#EF4444",
+    light: "#F87171",
+    dark: "#DC2626",
+    muted: "#991B1B",
+    subtle: "rgba(239, 68, 68, 0.1)",
   },
-  // Background - Deep Charcoal (Terminal aesthetic)
+  // Background - Deep Charcoal
   background: {
     DEFAULT: "#09090B",
     card: "#111113",
@@ -40,17 +44,41 @@ export const colors = {
     muted: "#71717A",
     inverse: "#09090B",
   },
-  // Accent - Amber (Premium, subtle warmth)
+  // Accent - Amber (Premium)
   accent: {
     DEFAULT: "#F59E0B",
     light: "#FBBF24",
     dark: "#D97706",
+    muted: "#92400E",
+    subtle: "rgba(245, 158, 11, 0.1)",
   },
   // Surface colors - subtle layering
   surface: {
     primary: "#111113",
     secondary: "#18181B",
     tertiary: "#27272A",
+  },
+  // Info - Blue
+  info: {
+    DEFAULT: "#3B82F6",
+    light: "#60A5FA",
+    dark: "#2563EB",
+    muted: "#1E40AF",
+    subtle: "rgba(59, 130, 246, 0.1)",
+  },
+  // Warning
+  warning: {
+    DEFAULT: "#F59E0B",
+    light: "#FBBF24",
+    dark: "#D97706",
+    muted: "#92400E",
+    subtle: "rgba(245, 158, 11, 0.1)",
+  },
+  // Party colors for politicians
+  party: {
+    democrat: "#3B82F6",
+    republican: "#EF4444",
+    independent: "#8B5CF6",
   },
 } as const;
 
@@ -65,13 +93,14 @@ export const semanticColors = {
 } as const;
 
 export const gradients = {
-  primary: ["#3D5A75", "#5B7A99"],
+  primary: ["#0F766E", "#0D9488"],
   dark: ["#09090B", "#111113"],
   premium: ["#D97706", "#F59E0B"],
-  profit: ["#10B981", "#34D399"],
-  loss: ["#EF4444", "#F87171"],
-  card: ["rgba(91, 122, 153, 0.06)", "rgba(91, 122, 153, 0.02)"],
+  profit: ["#16A34A", "#22C55E"],
+  loss: ["#DC2626", "#EF4444"],
+  card: ["rgba(13, 148, 136, 0.06)", "rgba(13, 148, 136, 0.02)"],
   subtle: ["rgba(255,255,255,0.02)", "rgba(255,255,255,0.005)"],
+  teal: ["#115E59", "#0D9488"],
 } as const;
 
 export const shadows = {
@@ -103,12 +132,19 @@ export const shadows = {
     shadowRadius: 4,
     elevation: 3,
   },
-  lg: {
+  md: {
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.12,
+    shadowOpacity: 0.15,
     shadowRadius: 8,
-    elevation: 6,
+    elevation: 4,
+  },
+  lg: {
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    elevation: 8,
   },
 } as const;
 
@@ -121,16 +157,16 @@ export const typography = {
   },
   // iOS compliant font sizes - 17pt body minimum
   fontSize: {
-    "2xs": 11,  // minimum iOS
-    xs: 13,     // small captions
-    sm: 15,     // secondary
-    base: 17,   // body (iOS default)
-    md: 17,     // body alt
-    lg: 20,     // emphasized
-    xl: 22,     // subheadline
-    "2xl": 26,  // headline
-    "3xl": 30,  // large title
-    "4xl": 34,  // display
+    "2xs": 11, // minimum iOS
+    xs: 13, // small captions
+    sm: 15, // secondary
+    base: 17, // body (iOS default)
+    md: 17, // body alt
+    lg: 20, // emphasized
+    xl: 22, // subheadline
+    "2xl": 26, // headline
+    "3xl": 30, // large title
+    "4xl": 34, // display
   },
   fontWeight: {
     regular: "400" as const,
@@ -170,9 +206,11 @@ export const spacing = {
   8: 32,
   10: 40,
   12: 48,
+  16: 64,
+  20: 80,
 } as const;
 
-// Smaller border radius for refined look
+// Border radius
 export const borderRadius = {
   none: 0,
   xs: 2,
@@ -181,5 +219,13 @@ export const borderRadius = {
   lg: 8,
   xl: 12,
   "2xl": 16,
+  "3xl": 24,
   full: 9999,
+} as const;
+
+// Animation durations
+export const animation = {
+  fast: 150,
+  normal: 300,
+  slow: 500,
 } as const;

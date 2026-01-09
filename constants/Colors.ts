@@ -1,19 +1,19 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
+import { colors } from "./theme";
 
+// Tab bar colors from theme
 export default {
   light: {
-    text: '#000',
-    background: '#fff',
-    tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
+    text: colors.text.DEFAULT,
+    background: colors.background.DEFAULT,
+    tint: colors.primary.DEFAULT,
+    tabIconDefault: colors.text.muted,
+    tabIconSelected: colors.primary.DEFAULT,
   },
   dark: {
-    text: '#fff',
-    background: '#000',
-    tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
+    text: colors.text.DEFAULT,
+    background: colors.background.DEFAULT,
+    tint: colors.primary.DEFAULT,
+    tabIconDefault: colors.text.muted,
+    tabIconSelected: colors.primary.DEFAULT,
   },
 };
