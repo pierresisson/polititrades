@@ -162,7 +162,7 @@ export function TickerCard({
   symbol,
   companyName,
   price,
-  change: _change,
+  change,
   changePercent,
   sparklineData,
   sector,

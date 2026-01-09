@@ -17,9 +17,9 @@ import {
 import { colors } from "@/constants/theme";
 import { haptics } from "@/lib/haptics";
 import {
-  mockTrades,
-  mockTickers,
-  mockPoliticians,
+  MOCK_TRADES,
+  MOCK_TICKERS,
+  MOCK_POLITICIANS,
   getRelatedTrades,
 } from "@/lib/mockData";
 
@@ -29,12 +29,8 @@ export default function TradeDetailScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
 
-  const trade = mockTrades.find((t) => t.id === id);
-  const relatedTrades = trade
-    ? mockTrades
-        .filter((t) => t.ticker === trade.ticker && t.id !== id)
-        .slice(0, 3)
-    : [];
+  const trade = MOCK_TRADES.find((t) => t.id === id);
+  const relatedTrades = trade ? getRelatedTrades(trade.id, 3) : [];
 
   if (!trade) {
     return (
@@ -44,11 +40,8 @@ export default function TradeDetailScreen() {
     );
   }
 
-  const ticker = mockTickers.find((t) => t.symbol === trade.ticker);
-  const politician = mockPoliticians.find(
-    (p) => p.name === trade.politicianName
-  );
-  const partyCode = trade.politicianParty as "D" | "R" | "I";
+  const ticker = MOCK_TICKERS.find((t) => t.symbol === trade.ticker);
+  const politician = trade.politician;
 
   const handleViewSource = () => {
     haptics.light();
@@ -105,21 +98,18 @@ export default function TradeDetailScreen() {
               className="flex-row items-center gap-3 mb-4"
             >
               <Avatar
-                initials={trade.politicianName
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")}
-                imageUrl={trade.politicianImageUrl}
+                initials={politician.initials}
+                imageUrl={politician.photoUrl}
                 size="lg"
-                party={trade.politicianParty as "D" | "R" | "I"}
+                party={politician.party}
                 showPartyIndicator
               />
               <View className="flex-1">
                 <Text variant="body" className="font-inter-semibold">
-                  {trade.politicianName}
+                  {politician.name}
                 </Text>
                 <Text variant="caption">
-                  {politician?.role || "Congress Member"}
+                  {politician.position || `${politician.chamber} - ${politician.state}`}
                 </Text>
               </View>
               <Ionicons
@@ -131,7 +121,7 @@ export default function TradeDetailScreen() {
 
             {/* Trade Badge */}
             <View className="flex-row items-center gap-3 mb-4">
-              <TradeBadge type={trade.tradeType as "buy" | "sell"} />
+              <TradeBadge type={trade.type} />
               <Text variant="h2" className="flex-1">
                 {trade.ticker}
               </Text>
@@ -165,6 +155,7 @@ export default function TradeDetailScreen() {
                   label: t("tradeDetail.returnSinceFiling"),
                   value: trade.returnSinceFiling || 0,
                   format: "percent",
+                  trend: trade.returnSinceFiling >= 0 ? "up" : "down",
                 },
               ]}
               columns={2}
@@ -186,7 +177,7 @@ export default function TradeDetailScreen() {
                   <Text variant="body">{t("tradeDetail.tradedOn")}</Text>
                 </View>
                 <Text variant="body" className="font-inter-medium">
-                  {formatDate(new Date(trade.tradedAt))}
+                  {formatDate(trade.tradeDate)}
                 </Text>
               </View>
               <View className="flex-row items-center justify-between p-4">
@@ -201,7 +192,7 @@ export default function TradeDetailScreen() {
                   <Text variant="body">{t("tradeDetail.filedOn")}</Text>
                 </View>
                 <Text variant="body" className="font-inter-medium">
-                  {formatDate(new Date(trade.filedAt))}
+                  {formatDate(trade.filingDate)}
                 </Text>
               </View>
             </View>
@@ -218,7 +209,7 @@ export default function TradeDetailScreen() {
                 <View className="flex-row items-center justify-between mb-4">
                   <View>
                     <Text variant="h3">{ticker.symbol}</Text>
-                    <Text variant="caption">{ticker.name}</Text>
+                    <Text variant="caption">{ticker.companyName}</Text>
                   </View>
                   <View className="items-end">
                     <Text variant="h3">${ticker.price.toFixed(2)}</Text>
@@ -267,21 +258,16 @@ export default function TradeDetailScreen() {
               />
               <View className="bg-surface-primary rounded-2xl overflow-hidden">
                 {relatedTrades.map((relatedTrade, index) => (
-                  <TradeRow
-                    key={relatedTrade.id}
-                    variant="compact"
-                    politicianName={relatedTrade.politicianName}
-                    politicianParty={relatedTrade.politicianParty as "D" | "R" | "I"}
-                    ticker={relatedTrade.ticker}
-                    companyName={relatedTrade.companyName}
-                    tradeType={relatedTrade.tradeType as "buy" | "sell"}
-                    amount={relatedTrade.amount}
-                    estimatedValue={relatedTrade.estimatedValue}
-                    filedAt={new Date(relatedTrade.filedAt)}
-                    returnSinceFiling={relatedTrade.returnSinceFiling}
-                    onPress={() => handleRelatedTradePress(relatedTrade.id)}
-                    showDivider={index < relatedTrades.length - 1}
-                  />
+                  <View key={relatedTrade.id}>
+                    <TradeRow
+                      trade={relatedTrade}
+                      variant="compact"
+                      onPress={() => handleRelatedTradePress(relatedTrade.id)}
+                    />
+                    {index < relatedTrades.length - 1 && (
+                      <View className="h-px bg-background-border mx-4" />
+                    )}
+                  </View>
                 ))}
               </View>
             </View>

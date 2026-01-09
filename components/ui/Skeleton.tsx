@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View, type ViewStyle, type DimensionValue } from "react-native";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import Animated, {
@@ -53,10 +53,9 @@ export function Skeleton({
     opacity: opacity.value,
   }));
 
-  const sizeStyle = {
-    width: width ?? (variant === "circular" ? 40 : "100%"),
-    height:
-      height ?? (variant === "circular" ? 40 : variant === "card" ? 100 : 16),
+  const sizeStyle: ViewStyle = {
+    width: (width ?? (variant === "circular" ? 40 : "100%")) as DimensionValue,
+    height: (height ?? (variant === "circular" ? 40 : variant === "card" ? 100 : 16)) as DimensionValue,
   };
 
   return (
