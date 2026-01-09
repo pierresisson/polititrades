@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useState, useCallback, useMemo } from "react";
 
 import {
-  Text,
   TradeRow,
   TradeDateHeader,
   TradeTypeFilter,

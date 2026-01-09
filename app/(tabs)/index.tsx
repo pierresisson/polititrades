@@ -18,7 +18,6 @@ import { colors } from "@/constants/theme";
 import { useSettingsStore, usePaywallStore } from "@/lib/store";
 import {
   MOCK_POLITICIANS,
-  MOCK_TRADES,
   getRecentTrades,
   getTopMovers,
   getTodayStats,

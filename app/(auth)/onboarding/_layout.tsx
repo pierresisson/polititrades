@@ -1,10 +1,7 @@
 import { View } from "react-native";
 import { Slot, usePathname } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Animated, {
-  useAnimatedStyle,
-  withSpring,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 
 const SCREENS = ["index", "features", "premium"];
 

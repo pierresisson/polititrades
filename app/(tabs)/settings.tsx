@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
-import { Text, ListCard, SectionHeader, PremiumBadge } from "@/components/ui";
+import { Text, PremiumBadge } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import {
   useAuthStore,

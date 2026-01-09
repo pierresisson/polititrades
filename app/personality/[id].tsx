@@ -30,7 +30,7 @@ export default function PersonalityDetailScreen() {
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<ProfileTab>("overview");
 
-  const { followedPoliticians, addPolitician, removePolitician, isFollowingPolitician } =
+  const { addPolitician, removePolitician, isFollowingPolitician } =
     useWatchlistStore();
   const { openPaywall } = usePaywallStore();
 
@@ -74,7 +74,6 @@ export default function PersonalityDetailScreen() {
       ? colors.party.republican
       : colors.party.independent;
 
-  const partyShort = politician.party.charAt(0);
   const role = politician.position
     ? politician.position
     : `${politician.chamber === "Senate" ? "Senator" : "Representative"} - ${politician.state}`;

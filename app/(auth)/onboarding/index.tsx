@@ -22,7 +22,7 @@ import { Button } from "@/components/ui/Button";
 import { Text } from "@/components/ui/Text";
 import { Badge, TradeBadge } from "@/components/ui/Badge";
 
-const { width, height } = Dimensions.get("window");
+const _dimensions = Dimensions.get("window");
 
 // Mock live trades data - shorter names to fit
 const LIVE_TRADES = [
@@ -33,7 +33,7 @@ const LIVE_TRADES = [
 
 export default function WelcomeScreen() {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t: _t } = useTranslation();
 
   // Pulse animation for live indicator
   const pulseOpacity = useSharedValue(1);

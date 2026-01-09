@@ -10,7 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { Button } from "@/components/ui/Button";
 import { Text } from "@/components/ui/Text";
-import { Badge, TradeBadge, StatusDot } from "@/components/ui/Badge";
+import { Badge, TradeBadge } from "@/components/ui/Badge";
 
 export default function FeaturesScreen() {
   const router = useRouter();

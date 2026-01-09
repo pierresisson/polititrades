@@ -5,13 +5,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants/theme";
 import { haptics } from "@/lib/haptics";
 import { useEffect, useState } from "react";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withSequence,
-  withTiming,
-} from "react-native-reanimated";
 
 interface TrialBannerProps {
   expiresAt: Date;

@@ -19,7 +19,6 @@ import { haptics } from "@/lib/haptics";
 import {
   MOCK_TRADES,
   MOCK_TICKERS,
-  MOCK_POLITICIANS,
   getRelatedTrades,
 } from "@/lib/mockData";
 
@@ -148,8 +147,8 @@ export default function TradeDetailScreen() {
               items={[
                 {
                   label: t("tradeDetail.estimatedValue"),
-                  value: trade.estimatedValue,
-                  format: "currency",
+                  value: `$${(trade.amountMin / 1000).toFixed(0)}K - $${(trade.amountMax / 1000).toFixed(0)}K`,
+                  format: "none",
                 },
                 {
                   label: t("tradeDetail.returnSinceFiling"),
@@ -177,7 +176,7 @@ export default function TradeDetailScreen() {
                   <Text variant="body">{t("tradeDetail.tradedOn")}</Text>
                 </View>
                 <Text variant="body" className="font-inter-medium">
-                  {formatDate(trade.tradeDate)}
+                  {formatDate(trade.transactionDate)}
                 </Text>
               </View>
               <View className="flex-row items-center justify-between p-4">

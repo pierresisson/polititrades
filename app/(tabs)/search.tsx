@@ -10,7 +10,6 @@ import {
   SearchInput,
   FilterChip,
   PersonalityCard,
-  Avatar,
   EmptySearch,
   SectionHeader,
 } from "@/components/ui";

@@ -5,8 +5,6 @@ import { Badge } from "./Badge";
 import { haptics } from "@/lib/haptics";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants/theme";
-import { LinearGradient } from "expo-linear-gradient";
-import { gradients } from "@/constants/theme";
 
 interface PaywallCardProps {
   plan: "monthly" | "yearly";
