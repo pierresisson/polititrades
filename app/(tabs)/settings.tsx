@@ -150,7 +150,7 @@ export default function SettingsScreen() {
           style: "destructive",
           onPress: () => {
             resetAuth();
-            router.replace("/(auth)/login");
+            router.replace("/(auth)/onboarding");
           },
         },
       ]

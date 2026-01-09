@@ -12,7 +12,6 @@ import Animated, {
   useSharedValue,
   withRepeat,
   withTiming,
-  withDelay,
   withSequence,
   Easing,
 } from "react-native-reanimated";
@@ -96,7 +95,7 @@ export default function WelcomeScreen() {
             <Animated.View style={pulseStyle}>
               <View className="w-2 h-2 rounded-full bg-profit" />
             </Animated.View>
-            <Text variant="xs" className="text-profit font-semibold tracking-widest uppercase">
+            <Text variant="label" className="text-profit">
               Live Data Feed
             </Text>
           </Animated.View>
@@ -110,7 +109,7 @@ export default function WelcomeScreen() {
 
           {/* Tagline */}
           <Animated.View entering={FadeInDown.delay(450).springify()}>
-            <Text variant="xl" align="center" className="mb-3 text-text-secondary">
+            <Text variant="h3" align="center" className="mb-3 text-text-secondary">
               Track What Politicians Trade
             </Text>
           </Animated.View>
@@ -132,7 +131,7 @@ export default function WelcomeScreen() {
             <View className="flex-row items-center justify-between px-4 py-3 border-b border-background-border">
               <View className="flex-row items-center gap-2">
                 <Ionicons name="pulse" size={16} color="#34D399" />
-                <Text variant="sm" className="font-semibold">Recent Filings</Text>
+                <Text variant="body-sm" className="font-semibold">Recent Filings</Text>
               </View>
               <Badge label="LIVE" variant="profit" size="sm" />
             </View>
@@ -151,7 +150,7 @@ export default function WelcomeScreen() {
 
             {/* Footer teaser */}
             <View className="px-4 py-3 bg-surface-secondary/30">
-              <Text variant="xs" className="text-text-muted text-center">
+              <Text variant="caption" className="text-center">
                 +2,847 trades tracked this month
               </Text>
             </View>
@@ -174,7 +173,7 @@ export default function WelcomeScreen() {
             className="w-full mb-4"
             rightIcon={<Ionicons name="arrow-forward" size={16} color="#09090B" />}
           />
-          <Text variant="xs" align="center" className="text-text-muted">
+          <Text variant="caption" align="center">
             Free to browse • Premium for alerts
           </Text>
         </Animated.View>
@@ -210,7 +209,7 @@ function TradeRow({
     >
       {/* Avatar */}
       <View className="w-10 h-10 rounded-full bg-surface-secondary items-center justify-center mr-3">
-        <Text variant="sm" className="font-bold text-text-secondary">
+        <Text variant="body-sm" className="font-bold text-text-secondary">
           {initials}
         </Text>
       </View>
@@ -218,29 +217,29 @@ function TradeRow({
       {/* Info */}
       <View className="flex-1 mr-3">
         <View className="flex-row items-center mb-0.5">
-          <Text variant="sm" className="font-semibold">{name}</Text>
+          <Text variant="body-sm" className="font-semibold">{name}</Text>
           <View className="ml-2">
             <TradeBadge type={type} size="xs" />
           </View>
         </View>
         <View className="flex-row items-center gap-1">
-          <Text variant="sm" className={`font-mono font-semibold ${type === "buy" ? "text-profit" : "text-loss"}`}>
+          <Text variant="mono-sm" className={type === "buy" ? "text-profit" : "text-loss"}>
             {ticker}
           </Text>
-          <Text variant="xs" className="text-text-muted">•</Text>
-          <Text variant="xs" className="text-text-muted">{amount}</Text>
+          <Text variant="caption">•</Text>
+          <Text variant="caption">{amount}</Text>
         </View>
       </View>
 
       {/* Change */}
       <View className="items-end">
         <Text
-          variant="base"
-          className={`font-mono font-semibold ${isPositive ? "text-profit" : "text-loss"}`}
+          variant="mono"
+          className={isPositive ? "text-profit" : "text-loss"}
         >
           {change}
         </Text>
-        <Text variant="xs" className="text-text-muted">since filing</Text>
+        <Text variant="caption">since filing</Text>
       </View>
     </View>
   );
