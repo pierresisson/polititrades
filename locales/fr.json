@@ -80,8 +80,8 @@
   "premium": {
     "title": "Passez Premium",
     "subtitle": "Débloquez toutes les fonctionnalités",
-    "price": "14,90€/mois",
-    "priceYearly": "149€/an",
+    "price": "7,99€/mois",
+    "priceYearly": "59,99€/an",
     "features": {
       "realTimeAlerts": "Alertes trades en temps réel",
       "advancedFilters": "Filtres avancés & analytics",
@@ -129,7 +129,7 @@
       "monthly": "Mensuel",
       "yearly": "Annuel",
       "perMonth": "par mois",
-      "save": "ÉCONOMISEZ 17%",
+      "save": "-37%",
       "cancelAnytime": "Annulez à tout moment. Sans engagement.",
       "securePayment": "Paiement sécurisé via App Store"
     },

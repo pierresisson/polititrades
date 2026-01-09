@@ -158,7 +158,7 @@ export default function PremiumScreen() {
               <Text variant="h3" className="text-accent mb-0.5">
                 {t("premium.priceYearly")}
               </Text>
-              <Text variant="caption">~12.42/mo</Text>
+              <Text variant="caption">~€5/mo</Text>
             </Pressable>
           </View>
         </Animated.View>
