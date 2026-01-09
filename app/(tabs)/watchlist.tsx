@@ -8,13 +8,11 @@ import {
   Text,
   FilterChip,
   PersonalityCard,
-  TickerCard,
   EmptyWatchlist,
-  SectionHeader,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
-import { useTradesStore } from "@/lib/store";
-import { mockPoliticians, mockTickers } from "@/lib/mockData";
+import { useWatchlistStore } from "@/lib/store";
+import { MOCK_POLITICIANS, MOCK_TICKERS } from "@/lib/mockData";
 
 type WatchlistTab = "politicians" | "tickers" | "alerts";
 
@@ -23,17 +21,21 @@ export default function WatchlistScreen() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<WatchlistTab>("politicians");
 
-  const { followedPoliticians, removeFollowedPolitician } = useTradesStore();
+  const { followedPoliticians, followedTickers } = useWatchlistStore();
 
-  // For demo purposes, let's assume some followed items
-  const demoFollowedPoliticians = ["pelosi", "crenshaw", "mcconnell"];
-  const demoFollowedTickers = ["NVDA", "AAPL", "MSFT"];
+  // For demo purposes, let's assume some followed items if store is empty
+  const demoFollowedPoliticians = followedPoliticians.length > 0
+    ? followedPoliticians
+    : ["np-001", "dc-001", "mm-001"];
+  const demoFollowedTickers = followedTickers.length > 0
+    ? followedTickers
+    : ["NVDA", "AAPL", "MSFT"];
 
   // Get full data for followed items
-  const followedPoliticiansData = mockPoliticians.filter((p) =>
+  const followedPoliticiansData = MOCK_POLITICIANS.filter((p) =>
     demoFollowedPoliticians.includes(p.id)
   );
-  const followedTickersData = mockTickers.filter((t) =>
+  const followedTickersData = MOCK_TICKERS.filter((t) =>
     demoFollowedTickers.includes(t.symbol)
   );
 
@@ -48,11 +50,6 @@ export default function WatchlistScreen() {
   const handleExplore = () => {
     router.push("/(tabs)/search");
   };
-
-  const isEmpty =
-    (activeTab === "politicians" && followedPoliticiansData.length === 0) ||
-    (activeTab === "tickers" && followedTickersData.length === 0) ||
-    (activeTab === "alerts" && true); // For now, alerts are empty
 
   return (
     <View className="flex-1 bg-background">
@@ -91,26 +88,21 @@ export default function WatchlistScreen() {
             {followedPoliticiansData.length > 0 ? (
               <View className="bg-surface-primary rounded-2xl overflow-hidden">
                 {followedPoliticiansData.map((politician, index) => (
-                  <PersonalityCard
-                    key={politician.id}
-                    variant="row"
-                    name={politician.name}
-                    role={politician.role}
-                    party={politician.party}
-                    imageUrl={politician.imageUrl}
-                    stats={{
-                      avgReturn: politician.stats.avgReturn,
-                      totalTrades: politician.stats.totalTrades,
-                      recentTrades: politician.stats.recentTrades,
-                    }}
-                    isFollowing
-                    onPress={() => handlePoliticianPress(politician.id)}
-                    showDivider={index < followedPoliticiansData.length - 1}
-                  />
+                  <View key={politician.id}>
+                    <PersonalityCard
+                      politician={politician}
+                      variant="row"
+                      isFollowing
+                      onPress={() => handlePoliticianPress(politician.id)}
+                    />
+                    {index < followedPoliticiansData.length - 1 && (
+                      <View className="h-px bg-background-border mx-4" />
+                    )}
+                  </View>
                 ))}
               </View>
             ) : (
-              <EmptyWatchlist onExplore={handleExplore} />
+              <EmptyWatchlist onAdd={handleExplore} />
             )}
           </>
         )}
@@ -121,21 +113,53 @@ export default function WatchlistScreen() {
             {followedTickersData.length > 0 ? (
               <View className="bg-surface-primary rounded-2xl overflow-hidden">
                 {followedTickersData.map((ticker, index) => (
-                  <TickerCard
+                  <Pressable
                     key={ticker.symbol}
-                    symbol={ticker.symbol}
-                    name={ticker.name}
-                    price={ticker.price}
-                    change={ticker.change}
-                    changePercent={ticker.changePercent}
-                    sparklineData={ticker.sparklineData}
                     onPress={() => handleTickerPress(ticker.symbol)}
-                    showDivider={index < followedTickersData.length - 1}
-                  />
+                    className="flex-row items-center justify-between p-4 active:opacity-70"
+                    style={
+                      index < followedTickersData.length - 1
+                        ? {
+                            borderBottomWidth: 1,
+                            borderBottomColor: colors.background.border,
+                          }
+                        : undefined
+                    }
+                  >
+                    <View className="flex-row items-center gap-3">
+                      <View className="w-10 h-10 rounded-lg bg-surface-secondary items-center justify-center">
+                        <Text variant="label" className="text-text">
+                          {ticker.symbol.slice(0, 2)}
+                        </Text>
+                      </View>
+                      <View>
+                        <Text variant="body" className="font-inter-semibold">
+                          {ticker.symbol}
+                        </Text>
+                        <Text variant="caption" numberOfLines={1}>
+                          {ticker.companyName}
+                        </Text>
+                      </View>
+                    </View>
+                    <View className="items-end">
+                      <Text variant="body" className="font-inter-medium">
+                        ${ticker.price.toFixed(2)}
+                      </Text>
+                      <Text
+                        variant="caption"
+                        className={
+                          ticker.change >= 0 ? "text-profit" : "text-loss"
+                        }
+                      >
+                        {ticker.change >= 0 ? "+" : ""}
+                        {ticker.changePercent.toFixed(2)}%
+                      </Text>
+                    </View>
+                  </Pressable>
                 ))}
               </View>
             ) : (
-              <EmptyWatchlist onExplore={handleExplore} variant="tickers" />
+              <EmptyWatchlist onAdd={handleExplore} />
             )}
           </>
         )}

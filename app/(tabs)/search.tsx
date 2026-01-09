@@ -1,4 +1,4 @@
-import { View, FlatList, Pressable, ScrollView } from "react-native";
+import { View, Pressable, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
@@ -10,16 +10,14 @@ import {
   SearchInput,
   FilterChip,
   PersonalityCard,
-  TickerCard,
   Avatar,
   EmptySearch,
   SectionHeader,
-  HighlightedText,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import {
-  mockPoliticians,
-  mockTickers,
+  MOCK_POLITICIANS,
+  MOCK_TICKERS,
   searchPoliticians,
   searchTickers,
 } from "@/lib/mockData";
@@ -59,7 +57,7 @@ export default function SearchScreen() {
 
   const handlePoliticianPress = (politicianId: string) => {
     // Add to recent searches
-    const politician = mockPoliticians.find((p) => p.id === politicianId);
+    const politician = MOCK_POLITICIANS.find((p) => p.id === politicianId);
     if (politician && !recentSearches.includes(politician.name)) {
       setRecentSearches((prev) => [politician.name, ...prev.slice(0, 4)]);
     }
@@ -83,12 +81,12 @@ export default function SearchScreen() {
   };
 
   // Trending politicians (top by trades)
-  const trendingPoliticians = mockPoliticians
-    .sort((a, b) => b.stats.totalTrades - a.stats.totalTrades)
+  const trendingPoliticians = [...MOCK_POLITICIANS]
+    .sort((a, b) => b.totalTrades - a.totalTrades)
     .slice(0, 6);
 
   // Trending tickers (top by trade count)
-  const trendingTickers = mockTickers.slice(0, 6);
+  const trendingTickers = MOCK_TICKERS.slice(0, 6);
 
   return (
     <View
@@ -139,8 +137,10 @@ export default function SearchScreen() {
               <View className="mb-6">
                 <SectionHeader
                   title={t("search.recent")}
-                  action={t("search.clearRecent")}
-                  onActionPress={clearRecentSearches}
+                  action={{
+                    label: t("search.clearRecent"),
+                    onPress: clearRecentSearches,
+                  }}
                   className="px-4"
                 />
                 <View className="flex-row flex-wrap gap-2 px-4">
@@ -166,7 +166,6 @@ export default function SearchScreen() {
             <View className="mb-6">
               <SectionHeader
                 title={t("search.trending")}
-                subtitle={t("search.politicians")}
                 className="px-4"
               />
               <ScrollView
@@ -177,15 +176,8 @@ export default function SearchScreen() {
                 {trendingPoliticians.map((politician) => (
                   <PersonalityCard
                     key={politician.id}
+                    politician={politician}
                     variant="mini"
-                    name={politician.name}
-                    role={politician.role}
-                    party={politician.party}
-                    imageUrl={politician.imageUrl}
-                    stats={{
-                      avgReturn: politician.stats.avgReturn,
-                      totalTrades: politician.stats.totalTrades,
-                    }}
                     onPress={() => handlePoliticianPress(politician.id)}
                   />
                 ))}
@@ -221,7 +213,7 @@ export default function SearchScreen() {
                           {ticker.symbol}
                         </Text>
                         <Text variant="caption" numberOfLines={1}>
-                          {ticker.name}
+                          {ticker.companyName}
                         </Text>
                       </View>
                     </View>
@@ -255,26 +247,18 @@ export default function SearchScreen() {
                 <View className="mb-6">
                   <SectionHeader
                     title={t("search.politicians")}
-                    subtitle={`${politicianResults.length} ${t("empty.noResults").toLowerCase()}`}
                     className="px-4"
                   />
                   <View className="px-4">
                     <View className="bg-surface-primary rounded-2xl overflow-hidden">
-                      {politicianResults.map((politician, index) => (
-                        <PersonalityCard
-                          key={politician.id}
-                          variant="row"
-                          name={politician.name}
-                          role={politician.role}
-                          party={politician.party}
-                          imageUrl={politician.imageUrl}
-                          stats={{
-                            avgReturn: politician.stats.avgReturn,
-                            totalTrades: politician.stats.totalTrades,
-                          }}
-                          onPress={() => handlePoliticianPress(politician.id)}
-                          showDivider={index < politicianResults.length - 1}
-                        />
+                      {politicianResults.map((politician) => (
+                        <View key={politician.id}>
+                          <PersonalityCard
+                            politician={politician}
+                            variant="row"
+                            onPress={() => handlePoliticianPress(politician.id)}
+                          />
+                        </View>
                       ))}
                     </View>
                   </View>
@@ -288,29 +272,56 @@ export default function SearchScreen() {
                   <SectionHeader title={t("search.tickers")} />
                   <View className="bg-surface-primary rounded-2xl overflow-hidden">
                     {tickerResults.map((ticker, index) => (
-                      <TickerCard
+                      <Pressable
                         key={ticker.symbol}
-                        symbol={ticker.symbol}
-                        name={ticker.name}
-                        price={ticker.price}
-                        change={ticker.change}
-                        changePercent={ticker.changePercent}
-                        sparklineData={ticker.sparklineData}
                         onPress={() => handleTickerPress(ticker.symbol)}
-                        showDivider={index < tickerResults.length - 1}
-                      />
+                        className="flex-row items-center justify-between p-4 active:opacity-70"
+                        style={
+                          index < tickerResults.length - 1
+                            ? {
+                                borderBottomWidth: 1,
+                                borderBottomColor: colors.background.border,
+                              }
+                            : undefined
+                        }
+                      >
+                        <View className="flex-row items-center gap-3">
+                          <View className="w-10 h-10 rounded-lg bg-surface-secondary items-center justify-center">
+                            <Text variant="label" className="text-text">
+                              {ticker.symbol.slice(0, 2)}
+                            </Text>
+                          </View>
+                          <View>
+                            <Text variant="body" className="font-inter-semibold">
+                              {ticker.symbol}
+                            </Text>
+                            <Text variant="caption" numberOfLines={1}>
+                              {ticker.companyName}
+                            </Text>
+                          </View>
+                        </View>
+                        <View className="items-end">
+                          <Text variant="body" className="font-inter-medium">
+                            ${ticker.price.toFixed(2)}
+                          </Text>
+                          <Text
+                            variant="caption"
+                            className={
+                              ticker.change >= 0 ? "text-profit" : "text-loss"
+                            }
+                          >
+                            {ticker.change >= 0 ? "+" : ""}
+                            {ticker.changePercent.toFixed(2)}%
+                          </Text>
+                        </View>
+                      </Pressable>
                     ))}
                   </View>
                 </View>
               )}
 
             {/* Empty State */}
-            {!hasResults && (
-              <EmptySearch
-                query={searchQuery}
-                onClearSearch={() => setSearchQuery("")}
-              />
-            )}
+            {!hasResults && <EmptySearch query={searchQuery} />}
           </>
         )}
       </ScrollView>
