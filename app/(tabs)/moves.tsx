@@ -2,35 +2,30 @@ import { View, FlatList, RefreshControl } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useState, useCallback, useMemo } from "react";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import {
   Text,
-  Headline,
   TradeRow,
   TradeDateHeader,
-  FilterChipGroup,
   TradeTypeFilter,
   TimePeriodFilter,
   SearchInput,
   EmptyTrades,
-  ScreenHeader,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
-import { mockTrades, type MockTrade } from "@/lib/mockData";
+import { MOCK_TRADES, type MockTrade } from "@/lib/mockData";
 
-type TradeTypeFilter = "all" | "buy" | "sell";
-type TimePeriodFilter = "today" | "thisWeek" | "thisMonth" | "allTime";
+type TradeTypeFilterValue = "all" | "buy" | "sell";
+type TimePeriodFilterValue = "today" | "week" | "month" | "all";
 
 export default function MovesScreen() {
   const router = useRouter();
   const { t } = useTranslation();
-  const insets = useSafeAreaInsets();
 
   const [refreshing, setRefreshing] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [tradeType, setTradeType] = useState<TradeTypeFilter>("all");
-  const [timePeriod, setTimePeriod] = useState<TimePeriodFilter>("thisWeek");
+  const [tradeType, setTradeType] = useState<TradeTypeFilterValue>("all");
+  const [timePeriod, setTimePeriod] = useState<TimePeriodFilterValue>("week");
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -39,26 +34,26 @@ export default function MovesScreen() {
 
   // Filter trades
   const filteredTrades = useMemo(() => {
-    let trades = [...mockTrades];
+    let trades = [...MOCK_TRADES];
 
     // Filter by trade type
     if (tradeType !== "all") {
-      trades = trades.filter((trade) => trade.tradeType === tradeType);
+      trades = trades.filter((trade) => trade.type === tradeType);
     }
 
     // Filter by time period
     const now = new Date();
     if (timePeriod === "today") {
       trades = trades.filter((trade) => {
-        const tradeDate = new Date(trade.filedAt);
+        const tradeDate = new Date(trade.filingDate);
         return tradeDate.toDateString() === now.toDateString();
       });
-    } else if (timePeriod === "thisWeek") {
+    } else if (timePeriod === "week") {
       const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-      trades = trades.filter((trade) => new Date(trade.filedAt) >= weekAgo);
-    } else if (timePeriod === "thisMonth") {
+      trades = trades.filter((trade) => trade.filingDate >= weekAgo);
+    } else if (timePeriod === "month") {
       const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-      trades = trades.filter((trade) => new Date(trade.filedAt) >= monthAgo);
+      trades = trades.filter((trade) => trade.filingDate >= monthAgo);
     }
 
     // Filter by search query
@@ -66,7 +61,7 @@ export default function MovesScreen() {
       const query = searchQuery.toLowerCase();
       trades = trades.filter(
         (trade) =>
-          trade.politicianName.toLowerCase().includes(query) ||
+          trade.politician.name.toLowerCase().includes(query) ||
           trade.ticker.toLowerCase().includes(query) ||
           trade.companyName.toLowerCase().includes(query)
       );
@@ -74,7 +69,7 @@ export default function MovesScreen() {
 
     // Sort by date (most recent first)
     trades.sort(
-      (a, b) => new Date(b.filedAt).getTime() - new Date(a.filedAt).getTime()
+      (a, b) => b.filingDate.getTime() - a.filingDate.getTime()
     );
 
     return trades;
@@ -86,8 +81,7 @@ export default function MovesScreen() {
     const dateMap = new Map<string, MockTrade[]>();
 
     filteredTrades.forEach((trade) => {
-      const date = new Date(trade.filedAt);
-      const dateStr = date.toDateString();
+      const dateStr = trade.filingDate.toDateString();
 
       if (!dateMap.has(dateStr)) {
         dateMap.set(dateStr, []);
@@ -125,7 +119,7 @@ export default function MovesScreen() {
 
   const handleClearFilters = () => {
     setTradeType("all");
-    setTimePeriod("thisWeek");
+    setTimePeriod("week");
     setSearchQuery("");
   };
 
@@ -134,28 +128,46 @@ export default function MovesScreen() {
     let isFirstInGroup = index === 0;
     if (index > 0) {
       const prevTrade = filteredTrades[index - 1];
-      const prevDate = new Date(prevTrade.filedAt).toDateString();
-      const currDate = new Date(item.filedAt).toDateString();
+      const prevDate = prevTrade.filingDate.toDateString();
+      const currDate = item.filingDate.toDateString();
       isFirstInGroup = prevDate !== currDate;
     }
 
     // Check if next item is in same group
     const isLastInGroup =
       index === filteredTrades.length - 1 ||
-      new Date(filteredTrades[index + 1].filedAt).toDateString() !==
-        new Date(item.filedAt).toDateString();
+      filteredTrades[index + 1].filingDate.toDateString() !==
+        item.filingDate.toDateString();
+
+    const getDateLabel = (date: Date) => {
+      const now = new Date();
+      const yesterday = new Date(now);
+      yesterday.setDate(yesterday.getDate() - 1);
+
+      if (date.toDateString() === now.toDateString()) {
+        return t("time.today");
+      } else if (date.toDateString() === yesterday.toDateString()) {
+        return t("time.yesterday");
+      } else {
+        return date.toLocaleDateString(undefined, {
+          weekday: "long",
+          month: "short",
+          day: "numeric",
+        });
+      }
+    };
 
     return (
       <View className="px-4">
         {isFirstInGroup && (
           <TradeDateHeader
-            date={new Date(item.filedAt)}
+            date={getDateLabel(item.filingDate)}
             count={
               groupedTrades.find(
                 (g) =>
                   g.data[0] &&
-                  new Date(g.data[0].filedAt).toDateString() ===
-                    new Date(item.filedAt).toDateString()
+                  g.data[0].filingDate.toDateString() ===
+                    item.filingDate.toDateString()
               )?.data.length || 0
             }
           />
@@ -170,20 +182,11 @@ export default function MovesScreen() {
           }
         >
           <TradeRow
+            trade={item}
             variant="full"
-            politicianName={item.politicianName}
-            politicianParty={item.politicianParty as "D" | "R" | "I"}
-            politicianImageUrl={item.politicianImageUrl}
-            ticker={item.ticker}
-            companyName={item.companyName}
-            tradeType={item.tradeType as "buy" | "sell"}
-            amount={item.amount}
-            estimatedValue={item.estimatedValue}
-            filedAt={new Date(item.filedAt)}
-            returnSinceFiling={item.returnSinceFiling}
             onPress={() => handleTradePress(item.id)}
-            showDivider={!isLastInGroup}
           />
+          {!isLastInGroup && <View className="h-px bg-background-border mx-4" />}
         </View>
       </View>
     );
@@ -204,25 +207,14 @@ export default function MovesScreen() {
         <View className="flex-row gap-2">
           <TradeTypeFilter
             selected={tradeType}
-            onSelect={(type) => setTradeType(type as TradeTypeFilter)}
-            labels={{
-              all: t("moves.all"),
-              buy: t("moves.buys"),
-              sell: t("moves.sells"),
-            }}
+            onSelect={(type) => setTradeType(type)}
           />
         </View>
 
         <View className="flex-row gap-2 mt-2">
           <TimePeriodFilter
             selected={timePeriod}
-            onSelect={(period) => setTimePeriod(period as TimePeriodFilter)}
-            labels={{
-              today: t("moves.today"),
-              thisWeek: t("moves.thisWeek"),
-              thisMonth: t("moves.thisMonth"),
-              allTime: t("moves.allTime"),
-            }}
+            onSelect={(period) => setTimePeriod(period)}
           />
         </View>
       </View>
@@ -243,11 +235,10 @@ export default function MovesScreen() {
         }
         ListEmptyComponent={
           <EmptyTrades
-            onClearFilters={handleClearFilters}
-            showClearButton={
-              tradeType !== "all" ||
-              timePeriod !== "thisWeek" ||
-              searchQuery !== ""
+            onExplore={
+              tradeType !== "all" || timePeriod !== "week" || searchQuery !== ""
+                ? handleClearFilters
+                : undefined
             }
           />
         }
