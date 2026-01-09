@@ -6,7 +6,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import {
   Text,
-  Headline,
   Button,
   FeatureList,
   TrialInfoCard,
@@ -104,9 +103,9 @@ export default function PaywallScreen() {
             <View className="w-20 h-20 rounded-2xl bg-accent-subtle items-center justify-center mb-4">
               <Ionicons name="diamond" size={40} color={colors.accent.DEFAULT} />
             </View>
-            <Headline level={1} align="center">
+            <Text variant="h1" align="center">
               {t("premium.unlockTitle")}
-            </Headline>
+            </Text>
             <Text variant="secondary-sm" align="center" className="mt-2">
               {t("premium.subtitle")}
             </Text>

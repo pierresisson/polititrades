@@ -6,21 +6,15 @@ import { Ionicons } from "@expo/vector-icons";
 
 import {
   Text,
-  Headline,
   Sparkline,
-  StatsRow,
   SectionHeader,
   TradeRow,
-  Button,
-  ProfitText,
   Badge,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import { haptics } from "@/lib/haptics";
 import { usePaywallStore } from "@/lib/store";
 import {
-  mockTickers,
-  mockTrades,
   getTickerBySymbol,
   getTradesByTicker,
 } from "@/lib/mockData";
@@ -53,8 +47,8 @@ export default function TickerDetailScreen() {
   };
 
   // Calculate insider sentiment
-  const buyTrades = trades.filter((t) => t.tradeType === "buy").length;
-  const sellTrades = trades.filter((t) => t.tradeType === "sell").length;
+  const buyTrades = trades.filter((t) => t.type === "buy").length;
+  const sellTrades = trades.filter((t) => t.type === "sell").length;
   const totalTrades = buyTrades + sellTrades;
   const sentiment = totalTrades > 0 ? (buyTrades / totalTrades) * 100 : 50;
   const isBullish = sentiment > 50;
@@ -94,7 +88,7 @@ export default function TickerDetailScreen() {
               <View className="flex-1">
                 <Text variant="h1">{ticker.symbol}</Text>
                 <Text variant="secondary-sm" className="mt-1">
-                  {ticker.name}
+                  {ticker.companyName}
                 </Text>
               </View>
               <View className="items-end">
@@ -166,7 +160,7 @@ export default function TickerDetailScreen() {
                   {t("ticker.tradesThisMonth", { count: totalTrades })}
                 </Text>
                 <Badge
-                  label={`${t("ticker.netActivity", { amount: "" })} ${isBullish ? t("ticker.bullish") : t("ticker.bearish")}`}
+                  label={isBullish ? t("ticker.bullish") : t("ticker.bearish")}
                   variant={isBullish ? "profit" : "loss"}
                   size="sm"
                 />
@@ -176,13 +170,19 @@ export default function TickerDetailScreen() {
 
           {/* Set Alert Button */}
           <View className="px-4 mb-6">
-            <Button
-              label={t("personality.setAlert")}
-              variant="outline"
-              size="lg"
-              icon="notifications-outline"
+            <Pressable
               onPress={handleSetAlert}
-            />
+              className="flex-row items-center justify-center gap-2 py-3 rounded-xl border border-background-border"
+            >
+              <Ionicons
+                name="notifications-outline"
+                size={18}
+                color={colors.text.DEFAULT}
+              />
+              <Text variant="body" className="font-inter-semibold">
+                {t("personality.setAlert")}
+              </Text>
+            </Pressable>
           </View>
 
           {/* Recent Trades */}
@@ -193,22 +193,16 @@ export default function TickerDetailScreen() {
               />
               <View className="bg-surface-primary rounded-2xl overflow-hidden">
                 {trades.map((trade, index) => (
-                  <TradeRow
-                    key={trade.id}
-                    variant="full"
-                    politicianName={trade.politicianName}
-                    politicianParty={trade.politicianParty as "D" | "R" | "I"}
-                    politicianImageUrl={trade.politicianImageUrl}
-                    ticker={trade.ticker}
-                    companyName={trade.companyName}
-                    tradeType={trade.tradeType as "buy" | "sell"}
-                    amount={trade.amount}
-                    estimatedValue={trade.estimatedValue}
-                    filedAt={new Date(trade.filedAt)}
-                    returnSinceFiling={trade.returnSinceFiling}
-                    onPress={() => handleTradePress(trade.id)}
-                    showDivider={index < trades.length - 1}
-                  />
+                  <View key={trade.id}>
+                    <TradeRow
+                      trade={trade}
+                      variant="full"
+                      onPress={() => handleTradePress(trade.id)}
+                    />
+                    {index < trades.length - 1 && (
+                      <View className="h-px bg-background-border mx-4" />
+                    )}
+                  </View>
                 ))}
               </View>
             </View>

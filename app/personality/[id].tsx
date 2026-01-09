@@ -1,4 +1,4 @@
-import { View, ScrollView, Pressable, FlatList } from "react-native";
+import { View, ScrollView, Pressable } from "react-native";
 import { useLocalSearchParams, useRouter, Stack } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -7,21 +7,16 @@ import { Ionicons } from "@expo/vector-icons";
 
 import {
   Text,
-  Headline,
   Avatar,
   FilterChip,
   StatsRow,
   SectionHeader,
   TradeRow,
-  Button,
-  ProfitText,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import { haptics } from "@/lib/haptics";
-import { useTradesStore, usePaywallStore } from "@/lib/store";
+import { useWatchlistStore, usePaywallStore } from "@/lib/store";
 import {
-  mockPoliticians,
-  mockTrades,
   getPoliticianById,
   getTradesByPolitician,
 } from "@/lib/mockData";
@@ -35,15 +30,15 @@ export default function PersonalityDetailScreen() {
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<ProfileTab>("overview");
 
-  const { followedPoliticians, addFollowedPolitician, removeFollowedPolitician } =
-    useTradesStore();
+  const { followedPoliticians, addPolitician, removePolitician, isFollowingPolitician } =
+    useWatchlistStore();
   const { openPaywall } = usePaywallStore();
 
   const politician = getPoliticianById(id || "");
   const trades = getTradesByPolitician(id || "");
 
-  // For demo, check if following (using ID directly)
-  const isFollowing = followedPoliticians.includes(id || "");
+  // Check if following
+  const isFollowing = isFollowingPolitician(id || "");
 
   if (!politician) {
     return (
@@ -56,9 +51,9 @@ export default function PersonalityDetailScreen() {
   const handleFollow = () => {
     haptics.light();
     if (isFollowing) {
-      removeFollowedPolitician(id || "");
+      removePolitician(id || "");
     } else {
-      addFollowedPolitician(id || "");
+      addPolitician(id || "");
     }
   };
 
@@ -73,18 +68,16 @@ export default function PersonalityDetailScreen() {
   };
 
   const partyColor =
-    politician.party === "D"
+    politician.party === "Democrat"
       ? colors.party.democrat
-      : politician.party === "R"
+      : politician.party === "Republican"
       ? colors.party.republican
       : colors.party.independent;
 
-  const partyName =
-    politician.party === "D"
-      ? "Democrat"
-      : politician.party === "R"
-      ? "Republican"
-      : "Independent";
+  const partyShort = politician.party.charAt(0);
+  const role = politician.position
+    ? politician.position
+    : `${politician.chamber === "Senate" ? "Senator" : "Representative"} - ${politician.state}`;
 
   return (
     <>
@@ -119,11 +112,8 @@ export default function PersonalityDetailScreen() {
           {/* Profile Header */}
           <View className="items-center px-4 pt-2 pb-6">
             <Avatar
-              initials={politician.name
-                .split(" ")
-                .map((n) => n[0])
-                .join("")}
-              imageUrl={politician.imageUrl}
+              initials={politician.initials}
+              imageUrl={politician.photoUrl}
               size="2xl"
               party={politician.party}
               showPartyIndicator
@@ -132,7 +122,7 @@ export default function PersonalityDetailScreen() {
               {politician.name}
             </Text>
             <Text variant="secondary-sm" className="mt-1 text-center">
-              {politician.role}
+              {role}
             </Text>
             <View
               className="flex-row items-center gap-1 mt-2 px-3 py-1 rounded-full"
@@ -145,30 +135,46 @@ export default function PersonalityDetailScreen() {
               <Text
                 variant="caption"
                 className="font-inter-medium"
-                style={{ color: partyColor }}
               >
-                {partyName}
+                {politician.party}
               </Text>
             </View>
 
             {/* Action Buttons */}
             <View className="flex-row gap-3 mt-6">
-              <Button
-                label={isFollowing ? t("personality.following") : t("personality.follow")}
-                variant={isFollowing ? "secondary" : "primary"}
-                size="md"
-                icon={isFollowing ? "checkmark" : "add"}
+              <Pressable
                 onPress={handleFollow}
-                className="flex-1"
-              />
-              <Button
-                label={t("personality.setAlert")}
-                variant="outline"
-                size="md"
-                icon="notifications-outline"
+                className={`flex-1 flex-row items-center justify-center gap-2 py-3 rounded-xl ${
+                  isFollowing ? "bg-surface-secondary" : "bg-primary"
+                }`}
+              >
+                <Ionicons
+                  name={isFollowing ? "checkmark" : "add"}
+                  size={18}
+                  color={isFollowing ? colors.text.DEFAULT : colors.text.inverse}
+                />
+                <Text
+                  variant="body"
+                  className={`font-inter-semibold ${
+                    isFollowing ? "text-text" : "text-text-inverse"
+                  }`}
+                >
+                  {isFollowing ? t("personality.following") : t("personality.follow")}
+                </Text>
+              </Pressable>
+              <Pressable
                 onPress={handleSetAlert}
-                className="flex-1"
-              />
+                className="flex-1 flex-row items-center justify-center gap-2 py-3 rounded-xl border border-background-border"
+              >
+                <Ionicons
+                  name="notifications-outline"
+                  size={18}
+                  color={colors.text.DEFAULT}
+                />
+                <Text variant="body" className="font-inter-semibold">
+                  {t("personality.setAlert")}
+                </Text>
+              </Pressable>
             </View>
           </View>
 
@@ -202,17 +208,18 @@ export default function PersonalityDetailScreen() {
                   items={[
                     {
                       label: t("personality.totalTrades"),
-                      value: politician.stats.totalTrades,
+                      value: politician.totalTrades,
                       format: "number",
                     },
                     {
                       label: t("personality.avgReturn"),
-                      value: politician.stats.avgReturn,
+                      value: politician.avgReturn,
                       format: "percent",
+                      trend: politician.avgReturn >= 0 ? "up" : "down",
                     },
                     {
                       label: t("personality.winRate"),
-                      value: politician.stats.winRate,
+                      value: politician.winRate,
                       format: "percent",
                     },
                   ]}
@@ -226,19 +233,19 @@ export default function PersonalityDetailScreen() {
                   <View className="flex-row items-center justify-between p-4 border-b border-background-border">
                     <Text variant="body">{t("personality.totalValue")}</Text>
                     <Text variant="body" className="font-inter-semibold">
-                      ${(politician.stats.totalValue / 1000000).toFixed(1)}M
+                      ${(politician.totalValue / 1000000).toFixed(1)}M
                     </Text>
                   </View>
                   <View className="flex-row items-center justify-between p-4 border-b border-background-border">
                     <Text variant="body">{t("personality.topSector")}</Text>
                     <Text variant="body" className="font-inter-semibold">
-                      {politician.stats.topSector}
+                      {politician.topSector}
                     </Text>
                   </View>
                   <View className="flex-row items-center justify-between p-4">
-                    <Text variant="body">{t("personality.tradingStyle")}</Text>
-                    <Text variant="body" className="font-inter-semibold capitalize">
-                      {politician.stats.tradingStyle}
+                    <Text variant="body">{t("personality.chamber")}</Text>
+                    <Text variant="body" className="font-inter-semibold">
+                      {politician.chamber}
                     </Text>
                   </View>
                 </View>
@@ -248,27 +255,24 @@ export default function PersonalityDetailScreen() {
               <View className="px-4">
                 <SectionHeader
                   title={t("personality.recentTrades")}
-                  action={t("personality.viewAllTrades", { count: trades.length })}
-                  onActionPress={() => setActiveTab("trades")}
+                  action={{
+                    label: t("home.seeAll"),
+                    onPress: () => setActiveTab("trades"),
+                  }}
                 />
                 <View className="bg-surface-primary rounded-2xl overflow-hidden">
                   {trades.slice(0, 3).map((trade, index) => (
-                    <TradeRow
-                      key={trade.id}
-                      variant="compact"
-                      politicianName={trade.politicianName}
-                      politicianParty={trade.politicianParty as "D" | "R" | "I"}
-                      ticker={trade.ticker}
-                      companyName={trade.companyName}
-                      tradeType={trade.tradeType as "buy" | "sell"}
-                      amount={trade.amount}
-                      estimatedValue={trade.estimatedValue}
-                      filedAt={new Date(trade.filedAt)}
-                      returnSinceFiling={trade.returnSinceFiling}
-                      onPress={() => handleTradePress(trade.id)}
-                      showDivider={index < 2}
-                      hidePolitician
-                    />
+                    <View key={trade.id}>
+                      <TradeRow
+                        trade={trade}
+                        variant="compact"
+                        showPolitician={false}
+                        onPress={() => handleTradePress(trade.id)}
+                      />
+                      {index < 2 && trades.length > index + 1 && (
+                        <View className="h-px bg-background-border mx-4" />
+                      )}
+                    </View>
                   ))}
                 </View>
               </View>
@@ -280,22 +284,17 @@ export default function PersonalityDetailScreen() {
               {trades.length > 0 ? (
                 <View className="bg-surface-primary rounded-2xl overflow-hidden">
                   {trades.map((trade, index) => (
-                    <TradeRow
-                      key={trade.id}
-                      variant="full"
-                      politicianName={trade.politicianName}
-                      politicianParty={trade.politicianParty as "D" | "R" | "I"}
-                      ticker={trade.ticker}
-                      companyName={trade.companyName}
-                      tradeType={trade.tradeType as "buy" | "sell"}
-                      amount={trade.amount}
-                      estimatedValue={trade.estimatedValue}
-                      filedAt={new Date(trade.filedAt)}
-                      returnSinceFiling={trade.returnSinceFiling}
-                      onPress={() => handleTradePress(trade.id)}
-                      showDivider={index < trades.length - 1}
-                      hidePolitician
-                    />
+                    <View key={trade.id}>
+                      <TradeRow
+                        trade={trade}
+                        variant="full"
+                        showPolitician={false}
+                        onPress={() => handleTradePress(trade.id)}
+                      />
+                      {index < trades.length - 1 && (
+                        <View className="h-px bg-background-border mx-4" />
+                      )}
+                    </View>
                   ))}
                 </View>
               ) : (
