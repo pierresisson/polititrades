@@ -289,6 +289,57 @@
     "loadFailed": "Échec du chargement"
   },
   "onboarding": {
+    "discovery": {
+      "title": "PolitiTrades",
+      "tagline": "Suivez les Trades du Congrès",
+      "subtitle": "Alertes en temps réel sur les transactions des politiciens américains",
+      "feedHeader": "Dernières Déclarations",
+      "feedFooter": "+2,847 trades suivis ce mois",
+      "cta": "Découvrir",
+      "ctaCaption": "Essai 7 jours gratuit. Annulation facile."
+    },
+    "valueShowcase": {
+      "label": "EXEMPLE CONCRET",
+      "title": "Détectez les Opportunités",
+      "subtitle": "Cette déclaration a été publiée il y a 3 jours",
+      "sinceFilingLabel": "Depuis la déclaration",
+      "filedOn": "Déclaré le {{date}}",
+      "source": "SEC Form 4",
+      "features": {
+        "realTimeAlerts": "Alertes temps réel",
+        "advancedFilters": "Filtres avancés",
+        "secData": "Données SEC officielles",
+        "exportCsv": "Export CSV"
+      },
+      "disclaimer": "Informations à titre informatif. Ne constitue pas un conseil financier."
+    },
+    "trialStart": {
+      "badge": "ESSAI GRATUIT",
+      "title": "7 Jours d'Accès Complet",
+      "countdownPreview": "6j 23:59:59",
+      "subtitle": "Explorez tout sans engagement",
+      "whatYouGetLabel": "CE QUE VOUS OBTENEZ",
+      "features": {
+        "unlimitedTrades": "Accès illimité aux trades",
+        "fullProfiles": "Profils politiciens complets",
+        "realTimeAlerts": "Alertes en temps réel",
+        "historicalData": "Historique de données",
+        "advancedFilters": "Filtres avancés"
+      },
+      "afterTrialLabel": "APRÈS L'ESSAI",
+      "monthly": "Mensuel",
+      "monthlyPrice": "{{price}}/mois",
+      "yearly": "Annuel",
+      "yearlyPrice": "{{price}}/an",
+      "yearlyPerMonth": "~{{price}}/mois",
+      "yearlySavings": "-{{percent}}%",
+      "cancelAnytime": "Annulez à tout moment dans les réglages",
+      "trustPayment": "Paiement sécurisé via App Store",
+      "trustPrivacy": "Vos données restent privées",
+      "cta": "Commencer l'Essai Gratuit",
+      "ctaCaption": "Aucun paiement requis maintenant",
+      "skip": "Ignorer"
+    },
     "welcome": {
       "title": "Suivez les Trades d'Initiés",
       "subtitle": "Voyez ce que les politiciens et dirigeants achètent avant le marché.",
@@ -341,6 +392,19 @@
     "startExploring": "Commencer à Explorer",
     "enableNotifications": "Activer les Notifications",
     "notNow": "Pas maintenant"
+  },
+  "notifications": {
+    "prePermission": {
+      "title": "Restez Informé en Temps Réel",
+      "subtitle": "Recevez une notification quand {{politicianName}} fait un nouveau trade",
+      "benefits": {
+        "instant": "Alertes instantanées",
+        "digest": "Résumé quotidien optionnel",
+        "disable": "Désactivable à tout moment"
+      },
+      "enable": "Activer les Notifications",
+      "skip": "Pas maintenant"
+    }
   },
   "disclaimer": {
     "notFinancialAdvice": "Ce n'est pas un conseil financier",

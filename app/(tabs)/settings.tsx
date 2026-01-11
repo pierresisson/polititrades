@@ -130,6 +130,7 @@ export default function SettingsScreen() {
     setLanguage,
     notificationsEnabled,
     setNotificationsEnabled,
+    setHasCompletedOnboarding,
   } = useSettingsStore();
   const { isPremium, openPaywall } = usePaywallStore();
 
@@ -301,6 +302,20 @@ export default function SettingsScreen() {
             showChevron={false}
           />
         </SettingsSection>
+
+        {/* Dev Tools */}
+        {__DEV__ && (
+          <SettingsSection title="Dev Tools">
+            <SettingsItem
+              icon="refresh-outline"
+              label="Reset Onboarding"
+              onPress={() => {
+                setHasCompletedOnboarding(false);
+                router.replace("/(auth)/onboarding");
+              }}
+            />
+          </SettingsSection>
+        )}
 
         {/* Actions */}
         <SettingsSection title="">

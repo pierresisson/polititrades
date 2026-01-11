@@ -289,6 +289,57 @@
     "loadFailed": "Failed to load data"
   },
   "onboarding": {
+    "discovery": {
+      "title": "PolitiTrades",
+      "tagline": "Track Congress Trades",
+      "subtitle": "Real-time alerts on US politicians' transactions",
+      "feedHeader": "Latest Filings",
+      "feedFooter": "+2,847 trades tracked this month",
+      "cta": "Discover",
+      "ctaCaption": "7-day free trial. Cancel anytime."
+    },
+    "valueShowcase": {
+      "label": "CONCRETE EXAMPLE",
+      "title": "Spot Opportunities",
+      "subtitle": "This filing was published 3 days ago",
+      "sinceFilingLabel": "Since filing",
+      "filedOn": "Filed on {{date}}",
+      "source": "SEC Form 4",
+      "features": {
+        "realTimeAlerts": "Real-time alerts",
+        "advancedFilters": "Advanced filters",
+        "secData": "Official SEC data",
+        "exportCsv": "CSV export"
+      },
+      "disclaimer": "For informational purposes only. Not financial advice."
+    },
+    "trialStart": {
+      "badge": "FREE TRIAL",
+      "title": "7 Days of Full Access",
+      "countdownPreview": "6d 23:59:59",
+      "subtitle": "Explore everything without commitment",
+      "whatYouGetLabel": "WHAT YOU GET",
+      "features": {
+        "unlimitedTrades": "Unlimited trade access",
+        "fullProfiles": "Full politician profiles",
+        "realTimeAlerts": "Real-time alerts",
+        "historicalData": "Historical data",
+        "advancedFilters": "Advanced filters"
+      },
+      "afterTrialLabel": "AFTER TRIAL",
+      "monthly": "Monthly",
+      "monthlyPrice": "{{price}}/month",
+      "yearly": "Yearly",
+      "yearlyPrice": "{{price}}/year",
+      "yearlyPerMonth": "~{{price}}/month",
+      "yearlySavings": "-{{percent}}%",
+      "cancelAnytime": "Cancel anytime in settings",
+      "trustPayment": "Secure payment via App Store",
+      "trustPrivacy": "Your data stays private",
+      "cta": "Start Free Trial",
+      "ctaCaption": "No payment required now",
+      "skip": "Skip"
+    },
     "welcome": {
       "title": "Track Insider Trades",
       "subtitle": "See what politicians and executives are buying before the market reacts.",
@@ -341,6 +392,19 @@
     "startExploring": "Start Exploring",
     "enableNotifications": "Enable Notifications",
     "notNow": "Not now"
+  },
+  "notifications": {
+    "prePermission": {
+      "title": "Stay Informed in Real-Time",
+      "subtitle": "Get notified when {{politicianName}} makes a new trade",
+      "benefits": {
+        "instant": "Instant alerts",
+        "digest": "Optional daily digest",
+        "disable": "Disable anytime"
+      },
+      "enable": "Enable Notifications",
+      "skip": "Not now"
+    }
   },
   "disclaimer": {
     "notFinancialAdvice": "Not financial advice",

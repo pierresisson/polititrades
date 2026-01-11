@@ -1,9 +1,8 @@
-import { View, Dimensions } from "react-native";
+import { View } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { LinearGradient } from "expo-linear-gradient";
 import Animated, {
-  FadeIn,
   FadeInDown,
   FadeInUp,
   SlideInUp,
@@ -22,18 +21,37 @@ import { Button } from "@/components/ui/Button";
 import { Text } from "@/components/ui/Text";
 import { Badge, TradeBadge } from "@/components/ui/Badge";
 
-const _dimensions = Dimensions.get("window");
-
-// Mock live trades data - shorter names to fit
+// Mock live trades data
 const LIVE_TRADES = [
-  { initials: "NP", name: "N. Pelosi", ticker: "NVDA", type: "buy" as const, amount: "$1M+", change: "+18.2%" },
-  { initials: "TT", name: "T. Tuberville", ticker: "AAPL", type: "buy" as const, amount: "$500K", change: "+5.4%" },
-  { initials: "DC", name: "D. Crenshaw", ticker: "TSLA", type: "sell" as const, amount: "$250K", change: "-3.1%" },
+  {
+    initials: "NP",
+    name: "N. Pelosi",
+    ticker: "NVDA",
+    type: "buy" as const,
+    amount: "$1M+",
+    change: "+12.4%",
+  },
+  {
+    initials: "TT",
+    name: "T. Tuberville",
+    ticker: "LMT",
+    type: "buy" as const,
+    amount: "$500K",
+    change: "+8.5%",
+  },
+  {
+    initials: "DC",
+    name: "D. Crenshaw",
+    ticker: "XOM",
+    type: "sell" as const,
+    amount: "$250K",
+    change: "-2.1%",
+  },
 ];
 
-export default function WelcomeScreen() {
+export default function DiscoveryScreen() {
   const router = useRouter();
-  const { t: _t } = useTranslation();
+  const { t } = useTranslation();
 
   // Pulse animation for live indicator
   const pulseOpacity = useSharedValue(1);
@@ -66,74 +84,68 @@ export default function WelcomeScreen() {
         style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       />
 
-      {/* Subtle accent glow at top */}
-      <View
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 rounded-full opacity-20"
-        style={{ backgroundColor: "#0D9488", filter: "blur(100px)" }}
-      />
-
       {/* Content */}
-      <View className="flex-1 px-6 pt-16 pb-6">
-
+      <View className="flex-1 px-6 pt-12 pb-6">
         {/* Hero Section */}
         <View className="items-center mb-8">
           {/* Logo */}
           <Animated.View
             entering={ZoomIn.delay(100).springify()}
-            className="mb-6"
+            className="mb-4"
+            accessibilityLabel={t("onboarding.discovery.title")}
           >
-            <View className="w-20 h-20 rounded-2xl bg-primary items-center justify-center">
-              <Ionicons name="trending-up" size={40} color="#FAFAFA" />
+            <View className="w-16 h-16 rounded-2xl bg-primary items-center justify-center">
+              <Ionicons name="trending-up" size={32} color="#FAFAFA" />
             </View>
           </Animated.View>
 
-          {/* Live indicator */}
-          <Animated.View
-            entering={FadeIn.delay(300)}
-            className="flex-row items-center gap-2 mb-6"
-          >
-            <Animated.View style={pulseStyle}>
-              <View className="w-2 h-2 rounded-full bg-profit" />
-            </Animated.View>
-            <Text variant="label" className="text-profit">
-              Live Data Feed
-            </Text>
-          </Animated.View>
-
           {/* App name */}
-          <Animated.View entering={FadeInDown.delay(400).springify()}>
-            <Text variant="h1" align="center" className="mb-2">
-              PolitiTrades
+          <Animated.View entering={FadeInDown.delay(200).springify()}>
+            <Text variant="h1" align="center" className="mb-1">
+              {t("onboarding.discovery.title")}
             </Text>
           </Animated.View>
 
           {/* Tagline */}
-          <Animated.View entering={FadeInDown.delay(450).springify()}>
-            <Text variant="h3" align="center" className="mb-3 text-text-secondary">
-              Track What Politicians Trade
+          <Animated.View entering={FadeInDown.delay(300).springify()}>
+            <Text
+              variant="h3"
+              align="center"
+              className="mb-2 text-text-secondary"
+            >
+              {t("onboarding.discovery.tagline")}
             </Text>
           </Animated.View>
 
-          <Animated.View entering={FadeInUp.delay(500).springify()}>
-            <Text variant="secondary" align="center" className="max-w-[300px]">
-              Real-time alerts when Congress members buy or sell stocks
+          {/* Subtitle */}
+          <Animated.View entering={FadeInUp.delay(400).springify()}>
+            <Text
+              variant="secondary-sm"
+              align="center"
+              className="max-w-[280px]"
+            >
+              {t("onboarding.discovery.subtitle")}
             </Text>
           </Animated.View>
         </View>
 
-        {/* Live Trades Feed - The hook */}
-        <Animated.View
-          entering={SlideInUp.delay(700).springify()}
-          className="mb-6"
-        >
+        {/* Live Trades Feed */}
+        <Animated.View entering={SlideInUp.delay(500).springify()} className="flex-1">
           <View className="bg-background-card border border-background-border rounded-xl overflow-hidden">
             {/* Header */}
             <View className="flex-row items-center justify-between px-4 py-3 border-b border-background-border">
               <View className="flex-row items-center gap-2">
                 <Ionicons name="pulse" size={16} color="#34D399" />
-                <Text variant="body-sm" className="font-semibold">Recent Filings</Text>
+                <Text variant="body-sm" className="font-inter-semibold">
+                  {t("onboarding.discovery.feedHeader")}
+                </Text>
               </View>
-              <Badge label="LIVE" variant="profit" size="sm" />
+              <View className="flex-row items-center gap-1.5">
+                <Animated.View style={pulseStyle}>
+                  <View className="w-2 h-2 rounded-full bg-profit" />
+                </Animated.View>
+                <Badge label="LIVE" variant="profit" size="sm" />
+              </View>
             </View>
 
             {/* Trades list */}
@@ -141,40 +153,36 @@ export default function WelcomeScreen() {
               {LIVE_TRADES.map((trade, index) => (
                 <Animated.View
                   key={trade.ticker}
-                  entering={FadeInUp.delay(900 + index * 150).springify()}
+                  entering={FadeInUp.delay(700 + index * 100).springify()}
                 >
-                  <TradeRow {...trade} isLast={index === LIVE_TRADES.length - 1} />
+                  <TradeRow
+                    {...trade}
+                    isLast={index === LIVE_TRADES.length - 1}
+                  />
                 </Animated.View>
               ))}
             </View>
 
-            {/* Footer teaser */}
+            {/* Footer */}
             <View className="px-4 py-3 bg-surface-secondary/30">
               <Text variant="caption" className="text-center">
-                +2,847 trades tracked this month
+                {t("onboarding.discovery.feedFooter")}
               </Text>
             </View>
           </View>
         </Animated.View>
 
-        {/* Spacer */}
-        <View className="flex-1" />
-
         {/* Bottom CTA */}
-        <Animated.View
-          entering={FadeInUp.delay(1200).springify()}
-          className="pt-6"
-        >
+        <Animated.View entering={FadeInUp.delay(1000).springify()} className="pt-6">
           <Button
-            label="Get Started"
+            label={t("onboarding.discovery.cta")}
             variant="accent"
-            size="md"
+            size="lg"
             onPress={handleNext}
-            className="w-full mb-4"
-            rightIcon={<Ionicons name="arrow-forward" size={16} color="#09090B" />}
+            className="w-full mb-3"
           />
-          <Text variant="caption" align="center">
-            Free to browse • Premium for alerts
+          <Text variant="caption" align="center" className="text-text-muted">
+            {t("onboarding.discovery.ctaCaption")}
           </Text>
         </Animated.View>
       </View>
@@ -206,10 +214,11 @@ function TradeRow({
       className={`flex-row items-center px-4 py-3 ${
         !isLast ? "border-b border-background-border/50" : ""
       }`}
+      accessibilityLabel={`${name}, ${type === "buy" ? "achat" : "vente"}, ${ticker}, ${amount}, ${change}`}
     >
       {/* Avatar */}
       <View className="w-10 h-10 rounded-full bg-surface-secondary items-center justify-center mr-3">
-        <Text variant="body-sm" className="font-bold text-text-secondary">
+        <Text variant="body-sm" className="font-inter-bold text-text-secondary">
           {initials}
         </Text>
       </View>
@@ -217,13 +226,18 @@ function TradeRow({
       {/* Info */}
       <View className="flex-1 mr-3">
         <View className="flex-row items-center mb-0.5">
-          <Text variant="body-sm" className="font-semibold">{name}</Text>
+          <Text variant="body-sm" className="font-inter-semibold">
+            {name}
+          </Text>
           <View className="ml-2">
             <TradeBadge type={type} size="xs" />
           </View>
         </View>
         <View className="flex-row items-center gap-1">
-          <Text variant="mono-sm" className={type === "buy" ? "text-profit" : "text-loss"}>
+          <Text
+            variant="mono-sm"
+            className={type === "buy" ? "text-profit" : "text-loss"}
+          >
             {ticker}
           </Text>
           <Text variant="caption">•</Text>
@@ -239,7 +253,6 @@ function TradeRow({
         >
           {change}
         </Text>
-        <Text variant="caption">since filing</Text>
       </View>
     </View>
   );

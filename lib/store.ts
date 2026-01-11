@@ -118,29 +118,60 @@ export const useSettingsStore = create<SettingsState>()(
 interface PaywallState {
   isPaywallOpen: boolean;
   isPremium: boolean;
+  trialStartedAt: Date | null;
   trialExpiresAt: Date | null;
   openPaywall: () => void;
   closePaywall: () => void;
   setIsPremium: (isPremium: boolean) => void;
   setTrialExpiresAt: (date: Date | null) => void;
+  startTrial: (durationHours?: number) => void;
+  isTrialActive: () => boolean;
+  getTrialRemainingMs: () => number;
 }
+
+const TRIAL_DURATION_HOURS = 24;
 
 export const usePaywallStore = create<PaywallState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       isPaywallOpen: false,
       isPremium: false,
+      trialStartedAt: null,
       trialExpiresAt: null,
       openPaywall: () => set({ isPaywallOpen: true }),
       closePaywall: () => set({ isPaywallOpen: false }),
       setIsPremium: (isPremium) => set({ isPremium }),
       setTrialExpiresAt: (trialExpiresAt) => set({ trialExpiresAt }),
+      startTrial: (durationHours = TRIAL_DURATION_HOURS) => {
+        const now = new Date();
+        const expiresAt = new Date(now.getTime() + durationHours * 60 * 60 * 1000);
+        set({ trialStartedAt: now, trialExpiresAt: expiresAt });
+      },
+      isTrialActive: () => {
+        const { trialExpiresAt, isPremium } = get();
+        if (isPremium) return false;
+        if (!trialExpiresAt) return false;
+        const expiresAt = trialExpiresAt instanceof Date
+          ? trialExpiresAt
+          : new Date(trialExpiresAt);
+        return expiresAt.getTime() > Date.now();
+      },
+      getTrialRemainingMs: () => {
+        const { trialExpiresAt } = get();
+        if (!trialExpiresAt) return 0;
+        const expiresAt = trialExpiresAt instanceof Date
+          ? trialExpiresAt
+          : new Date(trialExpiresAt);
+        const remaining = expiresAt.getTime() - Date.now();
+        return Math.max(0, remaining);
+      },
     }),
     {
       name: "paywall-storage",
       storage: createJSONStorage(() => AsyncStorage),
       partialize: (state) => ({
         isPremium: state.isPremium,
+        trialStartedAt: state.trialStartedAt,
         trialExpiresAt: state.trialExpiresAt,
       }),
     }
