@@ -42,11 +42,10 @@
     "noAccount": "Vous n'avez pas de compte ?"
   },
   "tabs": {
-    "home": "Accueil",
-    "moves": "Mouvements",
+    "trades": "Trades",
+    "news": "Actus",
     "search": "Recherche",
-    "watchlist": "Suivi",
-    "settings": "Paramètres"
+    "watchlist": "Suivi"
   },
   "home": {
     "greeting": {
@@ -189,7 +188,14 @@
     "noNews": "Aucune actualité disponible",
     "minutesAgo": "il y a {{count}}min",
     "hoursAgo": "il y a {{count}}h",
-    "daysAgo": "il y a {{count}}j"
+    "daysAgo": "il y a {{count}}j",
+    "searchPlaceholder": "Rechercher des actus...",
+    "categories": {
+      "market": "Marchés",
+      "politics": "Politique",
+      "earnings": "Résultats",
+      "analysis": "Analyse"
+    }
   },
   "settings": {
     "title": "Paramètres",

@@ -1,9 +1,9 @@
 import React from "react";
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants/theme";
 import { useTranslation } from "react-i18next";
-import { Platform, View } from "react-native";
+import { Platform, View, Pressable } from "react-native";
 
 // Tab bar icon component
 function TabBarIcon({
@@ -22,6 +22,23 @@ function TabBarIcon({
         <View className="absolute -bottom-1 w-1 h-1 rounded-full bg-primary" />
       )}
     </View>
+  );
+}
+
+// Settings header button
+function SettingsButton() {
+  const router = useRouter();
+  return (
+    <Pressable
+      onPress={() => router.push("/(tabs)/settings")}
+      className="w-10 h-10 items-center justify-center mr-2"
+    >
+      <Ionicons
+        name="settings-outline"
+        size={22}
+        color={colors.text.secondary}
+      />
+    </Pressable>
   );
 }
 
@@ -58,17 +75,19 @@ export default function TabLayout() {
         },
         headerShadowVisible: false,
         headerShown: true,
+        headerRight: () => <SettingsButton />,
       }}
     >
-      {/* Home Tab */}
+      {/* Trades Tab (Home) */}
       <Tabs.Screen
         name="index"
         options={{
-          title: t("tabs.home"),
+          title: t("tabs.trades"),
           headerTitle: "",
+          headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "home" : "home-outline"}
+              name={focused ? "swap-horizontal" : "swap-horizontal-outline"}
               color={color}
               focused={focused}
             />
@@ -76,14 +95,14 @@ export default function TabLayout() {
         }}
       />
 
-      {/* Moves Tab */}
+      {/* News Tab */}
       <Tabs.Screen
-        name="moves"
+        name="news"
         options={{
-          title: t("tabs.moves"),
+          title: t("tabs.news"),
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "trending-up" : "trending-up-outline"}
+              name={focused ? "newspaper" : "newspaper-outline"}
               color={color}
               focused={focused}
             />
@@ -114,7 +133,7 @@ export default function TabLayout() {
           title: t("tabs.watchlist"),
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "heart" : "heart-outline"}
+              name={focused ? "bookmark" : "bookmark-outline"}
               color={color}
               focused={focused}
             />
@@ -122,18 +141,12 @@ export default function TabLayout() {
         }}
       />
 
-      {/* Settings Tab */}
+      {/* Settings - Hidden from tab bar but accessible */}
       <Tabs.Screen
         name="settings"
         options={{
-          title: t("tabs.settings"),
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "settings" : "settings-outline"}
-              color={color}
-              focused={focused}
-            />
-          ),
+          href: null, // Hide from tab bar
+          title: t("settings.title"),
         }}
       />
     </Tabs>

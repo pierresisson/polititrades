@@ -42,11 +42,10 @@
     "noAccount": "Don't have an account?"
   },
   "tabs": {
-    "home": "Home",
-    "moves": "Moves",
+    "trades": "Trades",
+    "news": "News",
     "search": "Search",
-    "watchlist": "Watchlist",
-    "settings": "Settings"
+    "watchlist": "Watchlist"
   },
   "home": {
     "greeting": {
@@ -189,7 +188,14 @@
     "noNews": "No news available",
     "minutesAgo": "{{count}}m ago",
     "hoursAgo": "{{count}}h ago",
-    "daysAgo": "{{count}}d ago"
+    "daysAgo": "{{count}}d ago",
+    "searchPlaceholder": "Search news...",
+    "categories": {
+      "market": "Market",
+      "politics": "Politics",
+      "earnings": "Earnings",
+      "analysis": "Analysis"
+    }
   },
   "settings": {
     "title": "Settings",

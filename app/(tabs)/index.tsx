@@ -142,7 +142,7 @@ export default function HomeScreen() {
         <View className="mb-6">
           <SectionHeader
             title={t("home.topMovers")}
-            action={{ label: t("home.seeAll"), onPress: () => router.push("/(tabs)/moves") }}
+            action={{ label: t("home.seeAll"), onPress: () => router.push("/(tabs)/search") }}
             className="px-4"
           />
           <ScrollView
@@ -165,7 +165,7 @@ export default function HomeScreen() {
         <View className="px-4 mb-6">
           <SectionHeader
             title={t("home.recentTrades")}
-            action={{ label: t("home.seeAll"), onPress: () => router.push("/(tabs)/moves") }}
+            action={{ label: t("home.seeAll"), onPress: () => router.push("/(tabs)/search") }}
           />
           <View className="bg-surface-primary rounded-2xl overflow-hidden">
             {recentTrades.map((trade) => (
