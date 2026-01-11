@@ -191,3 +191,54 @@ export function ScreenHeader({
     </View>
   );
 }
+
+// Tab screen header with settings button
+interface TabScreenHeaderProps {
+  title: string;
+  subtitle?: string;
+  showSettings?: boolean;
+  onSettingsPress?: () => void;
+  className?: string;
+}
+
+export function TabScreenHeader({
+  title,
+  subtitle,
+  showSettings = true,
+  onSettingsPress,
+  className,
+}: TabScreenHeaderProps) {
+  return (
+    <View
+      className={cn(
+        "flex-row items-center justify-between px-4 py-3 bg-background",
+        className
+      )}
+    >
+      <View className="flex-1">
+        {subtitle && (
+          <Text variant="secondary-sm">{subtitle}</Text>
+        )}
+        <Text variant="h1">{title}</Text>
+      </View>
+
+      {showSettings && onSettingsPress && (
+        <Pressable
+          onPress={() => {
+            haptics.light();
+            onSettingsPress();
+          }}
+          className="w-10 h-10 rounded-full bg-surface-secondary items-center justify-center active:opacity-70"
+          accessibilityLabel="Settings"
+          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        >
+          <Ionicons
+            name="settings-outline"
+            size={20}
+            color={colors.text.secondary}
+          />
+        </Pressable>
+      )}
+    </View>
+  );
+}

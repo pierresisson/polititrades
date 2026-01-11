@@ -3,12 +3,14 @@ import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import {
   Text,
   FilterChip,
   PersonalityCard,
   EmptyWatchlist,
+  TabScreenHeader,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import { useWatchlistStore } from "@/lib/store";
@@ -19,6 +21,7 @@ type WatchlistTab = "politicians" | "tickers" | "alerts";
 export default function WatchlistScreen() {
   const router = useRouter();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<WatchlistTab>("politicians");
 
   const { followedPoliticians, followedTickers } = useWatchlistStore();
@@ -52,9 +55,15 @@ export default function WatchlistScreen() {
   };
 
   return (
-    <View className="flex-1 bg-background">
+    <View style={{ paddingTop: insets.top }} className="flex-1 bg-background">
+      {/* Header */}
+      <TabScreenHeader
+        title={t("watchlist.title")}
+        onSettingsPress={() => router.push("/(tabs)/settings")}
+      />
+
       {/* Tab Filter */}
-      <View className="px-4 py-3 border-b border-background-border">
+      <View className="px-4 pb-3">
         <View className="flex-row gap-2">
           <FilterChip
             label={t("watchlist.politicians")}

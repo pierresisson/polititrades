@@ -3,7 +3,6 @@ import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useState, useCallback } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
 
 import {
   Text,
@@ -13,6 +12,7 @@ import {
   PersonalityCard,
   Avatar,
   TrialBanner,
+  TabScreenHeader,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import { useSettingsStore, usePaywallStore } from "@/lib/store";
@@ -85,33 +85,21 @@ export default function HomeScreen() {
         }
       >
         {/* Header */}
-        <View className="px-4 mb-6">
-          <View className="flex-row items-center justify-between mb-4">
-            <View>
-              <Text variant="secondary-sm">{getGreeting(t)}</Text>
-              <Text variant="h1">PolitiTrades</Text>
-            </View>
-            <Pressable
-              onPress={() => router.push("/(tabs)/settings")}
-              className="w-10 h-10 rounded-full bg-surface-secondary items-center justify-center"
-            >
-              <Ionicons
-                name="notifications-outline"
-                size={20}
-                color={colors.text.secondary}
-              />
-            </Pressable>
-          </View>
+        <TabScreenHeader
+          title="PolitiTrades"
+          subtitle={getGreeting(t)}
+          onSettingsPress={() => router.push("/(tabs)/settings")}
+        />
 
-          {/* Trial Banner */}
-          {!isPremium && (
+        {/* Trial Banner */}
+        {!isPremium && (
+          <View className="px-4 mb-4">
             <TrialBanner
               expiresAt={trialExpiresAt}
               onPress={openPaywall}
-              className="mb-4"
             />
-          )}
-        </View>
+          </View>
+        )}
 
         {/* Today's Stats */}
         <View className="px-4 mb-6">

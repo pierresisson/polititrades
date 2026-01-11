@@ -1,10 +1,12 @@
 import { View, FlatList, RefreshControl, Pressable, Image } from "react-native";
+import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useState, useCallback } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { TFunction } from "i18next";
 
-import { Text, SearchInput } from "@/components/ui";
+import { Text, SearchInput, TabScreenHeader } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import { cn } from "@/lib/utils";
 
@@ -235,7 +237,9 @@ function CompactNewsCard({
 }
 
 export default function NewsScreen() {
+  const router = useRouter();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
 
   const [refreshing, setRefreshing] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -270,9 +274,15 @@ export default function NewsScreen() {
   };
 
   return (
-    <View className="flex-1 bg-background">
-      {/* Header with search */}
-      <View className="px-4 pt-2 pb-3 bg-background border-b border-background-border">
+    <View style={{ paddingTop: insets.top }} className="flex-1 bg-background">
+      {/* Header */}
+      <TabScreenHeader
+        title={t("news.title")}
+        onSettingsPress={() => router.push("/(tabs)/settings")}
+      />
+
+      {/* Search and filters */}
+      <View className="px-4 pb-3 bg-background">
         <SearchInput
           value={searchQuery}
           onChangeText={setSearchQuery}

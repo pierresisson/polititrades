@@ -1,15 +1,14 @@
 import React from "react";
-import { Tabs, useRouter } from "expo-router";
+import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants/theme";
 import { useTranslation } from "react-i18next";
-import { Platform, View, Pressable } from "react-native";
+import { Platform, View } from "react-native";
 
 // Tab bar icon component
 function TabBarIcon({
   name,
   color,
-  focused,
 }: {
   name: React.ComponentProps<typeof Ionicons>["name"];
   color: string;
@@ -18,27 +17,7 @@ function TabBarIcon({
   return (
     <View className="items-center justify-center">
       <Ionicons name={name} size={24} color={color} />
-      {focused && (
-        <View className="absolute -bottom-1 w-1 h-1 rounded-full bg-primary" />
-      )}
     </View>
-  );
-}
-
-// Settings header button
-function SettingsButton() {
-  const router = useRouter();
-  return (
-    <Pressable
-      onPress={() => router.push("/(tabs)/settings")}
-      className="w-10 h-10 items-center justify-center mr-2"
-    >
-      <Ionicons
-        name="settings-outline"
-        size={22}
-        color={colors.text.secondary}
-      />
-    </Pressable>
   );
 }
 
@@ -63,19 +42,7 @@ export default function TabLayout() {
           fontSize: 11,
           marginTop: 4,
         },
-        headerStyle: {
-          backgroundColor: colors.background.DEFAULT,
-          borderBottomColor: colors.background.border,
-          borderBottomWidth: 1,
-        },
-        headerTitleStyle: {
-          fontFamily: "Inter_600SemiBold",
-          fontSize: 17,
-          color: colors.text.DEFAULT,
-        },
-        headerShadowVisible: false,
-        headerShown: true,
-        headerRight: () => <SettingsButton />,
+        headerShown: false,
       }}
     >
       {/* Trades Tab (Home) */}
@@ -83,8 +50,6 @@ export default function TabLayout() {
         name="index"
         options={{
           title: t("tabs.trades"),
-          headerTitle: "",
-          headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "swap-horizontal" : "swap-horizontal-outline"}
@@ -115,7 +80,6 @@ export default function TabLayout() {
         name="search"
         options={{
           title: t("tabs.search"),
-          headerShown: false,
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "search" : "search-outline"}
@@ -145,8 +109,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          href: null, // Hide from tab bar
-          title: t("settings.title"),
+          href: null,
         }}
       />
     </Tabs>

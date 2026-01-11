@@ -34,6 +34,7 @@ export {
   SectionDivider,
   ListSection,
   ScreenHeader,
+  TabScreenHeader,
 } from "./SectionHeader";
 
 // Specialized components

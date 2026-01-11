@@ -12,6 +12,7 @@ import {
   PersonalityCard,
   EmptySearch,
   SectionHeader,
+  TabScreenHeader,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import {
@@ -92,8 +93,14 @@ export default function SearchScreen() {
       className="flex-1 bg-background"
       style={{ paddingTop: insets.top }}
     >
-      {/* Search Header */}
-      <View className="px-4 py-3">
+      {/* Header */}
+      <TabScreenHeader
+        title={t("search.title")}
+        onSettingsPress={() => router.push("/(tabs)/settings")}
+      />
+
+      {/* Search Input */}
+      <View className="px-4 pb-3">
         <SearchInput
           value={searchQuery}
           onChangeText={setSearchQuery}

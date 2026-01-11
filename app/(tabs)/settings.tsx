@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
-import { Text, PremiumBadge } from "@/components/ui";
+import { Text, PremiumBadge, ScreenHeader } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import {
   useAuthStore,
@@ -176,7 +176,13 @@ export default function SettingsScreen() {
   };
 
   return (
-    <View className="flex-1 bg-background">
+    <View style={{ paddingTop: insets.top }} className="flex-1 bg-background">
+      {/* Header */}
+      <ScreenHeader
+        title={t("settings.title")}
+        onBack={() => router.back()}
+      />
+
       <ScrollView
         className="flex-1"
         contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
