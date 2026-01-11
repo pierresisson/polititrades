@@ -4,12 +4,16 @@ export const colors = {
     DEFAULT: "#0D9488",
     light: "#14B8A6",
     dark: "#0F766E",
-    50: "#F0FDFA",
-    100: "#CCFBF1",
-    500: "#0D9488",
-    600: "#0F766E",
-    700: "#115E59",
-    900: "#134E4A",
+    50: "#F0FDFA",   // très subtil (backgrounds)
+    100: "#CCFBF1",  // hover states légers
+    200: "#99F6E4",  // badges légers
+    300: "#5EEAD4",  // accents secondaires
+    400: "#2DD4BF",  // hover sur primary
+    500: "#14B8A6",  // light
+    600: "#0D9488",  // DEFAULT
+    700: "#0F766E",  // dark
+    800: "#115E59",  // muted
+    900: "#134E4A",  // très foncé
     muted: "#115E59",
     subtle: "rgba(13, 148, 136, 0.1)",
   },
@@ -44,11 +48,21 @@ export const colors = {
     muted: "#71717A",
     inverse: "#09090B",
   },
-  // Accent - Amber (Premium)
+  // Accent - Amber/Gold (Premium)
   accent: {
     DEFAULT: "#F59E0B",
     light: "#FBBF24",
     dark: "#D97706",
+    50: "#FFFBEB",   // backgrounds premium subtils
+    100: "#FEF3C7",  // hover léger
+    200: "#FDE68A",  // badges légers
+    300: "#FCD34D",  // accents
+    400: "#FBBF24",  // light
+    500: "#F59E0B",  // DEFAULT
+    600: "#D97706",  // dark
+    700: "#B45309",  // pressed states
+    800: "#92400E",  // muted
+    900: "#78350F",  // très foncé
     muted: "#92400E",
     subtle: "rgba(245, 158, 11, 0.1)",
   },

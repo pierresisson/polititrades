@@ -132,7 +132,7 @@ export default function SettingsScreen() {
     setNotificationsEnabled,
     setHasCompletedOnboarding,
   } = useSettingsStore();
-  const { isPremium, openPaywall } = usePaywallStore();
+  const { isPremium, setIsPremium, openPaywall } = usePaywallStore();
 
   const handleLanguageChange = () => {
     const newLang = language === "en" ? "fr" : "en";
@@ -306,6 +306,14 @@ export default function SettingsScreen() {
         {/* Dev Tools */}
         {__DEV__ && (
           <SettingsSection title="Dev Tools">
+            <SettingsItem
+              icon="diamond-outline"
+              label="Premium Status"
+              showSwitch
+              switchValue={isPremium}
+              onSwitchChange={setIsPremium}
+              showChevron={false}
+            />
             <SettingsItem
               icon="refresh-outline"
               label="Reset Onboarding"
