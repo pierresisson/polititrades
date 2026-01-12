@@ -39,12 +39,6 @@ export function QuickAddSheet({ isOpen, onClose }: QuickAddSheetProps) {
 
     // Show success toast
     showToast(t("watchlist.added"));
-
-    // Close after a short delay
-    setTimeout(() => {
-      setSearchQuery("");
-      onClose();
-    }, 300);
   };
 
   const handleClose = () => {
