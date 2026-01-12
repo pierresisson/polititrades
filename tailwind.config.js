@@ -8,39 +8,39 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Primary - Teal (Revolut-like)
+        // Primary - Gold (Fearless, Robinhood-inspired)
         primary: {
-          DEFAULT: "#0D9488",
-          light: "#14B8A6",
-          dark: "#0F766E",
-          50: "#F0FDFA",   // très subtil (backgrounds)
-          100: "#CCFBF1",  // hover states légers
-          200: "#99F6E4",  // badges légers
-          300: "#5EEAD4",  // accents secondaires
-          400: "#2DD4BF",  // hover sur primary
-          500: "#14B8A6",  // light
-          600: "#0D9488",  // DEFAULT
-          700: "#0F766E",  // dark
-          800: "#115E59",  // muted
-          900: "#134E4A",  // très foncé
-          muted: "#115E59",
-          subtle: "rgba(13, 148, 136, 0.1)",
+          DEFAULT: "#E6B800",
+          light: "#FFD700",
+          dark: "#D4AF37",
+          50: "#FFFBEB",
+          100: "#FEF3C7",
+          200: "#FDE68A",
+          300: "#FCD34D",
+          400: "#FBBF24",
+          500: "#FFD700",
+          600: "#E6B800",
+          700: "#D4AF37",
+          800: "#B8941E",
+          900: "#9A7A0F",
+          muted: "#B8941E",
+          subtle: "rgba(230, 184, 0, 0.12)",
         },
-        // Profit - Soft Green (calm finance)
+        // Profit - Spring Green (gaming energy)
         profit: {
-          DEFAULT: "#22C55E",
-          light: "#4ADE80",
-          dark: "#16A34A",
-          muted: "#166534",
-          subtle: "rgba(34, 197, 94, 0.1)",
+          DEFAULT: "#00FF7F",
+          light: "#4FFFB0",
+          dark: "#00E070",
+          muted: "#00B35C",
+          subtle: "rgba(0, 255, 127, 0.1)",
         },
-        // Loss - Soft Red (calm finance)
+        // Loss - Hot Red (punchier)
         loss: {
-          DEFAULT: "#EF4444",
-          light: "#F87171",
-          dark: "#DC2626",
-          muted: "#991B1B",
-          subtle: "rgba(239, 68, 68, 0.1)",
+          DEFAULT: "#FF4444",
+          light: "#FF6666",
+          dark: "#E63939",
+          muted: "#CC2E2E",
+          subtle: "rgba(255, 68, 68, 0.1)",
         },
         // Background - Deep Charcoal
         background: {
@@ -50,30 +50,35 @@ module.exports = {
           hover: "#27272A",
           border: "#27272A",
         },
-        // Text - Refined contrast
+        // Text - Pure white for contrast
         text: {
-          DEFAULT: "#FAFAFA",
-          secondary: "#A1A1AA",
-          muted: "#71717A",
+          DEFAULT: "#FFFFFF",
+          secondary: "#94A3B8",
+          muted: "#64748B",
           inverse: "#09090B",
         },
-        // Accent - Amber/Gold (Premium)
+        // Accent - Coral (energetic CTAs)
         accent: {
-          DEFAULT: "#F59E0B",
-          light: "#FBBF24",
-          dark: "#D97706",
-          50: "#FFFBEB",   // backgrounds premium subtils
-          100: "#FEF3C7",  // hover léger
-          200: "#FDE68A",  // badges légers
-          300: "#FCD34D",  // accents
-          400: "#FBBF24",  // light
-          500: "#F59E0B",  // DEFAULT
-          600: "#D97706",  // dark
-          700: "#B45309",  // pressed states
-          800: "#92400E",  // muted
-          900: "#78350F",  // très foncé
-          muted: "#92400E",
-          subtle: "rgba(245, 158, 11, 0.1)",
+          DEFAULT: "#FF6B4A",
+          light: "#FF8A70",
+          dark: "#F44336",
+          50: "#FFF5F3",
+          100: "#FFE4DE",
+          200: "#FFC9BC",
+          300: "#FFA799",
+          400: "#FF8A70",
+          500: "#FF6B4A",
+          600: "#F44336",
+          700: "#D32F2F",
+          800: "#B71C1C",
+          900: "#8B0000",
+          muted: "#D32F2F",
+          subtle: "rgba(255, 107, 74, 0.12)",
+        },
+        // Action colors
+        action: {
+          cyan: "#00D9FF",
+          pink: "#FF2E63",
         },
         // Surface
         surface: {
