@@ -2,7 +2,6 @@ import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import { Text } from "./Text";
-import { cn } from "@/lib/utils";
 import { formatCurrency } from "@/lib/utils";
 
 type TrendDirection = "up" | "down" | "neutral";

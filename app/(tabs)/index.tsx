@@ -7,7 +7,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   Text,
   SectionHeader,
-  StatsRow,
   TradeRow,
   PersonalityCard,
   Avatar,
