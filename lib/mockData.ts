@@ -814,6 +814,66 @@ export function getTodayStats() {
   };
 }
 
+function getYesterdaysTrades(): MockTrade[] {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  return MOCK_TRADES.filter((t) => {
+    const tradeDate = new Date(t.filingDate);
+    tradeDate.setHours(0, 0, 0, 0);
+    return tradeDate.getTime() === yesterday.getTime();
+  });
+}
+
+export function getTodayStatsWithTrends() {
+  const todayTrades = getTodaysTrades();
+  const yesterdayTrades = getYesterdaysTrades();
+
+  const todayVolume = todayTrades.reduce(
+    (sum, t) => sum + (t.amountMin + t.amountMax) / 2,
+    0
+  );
+  const yesterdayVolume = yesterdayTrades.reduce(
+    (sum, t) => sum + (t.amountMin + t.amountMax) / 2,
+    0
+  );
+
+  const todayPoliticians = new Set(todayTrades.map((t) => t.politicianId)).size;
+  const yesterdayPoliticians = new Set(
+    yesterdayTrades.map((t) => t.politicianId)
+  ).size;
+
+  const calculateTrend = (today: number, yesterday: number) => {
+    if (yesterday === 0) return { change: today > 0 ? 100 : 0, direction: today > 0 ? "up" : "neutral" as const };
+    const change = ((today - yesterday) / yesterday) * 100;
+    const direction = change > 0 ? "up" : change < 0 ? "down" : "neutral";
+    return { change: Math.abs(change), direction: direction as "up" | "down" | "neutral" };
+  };
+
+  const tradesTrend = calculateTrend(
+    todayTrades.length,
+    yesterdayTrades.length
+  );
+  const volumeTrend = calculateTrend(todayVolume, yesterdayVolume);
+  const politiciansTrend = calculateTrend(
+    todayPoliticians,
+    yesterdayPoliticians
+  );
+
+  return {
+    totalTrades: todayTrades.length,
+    totalVolume: todayVolume,
+    activePoliticians: todayPoliticians,
+    trends: {
+      trades: tradesTrend,
+      volume: volumeTrend,
+      politicians: politiciansTrend,
+    },
+  };
+}
+
 export function getThisWeekStats() {
   const weekTrades = getThisWeekTrades();
   const totalVolume = weekTrades.reduce(
