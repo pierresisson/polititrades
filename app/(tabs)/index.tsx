@@ -15,13 +15,14 @@ import {
 } from "@/components/ui";
 import { TodayStatsCard } from "@/components/ui/TodayStatsCard";
 import { colors } from "@/constants/theme";
-import { useSettingsStore, usePaywallStore } from "@/lib/store";
+import { useSettingsStore, usePaywallStore, useWatchlistStore } from "@/lib/store";
 import {
   MOCK_POLITICIANS,
   getRecentTrades,
   getTopMovers,
   getTodayStatsWithTrends,
 } from "@/lib/mockData";
+import { haptics } from "@/lib/haptics";
 
 // Get greeting based on time of day
 function getGreeting(t: (key: string) => string): string {
@@ -40,6 +41,7 @@ export default function HomeScreen() {
   const setHasCompletedOnboarding = useSettingsStore(
     (state) => state.setHasCompletedOnboarding
   );
+  const { addTicker, removeTicker, isFollowingTicker } = useWatchlistStore();
 
   const recentTrades = getRecentTrades(5);
   const topMovers = getTopMovers(5);
@@ -65,6 +67,15 @@ export default function HomeScreen() {
   const handleResetOnboarding = () => {
     setHasCompletedOnboarding(false);
     router.replace("/(auth)/onboarding");
+  };
+
+  const handleTickerFollowToggle = (ticker: string) => {
+    haptics.light();
+    if (isFollowingTicker(ticker)) {
+      removeTicker(ticker);
+    } else {
+      addTicker(ticker);
+    }
   };
 
   return (
@@ -147,7 +158,10 @@ export default function HomeScreen() {
                 key={trade.id}
                 trade={trade}
                 variant="compact"
+                showFollowButton
+                isFollowingTicker={isFollowingTicker(trade.ticker)}
                 onPress={() => handleTradePress(trade.id)}
+                onFollowPress={() => handleTickerFollowToggle(trade.ticker)}
               />
             ))}
           </View>

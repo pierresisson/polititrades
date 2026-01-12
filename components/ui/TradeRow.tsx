@@ -33,7 +33,10 @@ interface TradeRowProps {
   showPolitician?: boolean;
   showSector?: boolean;
   showSparkline?: boolean;
+  showFollowButton?: boolean;
+  isFollowingTicker?: boolean;
   onPress?: () => void;
+  onFollowPress?: () => void;
   className?: string;
 }
 
@@ -43,13 +46,25 @@ export function TradeRow({
   showPolitician = true,
   showSector = false,
   showSparkline = false,
+  showFollowButton = false,
+  isFollowingTicker = false,
   onPress,
+  onFollowPress,
   className,
 }: TradeRowProps) {
   const handlePress = () => {
     if (onPress) {
       haptics.light();
       onPress();
+    }
+  };
+
+  const handleFollowPress = (e: any) => {
+    // Stop propagation to prevent triggering the trade press
+    e?.stopPropagation?.();
+    if (onFollowPress) {
+      haptics.light();
+      onFollowPress();
     }
   };
 
@@ -100,6 +115,23 @@ export function TradeRow({
           </Text>
           <Text variant="caption">{formatRelativeTime(trade.filingDate)}</Text>
         </View>
+
+        {showFollowButton && (
+          <Pressable
+            onPress={handleFollowPress}
+            className={cn(
+              "w-7 h-7 items-center justify-center rounded-full ml-2",
+              isFollowingTicker ? "bg-primary-subtle" : "bg-surface-secondary",
+              "active:opacity-70"
+            )}
+          >
+            <Ionicons
+              name={isFollowingTicker ? "star" : "star-outline"}
+              size={14}
+              color={isFollowingTicker ? colors.primary.DEFAULT : colors.text.secondary}
+            />
+          </Pressable>
+        )}
       </Pressable>
     );
   }
@@ -178,13 +210,30 @@ export function TradeRow({
         </Text>
       </View>
 
-      {onPress && (
-        <Ionicons
-          name="chevron-forward"
-          size={16}
-          color={colors.text.muted}
-          style={{ marginLeft: 8 }}
-        />
+      {showFollowButton ? (
+        <Pressable
+          onPress={handleFollowPress}
+          className={cn(
+            "w-8 h-8 items-center justify-center rounded-full ml-2",
+            isFollowingTicker ? "bg-primary-subtle" : "bg-surface-secondary",
+            "active:opacity-70"
+          )}
+        >
+          <Ionicons
+            name={isFollowingTicker ? "star" : "star-outline"}
+            size={16}
+            color={isFollowingTicker ? colors.primary.DEFAULT : colors.text.secondary}
+          />
+        </Pressable>
+      ) : (
+        onPress && (
+          <Ionicons
+            name="chevron-forward"
+            size={16}
+            color={colors.text.muted}
+            style={{ marginLeft: 8 }}
+          />
+        )
       )}
     </Pressable>
   );

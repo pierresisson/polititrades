@@ -276,7 +276,10 @@ export default function SearchScreen() {
                           <PersonalityCard
                             politician={politician}
                             variant="row"
+                            showFollowButton
+                            isFollowing={isFollowingPolitician(politician.id)}
                             onPress={() => handlePoliticianPress(politician.id)}
+                            onFollowPress={() => handleFollowToggle(politician.id)}
                           />
                         </View>
                       ))}
