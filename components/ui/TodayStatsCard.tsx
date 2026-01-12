@@ -1,5 +1,6 @@
 import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 import { Text } from "./Text";
 import { cn } from "@/lib/utils";
 import { formatCurrency } from "@/lib/utils";
@@ -48,7 +49,7 @@ function StatItem({ icon, value, label, trend }: StatItemProps) {
     <View className="flex-1 items-center gap-2">
       <View className="bg-background-surface rounded-xl p-3 w-full items-center gap-3">
         <Ionicons name={icon} size={24} color="#0D9488" />
-        <Text variant="mono-2xl" className="text-text">
+        <Text variant="h3" className="text-text font-mono">
           {value}
         </Text>
         <Text variant="secondary-xs" className="text-text-secondary text-center">
@@ -81,6 +82,8 @@ export function TodayStatsCard({
   activePoliticians,
   trends,
 }: TodayStatsCardProps) {
+  const { t } = useTranslation();
+
   const formatValue = (value: number) => {
     if (value >= 1000000) {
       return `$${(value / 1000000).toFixed(1)}M`;
@@ -96,19 +99,19 @@ export function TodayStatsCard({
       <StatItem
         icon="stats-chart"
         value={totalTrades.toString()}
-        label="Trades"
+        label={t("tabs.trades")}
         trend={trends.trades}
       />
       <StatItem
         icon="cash"
         value={formatValue(totalVolume)}
-        label="Volume"
+        label={t("home.volume")}
         trend={trends.volume}
       />
       <StatItem
         icon="people"
         value={activePoliticians.toString()}
-        label="Active"
+        label={t("home.activePoliticians")}
         trend={trends.politicians}
       />
     </View>

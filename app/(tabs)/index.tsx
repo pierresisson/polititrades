@@ -14,13 +14,14 @@ import {
   TrialBanner,
   TabScreenHeader,
 } from "@/components/ui";
+import { TodayStatsCard } from "@/components/ui/TodayStatsCard";
 import { colors } from "@/constants/theme";
 import { useSettingsStore, usePaywallStore } from "@/lib/store";
 import {
   MOCK_POLITICIANS,
   getRecentTrades,
   getTopMovers,
-  getTodayStats,
+  getTodayStatsWithTrends,
 } from "@/lib/mockData";
 
 // Get greeting based on time of day
@@ -43,7 +44,7 @@ export default function HomeScreen() {
 
   const recentTrades = getRecentTrades(5);
   const topMovers = getTopMovers(5);
-  const todayStats = getTodayStats();
+  const todayStats = getTodayStatsWithTrends();
 
   // Trial expires in 5 days (mock)
   const trialExpiresAt = new Date();
@@ -103,26 +104,12 @@ export default function HomeScreen() {
 
         {/* Today's Stats */}
         <View className="px-4 mb-6">
-          <SectionHeader title={t("home.todaysActivity")} />
-          <StatsRow
-            items={[
-              {
-                label: "Trades",
-                value: todayStats.totalTrades,
-                format: "number",
-              },
-              {
-                label: t("home.volume"),
-                value: todayStats.totalVolume,
-                format: "currency",
-              },
-              {
-                label: t("home.activePoliticians"),
-                value: todayStats.activePoliticians,
-                format: "number",
-              },
-            ]}
-            columns={3}
+          <SectionHeader title={t("home.todaysActivity")} className="mb-3" />
+          <TodayStatsCard
+            totalTrades={todayStats.totalTrades}
+            totalVolume={todayStats.totalVolume}
+            activePoliticians={todayStats.activePoliticians}
+            trends={todayStats.trends}
           />
         </View>
 

@@ -846,10 +846,10 @@ export function getTodayStatsWithTrends() {
   ).size;
 
   const calculateTrend = (today: number, yesterday: number) => {
-    if (yesterday === 0) return { change: today > 0 ? 100 : 0, direction: today > 0 ? "up" : "neutral" as const };
+    if (yesterday === 0) return { change: today > 0 ? 100 : 0, direction: (today > 0 ? "up" : "neutral") as "up" | "neutral" };
     const change = ((today - yesterday) / yesterday) * 100;
-    const direction = change > 0 ? "up" : change < 0 ? "down" : "neutral";
-    return { change: Math.abs(change), direction: direction as "up" | "down" | "neutral" };
+    const direction = (change > 0 ? "up" : change < 0 ? "down" : "neutral") as "up" | "down" | "neutral";
+    return { change: Math.abs(change), direction };
   };
 
   const tradesTrend = calculateTrend(
