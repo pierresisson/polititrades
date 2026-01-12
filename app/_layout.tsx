@@ -16,7 +16,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import "react-native-reanimated";
 
 import "@/lib/i18n";
-import { useSettingsStore } from "@/lib/store";
+import { useSettingsStore, useUIStore } from "@/lib/store";
+import { Toast } from "@/components/ui";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -68,6 +69,8 @@ export default function RootLayout() {
     Inter_700Bold,
   });
 
+  const { toast, hideToast } = useUIStore();
+
   useProtectedRoute(fontsLoaded);
 
   useEffect(() => {
@@ -93,6 +96,12 @@ export default function RootLayout() {
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="modal" options={{ presentation: "modal" }} />
           </Stack>
+          <Toast
+            message={toast.message}
+            type={toast.type}
+            visible={toast.visible}
+            onDismiss={hideToast}
+          />
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

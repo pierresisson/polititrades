@@ -158,7 +158,12 @@
     "addFirst": "Commencer à suivre",
     "explore": "Explorer",
     "removeConfirm": "Retirer du suivi ?",
-    "removed": "Retiré du suivi"
+    "removed": "Retiré du suivi",
+    "addPolitician": "Ajouter au suivi",
+    "searchToAdd": "Recherchez et ajoutez des politiciens instantanément",
+    "searchPrompt": "Commencez à taper pour rechercher...",
+    "added": "Ajouté au suivi",
+    "mostActive": "Les plus actifs"
   },
   "alerts": {
     "title": "Alertes",

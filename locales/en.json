@@ -158,7 +158,12 @@
     "addFirst": "Start following",
     "explore": "Explore",
     "removeConfirm": "Remove from watchlist?",
-    "removed": "Removed from watchlist"
+    "removed": "Removed from watchlist",
+    "addPolitician": "Add to Watchlist",
+    "searchToAdd": "Search and add politicians instantly",
+    "searchPrompt": "Start typing to search...",
+    "added": "Added to watchlist",
+    "mostActive": "Most Active"
   },
   "alerts": {
     "title": "Alerts",

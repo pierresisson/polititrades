@@ -251,23 +251,38 @@ export const useSearchStore = create<SearchState>()(
 
 // UI State (not persisted - ephemeral)
 type PaywallVariant = "A" | "B" | "C";
+type ToastType = "success" | "error" | "info";
+
+interface ToastState {
+  visible: boolean;
+  message: string;
+  type: ToastType;
+}
 
 interface UIState {
   isFilterSheetOpen: boolean;
   paywallVariant: PaywallVariant;
   activeModal: string | null;
+  toast: ToastState;
   openFilterSheet: () => void;
   closeFilterSheet: () => void;
   setPaywallVariant: (variant: PaywallVariant) => void;
   setActiveModal: (modal: string | null) => void;
+  showToast: (message: string, type?: ToastType) => void;
+  hideToast: () => void;
 }
 
 export const useUIStore = create<UIState>()((set) => ({
   isFilterSheetOpen: false,
   paywallVariant: "A",
   activeModal: null,
+  toast: { visible: false, message: "", type: "success" },
   openFilterSheet: () => set({ isFilterSheetOpen: true }),
   closeFilterSheet: () => set({ isFilterSheetOpen: false }),
   setPaywallVariant: (paywallVariant) => set({ paywallVariant }),
   setActiveModal: (activeModal) => set({ activeModal }),
+  showToast: (message, type = "success") =>
+    set({ toast: { visible: true, message, type } }),
+  hideToast: () =>
+    set((state) => ({ toast: { ...state.toast, visible: false } })),
 }));

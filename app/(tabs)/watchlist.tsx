@@ -11,6 +11,7 @@ import {
   PersonalityCard,
   EmptyWatchlist,
   TabScreenHeader,
+  QuickAddSheet,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import { useWatchlistStore } from "@/lib/store";
@@ -23,6 +24,7 @@ export default function WatchlistScreen() {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<WatchlistTab>("politicians");
+  const [isQuickAddOpen, setIsQuickAddOpen] = useState(false);
 
   const { followedPoliticians, followedTickers } = useWatchlistStore();
 
@@ -51,7 +53,7 @@ export default function WatchlistScreen() {
   };
 
   const handleExplore = () => {
-    router.push("/(tabs)/search");
+    setIsQuickAddOpen(true);
   };
 
   return (
@@ -223,6 +225,12 @@ export default function WatchlistScreen() {
             </Pressable>
           )}
       </ScrollView>
+
+      {/* Quick Add Sheet */}
+      <QuickAddSheet
+        isOpen={isQuickAddOpen}
+        onClose={() => setIsQuickAddOpen(false)}
+      />
     </View>
   );
 }

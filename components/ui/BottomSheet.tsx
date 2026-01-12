@@ -8,7 +8,6 @@ import { haptics } from "@/lib/haptics";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
   withTiming,
   runOnJS,
 } from "react-native-reanimated";
@@ -57,11 +56,10 @@ export function BottomSheet({
 
   useEffect(() => {
     if (isOpen) {
-      translateY.value = withSpring(SCREEN_HEIGHT - currentSnapPoint, {
-        damping: 20,
-        stiffness: 200,
+      translateY.value = withTiming(SCREEN_HEIGHT - currentSnapPoint, {
+        duration: 300,
       });
-      backdropOpacity.value = withTiming(1, { duration: 250 });
+      backdropOpacity.value = withTiming(1, { duration: 300 });
     }
   }, [isOpen, currentSnapPoint, translateY, backdropOpacity]);
 
@@ -76,9 +74,8 @@ export function BottomSheet({
       if (event.translationY > 100 || event.velocityY > 500) {
         runOnJS(handleClose)();
       } else {
-        translateY.value = withSpring(SCREEN_HEIGHT - currentSnapPoint, {
-          damping: 20,
-          stiffness: 200,
+        translateY.value = withTiming(SCREEN_HEIGHT - currentSnapPoint, {
+          duration: 200,
         });
       }
     });
