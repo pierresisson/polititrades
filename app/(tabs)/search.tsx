@@ -21,6 +21,8 @@ import {
   searchPoliticians,
   searchTickers,
 } from "@/lib/mockData";
+import { useWatchlistStore } from "@/lib/store";
+import { haptics } from "@/lib/haptics";
 
 type SearchCategory = "all" | "politicians" | "tickers";
 
@@ -28,6 +30,9 @@ export default function SearchScreen() {
   const router = useRouter();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+
+  const { addPolitician, removePolitician, isFollowingPolitician } =
+    useWatchlistStore();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState<SearchCategory>("all");
@@ -78,6 +83,15 @@ export default function SearchScreen() {
 
   const clearRecentSearches = () => {
     setRecentSearches([]);
+  };
+
+  const handleFollowToggle = (politicianId: string) => {
+    haptics.light();
+    if (isFollowingPolitician(politicianId)) {
+      removePolitician(politicianId);
+    } else {
+      addPolitician(politicianId);
+    }
   };
 
   // Trending politicians (top by trades)
