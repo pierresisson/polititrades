@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Text } from "@/components/ui/Text";
 import { Badge, TradeBadge } from "@/components/ui/Badge";
+import { gradients } from "@/constants/theme";
 
 // Mock live trades data
 const LIVE_TRADES = [
@@ -77,9 +78,9 @@ export default function DiscoveryScreen() {
 
   return (
     <View className="flex-1 bg-background">
-      {/* Background gradient */}
+      {/* Background gradient - Purple Hero */}
       <LinearGradient
-        colors={["#09090B", "#111113", "#09090B"]}
+        colors={gradients.hero as string[]}
         locations={[0, 0.5, 1]}
         style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       />
@@ -94,8 +95,8 @@ export default function DiscoveryScreen() {
             className="mb-4"
             accessibilityLabel={t("onboarding.discovery.title")}
           >
-            <View className="w-16 h-16 rounded-2xl bg-primary items-center justify-center">
-              <Ionicons name="trending-up" size={32} color="#FAFAFA" />
+            <View className="w-16 h-16 rounded-2xl bg-white items-center justify-center">
+              <Ionicons name="trending-up" size={32} color="#7C3AED" />
             </View>
           </Animated.View>
 

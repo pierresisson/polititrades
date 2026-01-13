@@ -139,23 +139,32 @@ export function TrialBanner({
     );
   }
 
-  // Default variant
+  // Default variant - Purple gradient (Kraken-style)
   return (
     <Pressable
       onPress={handlePress}
       className={cn(
-        "flex-row items-center justify-between bg-surface-secondary px-4 py-3 rounded-xl",
+        "flex-row items-center justify-between bg-gradient-to-r from-primary-100 to-primary-200 px-4 py-3 rounded-xl border-2 border-primary-300",
         "active:opacity-90",
         className
       )}
     >
       <View className="flex-row items-center gap-2">
-        <Ionicons name="time-outline" size={18} color={colors.text.secondary} />
-        <Text variant="body-sm" className="text-text-secondary">
-          Trial: {formatTime()}
+        <Ionicons name="sparkles" size={18} color={colors.primary.DEFAULT} />
+        <View>
+          <Text variant="body-sm" className="text-primary-900 font-inter-semibold">
+            Free Trial Active
+          </Text>
+          <Text variant="caption" className="text-primary-700">
+            {formatTime()}
+          </Text>
+        </View>
+      </View>
+      <View className="bg-primary px-3 py-1.5 rounded-lg">
+        <Text variant="body-sm" className="text-white font-inter-medium">
+          Upgrade
         </Text>
       </View>
-      <Ionicons name="chevron-forward" size={16} color={colors.text.muted} />
     </Pressable>
   );
 }
@@ -210,11 +219,11 @@ export function CountdownTimer({
       <View className="items-center">
         <View
           className={cn(
-            "bg-surface-secondary rounded-lg items-center justify-center",
+            "bg-primary-100 border-2 border-primary-300 rounded-lg items-center justify-center",
             config.digit
           )}
         >
-          <Text className={cn("font-mono font-inter-bold text-text", config.text)}>
+          <Text className={cn("font-mono font-inter-bold text-primary-900", config.text)}>
             {formatNumber(timeRemaining.hours)}
           </Text>
         </View>
@@ -231,11 +240,11 @@ export function CountdownTimer({
       <View className="items-center">
         <View
           className={cn(
-            "bg-surface-secondary rounded-lg items-center justify-center",
+            "bg-primary-100 border-2 border-primary-300 rounded-lg items-center justify-center",
             config.digit
           )}
         >
-          <Text className={cn("font-mono font-inter-bold text-text", config.text)}>
+          <Text className={cn("font-mono font-inter-bold text-primary-900", config.text)}>
             {formatNumber(timeRemaining.minutes)}
           </Text>
         </View>
@@ -252,11 +261,11 @@ export function CountdownTimer({
       <View className="items-center">
         <View
           className={cn(
-            "bg-surface-secondary rounded-lg items-center justify-center",
+            "bg-primary-100 border-2 border-primary-300 rounded-lg items-center justify-center",
             config.digit
           )}
         >
-          <Text className={cn("font-mono font-inter-bold text-text", config.text)}>
+          <Text className={cn("font-mono font-inter-bold text-primary-900", config.text)}>
             {formatNumber(timeRemaining.seconds)}
           </Text>
         </View>
