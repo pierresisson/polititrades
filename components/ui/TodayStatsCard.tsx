@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from "react-i18next";
 import { Text } from "./Text";
 import { formatCurrency } from "@/lib/utils";
+import { colors } from "@/constants/theme";
 
 type TrendDirection = "up" | "down" | "neutral";
 
@@ -46,8 +47,8 @@ function StatItem({ icon, value, label, trend }: StatItemProps) {
 
   return (
     <View className="flex-1 items-center gap-2">
-      <View className="bg-background-surface rounded-xl p-3 w-full items-center gap-3">
-        <Ionicons name={icon} size={24} color="#0D9488" />
+      <View className="bg-background-elevated border-2 border-primary-200 rounded-xl p-3 w-full items-center gap-3">
+        <Ionicons name={icon} size={24} color={colors.primary.DEFAULT} />
         <Text variant="h3" className="text-text font-mono">
           {value}
         </Text>
@@ -60,10 +61,10 @@ function StatItem({ icon, value, label, trend }: StatItemProps) {
             size={14}
             color={
               trend.direction === "up"
-                ? "#22C55E"
+                ? colors.profit.DEFAULT
                 : trend.direction === "down"
-                  ? "#EF4444"
-                  : "#94A3B8"
+                  ? colors.loss.DEFAULT
+                  : colors.text.muted
             }
           />
           <Text variant="secondary-xs" className={trendColor}>

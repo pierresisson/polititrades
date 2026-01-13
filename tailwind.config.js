@@ -42,13 +42,13 @@ module.exports = {
           muted: "#991B1B",
           subtle: "rgba(220, 38, 38, 0.08)",
         },
-        // Background - Light mode
+        // Background - Light mode with purple tints
         background: {
-          DEFAULT: "#FAFAFA",
+          DEFAULT: "#F8F7FF",
           card: "#FFFFFF",
-          elevated: "#F8F7FF",
+          elevated: "#F3E8FF",
           hover: "#F4F4F5",
-          border: "#E4E4E7",
+          border: "#E9D5FF",
         },
         // Text - Dark for light mode
         text: {

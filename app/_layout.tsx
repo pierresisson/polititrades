@@ -34,10 +34,10 @@ const PolitiTradesLightTheme = {
   colors: {
     ...DarkTheme.colors,
     primary: "#7C3AED", // Purple
-    background: "#FAFAFA", // Light background
+    background: "#F8F7FF", // Light purple tint background
     card: "#FFFFFF", // White cards
     text: "#18181B", // Dark text
-    border: "#E4E4E7", // Light border
+    border: "#E9D5FF", // Purple border
     notification: "#F97316", // Orange
   },
 };

@@ -33,13 +33,13 @@ export const colors = {
     muted: "#991B1B", // Red-800
     subtle: "rgba(220, 38, 38, 0.08)",
   },
-  // Background - Light mode (inverted from dark)
+  // Background - Light mode with purple tints
   background: {
-    DEFAULT: "#FAFAFA", // Zinc-50 - main app background
+    DEFAULT: "#F8F7FF", // Light purple tint - main app background
     card: "#FFFFFF", // Pure white - card surfaces
-    elevated: "#F8F7FF", // White with purple tint - elevated cards
+    elevated: "#F3E8FF", // Purple tint - elevated cards (primary-100)
     hover: "#F4F4F5", // Zinc-100 - hover states
-    border: "#E4E4E7", // Zinc-200 - borders
+    border: "#E9D5FF", // Purple border (primary-200)
   },
   // Text - Dark for light mode (inverted from dark)
   text: {

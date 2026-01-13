@@ -42,7 +42,7 @@ export function SectionHeader({
           <Ionicons
             name={icon}
             size={18}
-            color={colors.text.secondary}
+            color={colors.primary.DEFAULT}
           />
         )}
         <View className="flex-1">
@@ -228,14 +228,14 @@ export function TabScreenHeader({
             haptics.light();
             onSettingsPress();
           }}
-          className="w-10 h-10 rounded-full bg-surface-secondary items-center justify-center active:opacity-70"
+          className="w-10 h-10 rounded-full bg-primary-100 items-center justify-center active:opacity-70"
           accessibilityLabel="Settings"
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
         >
           <Ionicons
             name="settings-outline"
             size={20}
-            color={colors.text.secondary}
+            color={colors.primary.DEFAULT}
           />
         </Pressable>
       )}
