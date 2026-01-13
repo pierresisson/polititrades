@@ -5,16 +5,16 @@ import { cn } from "@/lib/utils";
 const cardVariants = cva("overflow-hidden", {
   variants: {
     variant: {
-      default: "bg-background-card border border-background-border rounded-md",
-      elevated: "bg-background-elevated rounded-md",
+      default: "bg-background-card border border-background-border rounded-2xl",
+      elevated: "bg-background-elevated border border-primary-200 rounded-2xl",
       ghost: "bg-transparent",
       // Refined accent variants
-      "accent-left": "bg-background-card border-l-2 border-l-primary rounded-md",
-      "accent-profit": "bg-background-card border-l border-l-profit rounded-sm",
-      "accent-loss": "bg-background-card border-l border-l-loss rounded-sm",
+      "accent-left": "bg-background-card border-l-2 border-l-primary rounded-xl",
+      "accent-profit": "bg-background-card border-l-2 border-l-profit rounded-lg",
+      "accent-loss": "bg-background-card border-l-2 border-l-loss rounded-lg",
       // Minimal
-      subtle: "bg-surface-secondary/30 rounded-sm",
-      outline: "bg-transparent border border-background-border rounded-md",
+      subtle: "bg-surface-secondary/30 rounded-md",
+      outline: "bg-transparent border border-background-border rounded-2xl",
     },
     padding: {
       none: "p-0",

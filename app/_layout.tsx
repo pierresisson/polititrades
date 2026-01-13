@@ -27,17 +27,18 @@ export const unstable_settings = {
 
 SplashScreen.preventAutoHideAsync();
 
-// Custom dark theme - Refined Charcoal (Editorial Style)
-const PolitiTradesDarkTheme = {
+// Custom light purple theme - Modern Fintech Style
+const PolitiTradesLightTheme = {
   ...DarkTheme,
+  dark: false,
   colors: {
     ...DarkTheme.colors,
-    primary: "#5B7A99",
-    background: "#09090B",
-    card: "#111113",
-    text: "#FAFAFA",
-    border: "#27272A",
-    notification: "#F59E0B",
+    primary: "#7C3AED", // Purple
+    background: "#FAFAFA", // Light background
+    card: "#FFFFFF", // White cards
+    text: "#18181B", // Dark text
+    border: "#E4E4E7", // Light border
+    notification: "#F97316", // Orange
   },
 };
 
@@ -90,7 +91,7 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <ThemeProvider value={PolitiTradesDarkTheme}>
+        <ThemeProvider value={PolitiTradesLightTheme}>
           <Stack>
             <Stack.Screen name="(auth)" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

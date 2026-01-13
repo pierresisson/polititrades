@@ -1,58 +1,58 @@
 export const colors = {
-  // Primary - Soft Teal (calm but vibrant)
+  // Primary - Vibrant Purple (Violet palette)
   primary: {
-    DEFAULT: "#14B8A6",
-    light: "#5EEAD4",
-    dark: "#0D9488",
-    50: "#F0FDFA",
-    100: "#CCFBF1",
-    200: "#99F6E4",
-    300: "#5EEAD4",
-    400: "#2DD4BF",
-    500: "#14B8A6",  // DEFAULT
-    600: "#0D9488",
-    700: "#0F766E",
-    800: "#115E59",
-    900: "#134E4A",
-    muted: "#115E59",
-    subtle: "rgba(20, 184, 166, 0.12)",
+    DEFAULT: "#7C3AED", // Violet-700 - main brand color
+    light: "#A78BFA", // Violet-400 - hover states, highlights
+    dark: "#6D28D9", // Violet-800 - pressed states, dark text
+    50: "#FAF5FF",
+    100: "#F3E8FF",
+    200: "#E9D5FF",
+    300: "#D8B4FE",
+    400: "#C084FC",
+    500: "#A855F7",
+    600: "#9333EA",
+    700: "#7C3AED", // DEFAULT
+    800: "#6D28D9",
+    900: "#5B21B6",
+    muted: "#6D28D9",
+    subtle: "rgba(124, 58, 237, 0.08)",
   },
-  // Profit - Mint Green (fresh, not neon)
+  // Profit - Darker Green (high contrast for light mode)
   profit: {
-    DEFAULT: "#34D399",
-    light: "#6EE7B7",
-    dark: "#10B981",
-    muted: "#059669",
-    subtle: "rgba(52, 211, 153, 0.12)",
+    DEFAULT: "#16A34A", // Green-600
+    light: "#22C55E", // Green-500
+    dark: "#15803D", // Green-700
+    muted: "#166534", // Green-800
+    subtle: "rgba(22, 163, 74, 0.08)",
   },
-  // Loss - Soft Red (not aggressive)
+  // Loss - Darker Red (high contrast for light mode)
   loss: {
-    DEFAULT: "#F87171",
-    light: "#FCA5A5",
-    dark: "#EF4444",
-    muted: "#DC2626",
-    subtle: "rgba(248, 113, 113, 0.12)",
+    DEFAULT: "#DC2626", // Red-600
+    light: "#EF4444", // Red-500
+    dark: "#B91C1C", // Red-700
+    muted: "#991B1B", // Red-800
+    subtle: "rgba(220, 38, 38, 0.08)",
   },
-  // Background - Dark but not pure black
+  // Background - Light mode (inverted from dark)
   background: {
-    DEFAULT: "#0F0F11",
-    card: "#18181B",
-    elevated: "#27272A",
-    hover: "#3F3F46",
-    border: "#3F3F46",
+    DEFAULT: "#FAFAFA", // Zinc-50 - main app background
+    card: "#FFFFFF", // Pure white - card surfaces
+    elevated: "#F8F7FF", // White with purple tint - elevated cards
+    hover: "#F4F4F5", // Zinc-100 - hover states
+    border: "#E4E4E7", // Zinc-200 - borders
   },
-  // Text - Light for dark mode
+  // Text - Dark for light mode (inverted from dark)
   text: {
-    DEFAULT: "#FAFAFA",
-    secondary: "#A1A1AA",
-    muted: "#71717A",
-    inverse: "#0F0F11",
+    DEFAULT: "#18181B", // Zinc-900 - primary text
+    secondary: "#52525B", // Zinc-600 - secondary text
+    muted: "#A1A1AA", // Zinc-400 - captions
+    inverse: "#FAFAFA", // Light text for dark backgrounds
   },
-  // Accent - Coral/Peach (CTAs, premium)
+  // Accent - Orange (secondary CTAs)
   accent: {
-    DEFAULT: "#FB923C",
-    light: "#FDBA74",
-    dark: "#F97316",
+    DEFAULT: "#F97316", // Orange-500
+    light: "#FB923C", // Orange-400
+    dark: "#EA580C", // Orange-600
     50: "#FFF7ED",
     100: "#FFEDD5",
     200: "#FED7AA",
@@ -64,56 +64,56 @@ export const colors = {
     800: "#9A3412",
     900: "#7C2D12",
     muted: "#C2410C",
-    subtle: "rgba(251, 146, 60, 0.12)",
+    subtle: "rgba(249, 115, 22, 0.08)",
   },
-  // Accent 2 - Lavender (secondary actions)
+  // Accent 2 - Lighter Purple (for variety)
   accent2: {
-    DEFAULT: "#A78BFA",
-    light: "#C4B5FD",
-    dark: "#8B5CF6",
-    subtle: "rgba(167, 139, 250, 0.12)",
+    DEFAULT: "#A78BFA", // Violet-400
+    light: "#C4B5FD", // Violet-300
+    dark: "#8B5CF6", // Violet-500
+    subtle: "rgba(167, 139, 250, 0.08)",
   },
   // Accent 3 - Sky Blue (info/links)
   accent3: {
-    DEFAULT: "#38BDF8",
-    light: "#7DD3FC",
-    dark: "#0EA5E9",
-    subtle: "rgba(56, 189, 248, 0.12)",
+    DEFAULT: "#0EA5E9", // Sky-500
+    light: "#38BDF8", // Sky-400
+    dark: "#0284C7", // Sky-600
+    subtle: "rgba(14, 165, 233, 0.08)",
   },
-  // Accent 4 - Rose (alerts/special)
+  // Accent 4 - Rose (special highlights)
   accent4: {
-    DEFAULT: "#FB7185",
-    light: "#FDA4AF",
-    dark: "#F43F5E",
-    subtle: "rgba(251, 113, 133, 0.12)",
+    DEFAULT: "#F43F5E", // Rose-500
+    light: "#FB7185", // Rose-400
+    dark: "#E11D48", // Rose-600
+    subtle: "rgba(244, 63, 94, 0.08)",
   },
-  // Surface colors - subtle layering (for dark mode)
+  // Surface colors - light mode layering
   surface: {
-    primary: "#18181B",
-    secondary: "#27272A",
-    tertiary: "#3F3F46",
+    primary: "#FFFFFF", // White
+    secondary: "#F4F4F5", // Zinc-100
+    tertiary: "#E4E4E7", // Zinc-200
   },
   // Info - Sky Blue
   info: {
-    DEFAULT: "#38BDF8",
-    light: "#7DD3FC",
-    dark: "#0EA5E9",
-    muted: "#0284C7",
-    subtle: "rgba(56, 189, 248, 0.12)",
+    DEFAULT: "#0284C7", // Sky-600
+    light: "#0EA5E9", // Sky-500
+    dark: "#0C4A6E", // Sky-900
+    muted: "#075985", // Sky-800
+    subtle: "rgba(2, 132, 199, 0.08)",
   },
-  // Warning - Coral (same as accent)
+  // Warning - Orange
   warning: {
-    DEFAULT: "#FB923C",
-    light: "#FDBA74",
-    dark: "#F97316",
-    muted: "#C2410C",
-    subtle: "rgba(251, 146, 60, 0.12)",
+    DEFAULT: "#EA580C", // Orange-600
+    light: "#F97316", // Orange-500
+    dark: "#9A3412", // Orange-800
+    muted: "#C2410C", // Orange-700
+    subtle: "rgba(234, 88, 12, 0.08)",
   },
-  // Party colors for politicians (updated for pastel)
+  // Party colors for politicians (adapted for light mode)
   party: {
-    democrat: "#38BDF8",    // soft sky blue
-    republican: "#F87171",  // soft red
-    independent: "#A78BFA", // lavender
+    democrat: "#2563EB", // Blue-600 (higher contrast)
+    republican: "#DC2626", // Red-600 (same as loss)
+    independent: "#7C3AED", // Primary purple (unified with brand)
   },
 } as const;
 
@@ -128,17 +128,46 @@ export const semanticColors = {
 } as const;
 
 export const gradients = {
-  primary: ["#5EEAD4", "#14B8A6"],
+  // Primary purple gradients
+  primary: ["#9333EA", "#7C3AED"], // Violet-600 to 700
+  primaryVertical: ["#C084FC", "#7C3AED"], // Light to dark (top to bottom)
+
+  // Premium gradients (Kraken-inspired, vibrant)
+  premium: ["#9333EA", "#C026D3"], // Violet-600 to Fuchsia-600
+  premiumSubtle: ["#F3E8FF", "#FAE8FF"], // Very subtle for backgrounds
+
+  // Hero gradient (splash, onboarding)
+  hero: ["#A78BFA", "#7C3AED", "#6D28D9"], // 3-stop gradient
+
+  // Card gradients
+  card: ["#FFFFFF", "#F8F7FF"], // White to purple-tinted
+  cardReverse: ["#F8F7FF", "#FFFFFF"],
+
+  // Financial gradients
+  profit: ["#22C55E", "#16A34A"], // Green-500 to 600
+  loss: ["#EF4444", "#DC2626"], // Red-500 to 600
+
+  // Glass morphism
+  glass: [
+    "rgba(255, 255, 255, 0.72)",
+    "rgba(248, 247, 255, 0.64)",
+  ],
+
+  // Shimmer loading (purple-tinted)
+  shimmer: ["#F4F4F5", "#E9D5FF", "#F4F4F5"], // Zinc-100 to primary-200 to Zinc-100
+
+  // Legacy gradients (kept for compatibility)
   teal: ["#5EEAD4", "#14B8A6"],
   coral: ["#FDBA74", "#FB923C"],
-  profit: ["#6EE7B7", "#34D399"],
-  loss: ["#FCA5A5", "#F87171"],
-  premium: ["#FDBA74", "#FB923C"],
-  card: ["#27272A", "#18181B"],
   dark: ["#0F0F11", "#18181B"],
-  subtle: ["rgba(20, 184, 166, 0.06)", "rgba(20, 184, 166, 0.02)"],
-  sky: ["#7DD3FC", "#38BDF8"],
-  lavender: ["#C4B5FD", "#A78BFA"],
+  subtle: ["rgba(124, 58, 237, 0.06)", "rgba(124, 58, 237, 0.02)"],
+  sky: ["#3B82F6", "#2563EB"], // Democrat gradient
+  lavender: ["#A78BFA", "#7C3AED"], // Independent gradient
+
+  // Party gradients
+  democratGradient: ["#3B82F6", "#2563EB"],
+  republicanGradient: ["#EF4444", "#DC2626"],
+  independentGradient: ["#A78BFA", "#7C3AED"],
 } as const;
 
 export const shadows = {
@@ -149,40 +178,49 @@ export const shadows = {
     shadowRadius: 0,
     elevation: 0,
   },
+  // Softer shadows for light mode (lower opacity, larger radius)
   xs: {
-    shadowColor: "#000",
+    shadowColor: "#18181B", // Dark zinc
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.15,
-    shadowRadius: 1,
+    shadowOpacity: 0.04, // Very subtle
+    shadowRadius: 2,
     elevation: 1,
   },
   sm: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
+    shadowColor: "#18181B",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
     elevation: 2,
   },
   card: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 4,
+    shadowColor: "#18181B",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08, // Subtle but visible
+    shadowRadius: 8,
     elevation: 3,
   },
   md: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.15,
-    shadowRadius: 8,
+    shadowColor: "#18181B",
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
     elevation: 4,
   },
   lg: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.2,
-    shadowRadius: 16,
+    shadowColor: "#18181B",
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.12,
+    shadowRadius: 24,
     elevation: 8,
+  },
+  // Premium glow for CTAs
+  primaryGlow: {
+    shadowColor: "#7C3AED", // Primary purple
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.24, // More visible
+    shadowRadius: 16,
+    elevation: 4,
   },
 } as const;
 
@@ -248,7 +286,7 @@ export const spacing = {
   20: 80,
 } as const;
 
-// Border radius
+// Border radius (increased for modern feel)
 export const borderRadius = {
   none: 0,
   xs: 2,

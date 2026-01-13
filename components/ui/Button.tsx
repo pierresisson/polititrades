@@ -8,16 +8,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary rounded-md",
-        secondary: "bg-surface-secondary border border-background-border rounded-md",
+        primary: "bg-primary rounded-xl",
+        secondary: "bg-transparent border border-primary rounded-xl",
         ghost: "bg-transparent",
-        profit: "bg-profit rounded-md",
-        loss: "bg-loss rounded-md",
-        accent: "bg-accent rounded-md",
-        outline: "bg-transparent border border-primary/40 rounded-md",
+        profit: "bg-profit rounded-xl",
+        loss: "bg-loss rounded-xl",
+        accent: "bg-accent rounded-xl",
+        outline: "bg-transparent border border-primary/40 rounded-xl",
         // New minimal variants
         link: "bg-transparent",
-        subtle: "bg-surface-secondary/50 rounded-sm",
+        subtle: "bg-surface-secondary/50 rounded-md",
       },
       size: {
         xs: "h-8 px-3",
@@ -38,13 +38,13 @@ const buttonTextVariants = cva("font-medium text-center", {
   variants: {
     variant: {
       primary: "text-white",
-      secondary: "text-text",
+      secondary: "text-primary",
       ghost: "text-text-secondary",
       profit: "text-white",
       loss: "text-white",
-      accent: "text-text-inverse",
-      outline: "text-primary-light",
-      link: "text-primary-light",
+      accent: "text-white",
+      outline: "text-primary",
+      link: "text-primary",
       subtle: "text-text-secondary",
     },
     size: {
@@ -103,7 +103,11 @@ export function Button({
     >
       {loading ? (
         <ActivityIndicator
-          color={variant === "accent" ? "#09090B" : "#FAFAFA"}
+          color={
+            variant === "secondary" || variant === "outline" || variant === "ghost"
+              ? "#7C3AED"
+              : "#FFFFFF"
+          }
           size="small"
         />
       ) : (
