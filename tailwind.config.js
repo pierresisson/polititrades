@@ -8,105 +8,121 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Primary - Gold (Fearless, Robinhood-inspired)
+        // Primary - Soft Teal
         primary: {
-          DEFAULT: "#E6B800",
-          light: "#FFD700",
-          dark: "#D4AF37",
-          50: "#FFFBEB",
-          100: "#FEF3C7",
-          200: "#FDE68A",
-          300: "#FCD34D",
-          400: "#FBBF24",
-          500: "#FFD700",
-          600: "#E6B800",
-          700: "#D4AF37",
-          800: "#B8941E",
-          900: "#9A7A0F",
-          muted: "#B8941E",
-          subtle: "rgba(230, 184, 0, 0.12)",
+          DEFAULT: "#14B8A6",
+          light: "#5EEAD4",
+          dark: "#0D9488",
+          50: "#F0FDFA",
+          100: "#CCFBF1",
+          200: "#99F6E4",
+          300: "#5EEAD4",
+          400: "#2DD4BF",
+          500: "#14B8A6",
+          600: "#0D9488",
+          700: "#0F766E",
+          800: "#115E59",
+          900: "#134E4A",
+          muted: "#115E59",
+          subtle: "rgba(20, 184, 166, 0.12)",
         },
-        // Profit - Spring Green (gaming energy)
+        // Profit - Mint Green
         profit: {
-          DEFAULT: "#00FF7F",
-          light: "#4FFFB0",
-          dark: "#00E070",
-          muted: "#00B35C",
-          subtle: "rgba(0, 255, 127, 0.1)",
+          DEFAULT: "#34D399",
+          light: "#6EE7B7",
+          dark: "#10B981",
+          muted: "#059669",
+          subtle: "rgba(52, 211, 153, 0.12)",
         },
-        // Loss - Hot Red (punchier)
+        // Loss - Soft Red
         loss: {
-          DEFAULT: "#FF4444",
-          light: "#FF6666",
-          dark: "#E63939",
-          muted: "#CC2E2E",
-          subtle: "rgba(255, 68, 68, 0.1)",
+          DEFAULT: "#F87171",
+          light: "#FCA5A5",
+          dark: "#EF4444",
+          muted: "#DC2626",
+          subtle: "rgba(248, 113, 113, 0.12)",
         },
-        // Background - Deep Charcoal
+        // Background - Dark but not pure black
         background: {
-          DEFAULT: "#09090B",
-          card: "#111113",
-          elevated: "#18181B",
-          hover: "#27272A",
-          border: "#27272A",
+          DEFAULT: "#0F0F11",
+          card: "#18181B",
+          elevated: "#27272A",
+          hover: "#3F3F46",
+          border: "#3F3F46",
         },
-        // Text - Pure white for contrast
+        // Text - Light for dark mode
         text: {
-          DEFAULT: "#FFFFFF",
-          secondary: "#94A3B8",
-          muted: "#64748B",
-          inverse: "#09090B",
+          DEFAULT: "#FAFAFA",
+          secondary: "#A1A1AA",
+          muted: "#71717A",
+          inverse: "#0F0F11",
         },
-        // Accent - Coral (energetic CTAs)
+        // Accent - Coral/Peach
         accent: {
-          DEFAULT: "#FF6B4A",
-          light: "#FF8A70",
-          dark: "#F44336",
-          50: "#FFF5F3",
-          100: "#FFE4DE",
-          200: "#FFC9BC",
-          300: "#FFA799",
-          400: "#FF8A70",
-          500: "#FF6B4A",
-          600: "#F44336",
-          700: "#D32F2F",
-          800: "#B71C1C",
-          900: "#8B0000",
-          muted: "#D32F2F",
-          subtle: "rgba(255, 107, 74, 0.12)",
+          DEFAULT: "#FB923C",
+          light: "#FDBA74",
+          dark: "#F97316",
+          50: "#FFF7ED",
+          100: "#FFEDD5",
+          200: "#FED7AA",
+          300: "#FDBA74",
+          400: "#FB923C",
+          500: "#F97316",
+          600: "#EA580C",
+          700: "#C2410C",
+          800: "#9A3412",
+          900: "#7C2D12",
+          muted: "#C2410C",
+          subtle: "rgba(251, 146, 60, 0.12)",
         },
-        // Action colors
-        action: {
-          cyan: "#00D9FF",
-          pink: "#FF2E63",
+        // Accent 2 - Lavender
+        accent2: {
+          DEFAULT: "#A78BFA",
+          light: "#C4B5FD",
+          dark: "#8B5CF6",
+          subtle: "rgba(167, 139, 250, 0.12)",
+        },
+        // Accent 3 - Sky Blue
+        accent3: {
+          DEFAULT: "#38BDF8",
+          light: "#7DD3FC",
+          dark: "#0EA5E9",
+          subtle: "rgba(56, 189, 248, 0.12)",
+        },
+        // Accent 4 - Rose
+        accent4: {
+          DEFAULT: "#FB7185",
+          light: "#FDA4AF",
+          dark: "#F43F5E",
+          subtle: "rgba(251, 113, 133, 0.12)",
         },
         // Surface
         surface: {
-          primary: "#111113",
-          secondary: "#18181B",
-          tertiary: "#27272A",
+          primary: "#18181B",
+          secondary: "#27272A",
+          tertiary: "#3F3F46",
         },
-        // Info - Blue
+        // Info - Sky Blue
         info: {
-          DEFAULT: "#3B82F6",
-          light: "#60A5FA",
-          dark: "#2563EB",
-          muted: "#1E40AF",
-          subtle: "rgba(59, 130, 246, 0.1)",
+          DEFAULT: "#38BDF8",
+          light: "#7DD3FC",
+          dark: "#0EA5E9",
+          muted: "#0284C7",
+          subtle: "rgba(56, 189, 248, 0.12)",
         },
-        // Warning
+        // Warning - Coral
         warning: {
-          DEFAULT: "#F59E0B",
-          light: "#FBBF24",
-          dark: "#D97706",
-          muted: "#92400E",
-          subtle: "rgba(245, 158, 11, 0.1)",
+          DEFAULT: "#FB923C",
+          light: "#FDBA74",
+          dark: "#F97316",
+          muted: "#C2410C",
+          subtle: "rgba(251, 146, 60, 0.12)",
         },
-        // Party colors for politicians
+        // Party colors
         party: {
-          democrat: "#3B82F6",
-          republican: "#EF4444",
-          independent: "#8B5CF6",
+          democrat: "#38BDF8",
+          republican: "#F87171",
+          independent: "#A78BFA",
         },
       },
       fontFamily: {
