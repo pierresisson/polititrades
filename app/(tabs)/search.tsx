@@ -173,9 +173,9 @@ export default function SearchScreen() {
                       <Ionicons
                         name="time-outline"
                         size={14}
-                        color={colors.text.muted}
+                        color={colors.primary.DEFAULT}
                       />
-                      <Text variant="body-sm">{search}</Text>
+                      <Text variant="body-sm" className="text-primary-900">{search}</Text>
                     </Pressable>
                   ))}
                 </View>
