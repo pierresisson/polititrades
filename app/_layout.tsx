@@ -96,6 +96,10 @@ export default function RootLayout() {
             <Stack.Screen name="(auth)" options={{ headerShown: false }} />
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
             <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+            <Stack.Screen name="ticker/[symbol]" options={{ headerShown: true }} />
+            <Stack.Screen name="personality/[id]" options={{ headerShown: true }} />
+            <Stack.Screen name="trade/[id]" options={{ headerShown: true }} />
+            <Stack.Screen name="paywall" options={{ presentation: "modal", headerShown: false }} />
           </Stack>
           <Toast
             message={toast.message}

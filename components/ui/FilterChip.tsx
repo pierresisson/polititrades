@@ -34,7 +34,7 @@ export function FilterChip({
       onPress={handlePress}
       disabled={disabled}
       className={cn(
-        "flex-row items-center px-5 py-2.5 rounded-full",
+        "flex-row items-center px-3 py-2.5 rounded-full",
         selected
           ? "bg-primary shadow-md"
           : "bg-white/60 border border-primary-200",
@@ -46,17 +46,18 @@ export function FilterChip({
       {icon && (
         <Ionicons
           name={icon}
-          size={18}
+          size={16}
           color={selected ? "#FFFFFF" : colors.text.secondary}
-          style={{ marginRight: 8 }}
+          style={{ marginRight: 6 }}
         />
       )}
       <Text
-        variant="body-sm"
+        variant="caption"
         className={cn(
           "font-inter-semibold",
           selected ? "text-white" : "text-text-secondary"
         )}
+        numberOfLines={1}
       >
         {label}
       </Text>
