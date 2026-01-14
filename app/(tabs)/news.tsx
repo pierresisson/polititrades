@@ -124,15 +124,18 @@ function CategoryChip({
     <Pressable
       onPress={onPress}
       className={cn(
-        "px-4 py-2 rounded-full mr-2 border-2",
+        "px-6 py-3 rounded-full mr-2 border-2 shadow-md",
         selected
           ? "bg-primary border-primary-700"
-          : "bg-background-card border-primary-200"
+          : "bg-background-card border-primary-300"
       )}
     >
       <Text
-        variant="caption"
-        className={cn(selected ? "text-white" : "text-text-secondary")}
+        variant="body-sm"
+        className={cn(
+          "font-inter-semibold",
+          selected ? "text-white" : "text-text-secondary"
+        )}
       >
         {label}
       </Text>

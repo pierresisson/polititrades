@@ -168,7 +168,7 @@ export default function SearchScreen() {
                     <Pressable
                       key={index}
                       onPress={() => handleRecentSearch(search)}
-                      className="flex-row items-center gap-2 bg-surface-secondary px-3 py-2 rounded-full"
+                      className="flex-row items-center gap-2 bg-primary-100 border border-primary-300 px-3 py-2 rounded-full active:opacity-70"
                     >
                       <Ionicons
                         name="time-outline"
