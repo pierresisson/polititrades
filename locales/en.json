@@ -222,6 +222,9 @@
     "termsOfService": "Terms of Service",
     "privacyPolicy": "Privacy Policy",
     "disclaimer": "Disclaimer",
+    "lastUpdated": "Last updated: {{date}}",
+    "effectiveDate": "Effective: {{date}}",
+    "close": "Close",
     "about": "About",
     "version": "Version",
     "signOut": "Sign Out",
@@ -300,109 +303,42 @@
     "loadFailed": "Failed to load data"
   },
   "onboarding": {
-    "discovery": {
-      "title": "PolitiTrades",
-      "tagline": "Track Congress Trades",
-      "subtitle": "Real-time alerts on US politicians' transactions",
-      "feedHeader": "Latest Filings",
-      "feedFooter": "+2,847 trades tracked this month",
-      "cta": "Discover",
-      "ctaCaption": "7-day free trial. Cancel anytime."
-    },
-    "valueShowcase": {
-      "label": "CONCRETE EXAMPLE",
-      "title": "Spot Opportunities",
-      "subtitle": "This filing was published 3 days ago",
-      "sinceFilingLabel": "Since filing",
-      "filedOn": "Filed on {{date}}",
-      "source": "SEC Form 4",
-      "features": {
-        "realTimeAlerts": "Real-time alerts",
-        "advancedFilters": "Advanced filters",
-        "secData": "Official SEC data",
-        "exportCsv": "CSV export"
-      },
-      "disclaimer": "For informational purposes only. Not financial advice."
-    },
-    "trialStart": {
-      "badge": "FREE TRIAL",
-      "title": "7 Days of Full Access",
-      "countdownPreview": "6d 23:59:59",
-      "subtitle": "Explore everything without commitment",
-      "whatYouGetLabel": "WHAT YOU GET",
-      "features": {
-        "unlimitedTrades": "Unlimited trade access",
-        "fullProfiles": "Full politician profiles",
-        "realTimeAlerts": "Real-time alerts",
-        "historicalData": "Historical data",
-        "advancedFilters": "Advanced filters"
-      },
-      "afterTrialLabel": "AFTER TRIAL",
-      "monthly": "Monthly",
-      "monthlyPrice": "{{price}}/month",
-      "yearly": "Yearly",
-      "yearlyPrice": "{{price}}/year",
-      "yearlyPerMonth": "~{{price}}/month",
-      "yearlySavings": "-{{percent}}%",
-      "cancelAnytime": "Cancel anytime in settings",
-      "trustPayment": "Secure payment via App Store",
-      "trustPrivacy": "Your data stays private",
-      "cta": "Start Free Trial",
-      "ctaCaption": "No payment required now",
+    "screen1": {
+      "title": "Track Politicians' Money",
+      "subtitle": "Access trades from elected officials and executives.\nOfficial SEC sources, verified in real time.",
+      "cta": "Continue",
       "skip": "Skip"
     },
-    "welcome": {
-      "title": "Track Insider Trades",
-      "subtitle": "See what politicians and executives are buying before the market reacts.",
-      "feature1": "Real-time SEC filings",
-      "feature2": "Track politicians & executives",
-      "feature3": "Smart alerts & analytics"
+    "screen2": {
+      "title": "Real-Time Alerts",
+      "subtitle": "Get notified on every buy or sell.\nNever miss a strategic move.",
+      "cta": "Continue",
+      "skip": "Skip"
     },
-    "features": {
-      "title": "Stay Informed",
-      "subtitle": "Get real-time alerts when key figures make moves",
-      "realTimeAlerts": {
-        "title": "Real-Time Alerts",
-        "description": "Get notified instantly when politicians or executives make significant trades"
-      },
-      "smartSearch": {
-        "title": "Smart Search",
-        "description": "Find trades by politician, ticker, sector, or transaction type"
-      },
-      "analytics": {
-        "title": "Portfolio Analytics",
-        "description": "See aggregated trading patterns and sector breakdowns"
-      },
-      "historical": {
-        "title": "Historical Data",
-        "description": "Access years of trading history to identify patterns"
-      },
-      "exampleAlert": "Example Alert",
-      "sinceFiling": "since filing"
+    "screen3": {
+      "title": "Filter, Analyze, Understand",
+      "subtitle": "Sort by party, sector, or amount to spot patterns.\nStrategic information at your fingertips.",
+      "cta": "Continue",
+      "skip": "Skip"
     },
-    "trial": {
-      "title": "Your Trial Starts Now",
-      "subtitle": "Explore everything PolitiTrades has to offer"
+    "screen4": {
+      "title": "Their Portfolios Reveal All",
+      "subtitle": "Discover where they really invest.\nOfficial data, zero speculation.",
+      "cta": "Get Started",
+      "skip": "Skip"
     },
-    "premium": {
-      "title": "Premium Access",
-      "subtitle": "Advanced analytics, exports, and more",
-      "whatYouGet": "What you get",
-      "monthly": "Monthly",
-      "yearly": "Yearly",
-      "perMonth": "per month",
-      "save": "SAVE {{percent}}%",
-      "cancelAnytime": "Cancel anytime. No questions asked.",
-      "securePayment": "Secure payment via App Store",
-      "recommended": "Recommended"
+    "paywall": {
+      "title": "Unlimited Access. Free Trial.",
+      "feature1": "Instant alerts on all politicians",
+      "feature2": "Advanced filters by party, sector, amount",
+      "feature3": "SEC-verified data in real time",
+      "price": "€14.90/month — 7 days free",
+      "trust": "SEC sources • Verified data",
+      "cta": "Start Free Trial",
+      "skip": "Later"
     },
     "continue": "Continue",
-    "back": "Back",
-    "skip": "Maybe Later",
-    "getStarted": "Get Started",
-    "startExploring": "Start Exploring",
-    "enableNotifications": "Enable Notifications",
-    "notNow": "Not now"
+    "back": "Back"
   },
   "notifications": {
     "prePermission": {

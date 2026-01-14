@@ -1,0 +1,248 @@
+import type { LegalContent } from './types';
+
+export const disclaimer: LegalContent = {
+  en: {
+    title: 'Financial Disclaimer',
+    lastUpdated: '2026-01-14',
+    effectiveDate: '2026-01-14',
+    sections: [
+      {
+        title: '1. Not Financial Advice',
+        content: [
+          'PolitiTrades is provided for educational and informational purposes only. The information presented in this app does NOT constitute financial, investment, legal, or tax advice.',
+          'We do not provide recommendations to buy, sell, or hold any securities. The data displayed in the app should not be interpreted as investment advice or a suggestion to take any particular investment action.',
+          'You are solely responsible for your own investment decisions. Before making any investment, you should:',
+          '• Consult with a qualified financial advisor',
+          '• Conduct your own independent research and due diligence',
+          '• Consider your financial situation, risk tolerance, and investment objectives',
+          'Any investment decisions you make based on information from this app are made at your own risk.',
+        ],
+      },
+      {
+        title: '2. Data Accuracy & Limitations',
+        content: [
+          'The insider trading data displayed in PolitiTrades is sourced from publicly available SEC filings, including Form 4 and Periodic Transaction Reports (PTR). While we strive to present accurate and up-to-date information, we cannot guarantee:',
+          '• The accuracy, completeness, or timeliness of the data',
+          '• That all insider trades have been reported or captured',
+          '• That there are no errors, omissions, or delays in the data',
+          'SEC filings may be amended, corrected, or delayed. Form 4 filings are required within 2 business days of a transaction, but delays can occur. PTR filings may have different reporting timelines.',
+          'You should always verify information with official SEC sources at sec.gov before making any investment decisions.',
+          'The data is provided "as is" without warranties of any kind, either express or implied.',
+        ],
+      },
+      {
+        title: '3. No Professional Relationship',
+        content: [
+          'Your use of PolitiTrades does not create:',
+          '• An advisor-client relationship',
+          '• A fiduciary duty on our part',
+          '• Any professional relationship or obligation to provide personalized advice',
+          'We are a technology platform that aggregates publicly available information. We are not investment advisors, broker-dealers, or financial planners.',
+        ],
+      },
+      {
+        title: '4. Investment Risks',
+        content: [
+          'All investments in securities carry inherent risks, including:',
+          '• The risk of losing some or all of your invested capital',
+          '• Market volatility and unpredictable price movements',
+          '• Risks specific to individual companies and sectors',
+          'Past performance is not indicative of future results. Insider trading activity by politicians or executives does not guarantee that a stock will perform well or poorly.',
+          'The fact that an insider bought or sold shares does not mean that you should do the same. Insiders may have:',
+          '• Different investment timelines and objectives than you',
+          '• Access to information that is not publicly available',
+          '• Diversification strategies or personal financial needs that differ from yours',
+          'Do not rely solely on insider trading data to make investment decisions.',
+        ],
+      },
+      {
+        title: '5. Regulatory Compliance',
+        content: [
+          'You are solely responsible for complying with all applicable laws and regulations in your jurisdiction, including:',
+          '• Securities laws and regulations',
+          '• Tax reporting requirements',
+          '• Anti-money laundering (AML) and know-your-customer (KYC) regulations',
+          'Securities laws vary by country and jurisdiction. What is legal in one jurisdiction may be prohibited in another.',
+          'If you have questions about your legal obligations, you should consult with a qualified attorney or legal advisor in your jurisdiction.',
+        ],
+      },
+      {
+        title: '6. Limitation of Liability',
+        content: [
+          'TO THE MAXIMUM EXTENT PERMITTED BY LAW, [COMPANY NAME] AND ITS AFFILIATES, OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS SHALL NOT BE LIABLE FOR:',
+          '• Any investment losses or financial damages resulting from your use of the app',
+          '• Any errors, inaccuracies, or omissions in the data displayed',
+          '• Any missed investment opportunities or trades',
+          '• Any decisions made based on information from the app',
+          '• Any interruptions, delays, or unavailability of the app or its data',
+          'You acknowledge and agree that you use PolitiTrades at your own risk. We are not responsible for any financial losses you may incur.',
+          'Our maximum aggregate liability to you for any claims arising from your use of the app shall not exceed the total amount of subscription fees you paid to us in the 12 months preceding the claim.',
+        ],
+      },
+      {
+        title: '7. SEC Filing Delays',
+        content: [
+          'Insider trades are reported to the SEC according to specific timelines:',
+          '• Form 4: Required to be filed within 2 business days of the transaction',
+          '• Periodic Transaction Reports (PTR): Congressional trades, which may have different reporting schedules',
+          'Delays in filing can occur due to:',
+          '• Weekends and holidays',
+          '• Technical issues with SEC systems',
+          '• Late filings by insiders (which may result in penalties for the filer)',
+          'Our alerts and notifications are provided on a "best effort" basis. We cannot guarantee real-time delivery or that you will be notified of every trade immediately upon filing.',
+        ],
+      },
+      {
+        title: '8. Third-Party Data Sources',
+        content: [
+          'We rely on third-party sources for the data displayed in the app, including:',
+          '• SEC EDGAR database (sec.gov)',
+          '• Other publicly available government databases',
+          'We have no control over the accuracy, completeness, or timeliness of data provided by these third-party sources.',
+          'Any errors or omissions in the source data will be reflected in the app until corrected by the source.',
+        ],
+      },
+      {
+        title: '9. Forward-Looking Statements',
+        content: [
+          'Any projections, forecasts, estimates, or forward-looking statements (if provided) are inherently uncertain and speculative.',
+          'Actual results may differ materially from any projections or estimates due to numerous factors, including market conditions, economic changes, and unforeseen events.',
+          'Forward-looking information should not be relied upon as a guarantee of future performance.',
+        ],
+      },
+      {
+        title: '10. Acknowledgment',
+        content: [
+          'By using PolitiTrades, you acknowledge that:',
+          '• You have read and understood this Disclaimer',
+          '• You agree to the terms and limitations set forth herein',
+          '• You will not rely solely on information from the app for investment decisions',
+          '• You are encouraged to seek professional financial, legal, and tax advice before making any investment',
+          'If you do not agree with any part of this Disclaimer, you should immediately stop using the app and cancel your subscription.',
+        ],
+      },
+    ],
+  },
+  fr: {
+    title: 'Avertissement Financier',
+    lastUpdated: '2026-01-14',
+    effectiveDate: '2026-01-14',
+    sections: [
+      {
+        title: '1. Non-Conseil Financier',
+        content: [
+          'PolitiTrades est fourni à des fins éducatives et informatives uniquement. Les informations présentées dans cette application NE constituent PAS un conseil financier, d\'investissement, juridique ou fiscal.',
+          'Nous ne fournissons aucune recommandation d\'achat, de vente ou de conservation de titres. Les données affichées dans l\'application ne doivent pas être interprétées comme des conseils d\'investissement ou une suggestion de prendre une action d\'investissement particulière.',
+          'Vous êtes seul responsable de vos propres décisions d\'investissement. Avant de faire tout investissement, vous devriez :',
+          '• Consulter un conseiller financier qualifié',
+          '• Effectuer vos propres recherches et analyses indépendantes',
+          '• Tenir compte de votre situation financière, de votre tolérance au risque et de vos objectifs d\'investissement',
+          'Toute décision d\'investissement que vous prenez sur la base des informations de cette application est prise à vos propres risques.',
+        ],
+      },
+      {
+        title: '2. Exactitude et Limites des Données',
+        content: [
+          'Les données de transactions d\'initiés affichées dans PolitiTrades proviennent de déclarations SEC publiques, notamment les formulaires Form 4 et Periodic Transaction Reports (PTR). Bien que nous nous efforcions de présenter des informations exactes et à jour, nous ne pouvons garantir :',
+          '• L\'exactitude, l\'exhaustivité ou l\'actualité des données',
+          '• Que toutes les transactions d\'initiés ont été déclarées ou capturées',
+          '• Qu\'il n\'y a pas d\'erreurs, d\'omissions ou de retards dans les données',
+          'Les déclarations SEC peuvent être modifiées, corrigées ou retardées. Les déclarations Form 4 doivent être déposées dans les 2 jours ouvrables suivant une transaction, mais des retards peuvent survenir. Les déclarations PTR peuvent avoir des délais de déclaration différents.',
+          'Vous devriez toujours vérifier les informations avec les sources officielles de la SEC sur sec.gov avant de prendre toute décision d\'investissement.',
+          'Les données sont fournies « en l\'état » sans garantie d\'aucune sorte, expresse ou implicite.',
+        ],
+      },
+      {
+        title: '3. Absence de Relation Professionnelle',
+        content: [
+          'Votre utilisation de PolitiTrades ne crée pas :',
+          '• Une relation conseiller-client',
+          '• Une obligation fiduciaire de notre part',
+          '• Toute relation professionnelle ou obligation de fournir des conseils personnalisés',
+          'Nous sommes une plateforme technologique qui agrège des informations publiques. Nous ne sommes pas des conseillers en investissement, des courtiers ou des planificateurs financiers.',
+        ],
+      },
+      {
+        title: '4. Risques d\'Investissement',
+        content: [
+          'Tous les investissements en valeurs mobilières comportent des risques inhérents, notamment :',
+          '• Le risque de perdre une partie ou la totalité de votre capital investi',
+          '• La volatilité du marché et les mouvements de prix imprévisibles',
+          '• Les risques spécifiques aux entreprises et secteurs individuels',
+          'Les performances passées ne préjugent pas des résultats futurs. L\'activité de transactions d\'initiés par des politiciens ou des dirigeants ne garantit pas qu\'une action se comportera bien ou mal.',
+          'Le fait qu\'un initié ait acheté ou vendu des actions ne signifie pas que vous devriez faire de même. Les initiés peuvent avoir :',
+          '• Des horizons et objectifs d\'investissement différents des vôtres',
+          '• Accès à des informations qui ne sont pas publiques',
+          '• Des stratégies de diversification ou des besoins financiers personnels qui diffèrent des vôtres',
+          'Ne vous fiez pas uniquement aux données de transactions d\'initiés pour prendre des décisions d\'investissement.',
+        ],
+      },
+      {
+        title: '5. Conformité Réglementaire',
+        content: [
+          'Vous êtes seul responsable du respect de toutes les lois et réglementations applicables dans votre juridiction, notamment :',
+          '• Les lois et réglementations sur les valeurs mobilières',
+          '• Les obligations de déclaration fiscale',
+          '• Les réglementations anti-blanchiment d\'argent (LCB) et de connaissance du client (KYC)',
+          'Les lois sur les valeurs mobilières varient selon les pays et les juridictions. Ce qui est légal dans une juridiction peut être interdit dans une autre.',
+          'Si vous avez des questions sur vos obligations légales, vous devriez consulter un avocat ou un conseiller juridique qualifié dans votre juridiction.',
+        ],
+      },
+      {
+        title: '6. Limitation de Responsabilité',
+        content: [
+          'DANS LES LIMITES MAXIMALES AUTORISÉES PAR LA LOI, [COMPANY NAME] ET SES AFFILIÉS, DIRIGEANTS, ADMINISTRATEURS, EMPLOYÉS ET AGENTS NE SERONT PAS RESPONSABLES DE :',
+          '• Toute perte d\'investissement ou dommage financier résultant de votre utilisation de l\'application',
+          '• Toute erreur, inexactitude ou omission dans les données affichées',
+          '• Toute opportunité d\'investissement ou transaction manquée',
+          '• Toute décision prise sur la base des informations de l\'application',
+          '• Toute interruption, retard ou indisponibilité de l\'application ou de ses données',
+          'Vous reconnaissez et acceptez que vous utilisez PolitiTrades à vos propres risques. Nous ne sommes pas responsables des pertes financières que vous pourriez subir.',
+          'Notre responsabilité totale envers vous pour toute réclamation découlant de votre utilisation de l\'application ne dépassera pas le montant total des frais d\'abonnement que vous nous avez payés au cours des 12 mois précédant la réclamation.',
+        ],
+      },
+      {
+        title: '7. Délais de Déclaration SEC',
+        content: [
+          'Les transactions d\'initiés sont déclarées à la SEC selon des délais spécifiques :',
+          '• Form 4 : Doit être déposé dans les 2 jours ouvrables suivant la transaction',
+          '• Periodic Transaction Reports (PTR) : Transactions du Congrès, qui peuvent avoir des calendriers de déclaration différents',
+          'Des retards de dépôt peuvent survenir en raison de :',
+          '• Week-ends et jours fériés',
+          '• Problèmes techniques avec les systèmes de la SEC',
+          '• Dépôts tardifs par les initiés (ce qui peut entraîner des pénalités pour le déclarant)',
+          'Nos alertes et notifications sont fournies sur une base de « meilleur effort ». Nous ne pouvons garantir une livraison en temps réel ni que vous serez informé de chaque transaction immédiatement après son dépôt.',
+        ],
+      },
+      {
+        title: '8. Sources de Données Tierces',
+        content: [
+          'Nous nous appuyons sur des sources tierces pour les données affichées dans l\'application, notamment :',
+          '• Base de données SEC EDGAR (sec.gov)',
+          '• Autres bases de données gouvernementales publiques',
+          'Nous n\'avons aucun contrôle sur l\'exactitude, l\'exhaustivité ou l\'actualité des données fournies par ces sources tierces.',
+          'Toute erreur ou omission dans les données sources sera reflétée dans l\'application jusqu\'à correction par la source.',
+        ],
+      },
+      {
+        title: '9. Déclarations Prospectives',
+        content: [
+          'Toute projection, prévision, estimation ou déclaration prospective (si fournie) est intrinsèquement incertaine et spéculative.',
+          'Les résultats réels peuvent différer considérablement de toute projection ou estimation en raison de nombreux facteurs, notamment les conditions du marché, les changements économiques et les événements imprévus.',
+          'Les informations prospectives ne doivent pas être considérées comme une garantie de performance future.',
+        ],
+      },
+      {
+        title: '10. Reconnaissance',
+        content: [
+          'En utilisant PolitiTrades, vous reconnaissez que :',
+          '• Vous avez lu et compris cet Avertissement',
+          '• Vous acceptez les termes et limitations énoncés ici',
+          '• Vous ne vous fierez pas uniquement aux informations de l\'application pour prendre des décisions d\'investissement',
+          '• Vous êtes encouragé à rechercher des conseils financiers, juridiques et fiscaux professionnels avant de faire tout investissement',
+          'Si vous n\'êtes pas d\'accord avec une partie de cet Avertissement, vous devriez immédiatement cesser d\'utiliser l\'application et annuler votre abonnement.',
+        ],
+      },
+    ],
+  },
+};

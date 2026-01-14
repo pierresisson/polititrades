@@ -1,21 +1,21 @@
 import { View, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
-import Animated, { FadeInDown, ZoomIn } from "react-native-reanimated";
+import Animated, { FadeInDown, SlideInLeft } from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
 
 import { Text } from "@/components/ui/Text";
 import { Button } from "@/components/ui/Button";
-import { Badge } from "@/components/ui/Badge";
+import { FilterChip } from "@/components/ui/FilterChip";
 import { haptics } from "@/lib/haptics";
 
-export default function OnboardingScreen1() {
+export default function OnboardingScreen3() {
   const router = useRouter();
   const { t } = useTranslation();
 
   const handleContinue = () => {
     haptics.light();
-    router.push("/(auth)/onboarding/alerts");
+    router.push("/(auth)/onboarding/premium");
   };
 
   const handleSkip = () => {
@@ -25,35 +25,40 @@ export default function OnboardingScreen1() {
 
   return (
     <View className="flex-1 bg-background px-6 pt-16">
-      {/* Logo animé */}
+      {/* Icon Filter */}
       <Animated.View
-        entering={ZoomIn.delay(100).springify()}
-        className="items-center mb-12"
+        entering={SlideInLeft.delay(100).springify()}
+        className="items-center mb-8"
       >
-        <View className="w-20 h-20 rounded-2xl bg-primary items-center justify-center">
-          <Ionicons name="trending-up" size={40} color="#FFFFFF" />
+        <View className="w-20 h-20 bg-accent/10 rounded-full items-center justify-center">
+          <Ionicons name="options" size={40} color="#F97316" />
         </View>
       </Animated.View>
 
       {/* Titre + Sous-titre */}
       <Animated.View
         entering={FadeInDown.delay(200).springify()}
-        className="mb-6"
+        className="mb-8"
       >
-        <Text variant="h1" align="center" className="mb-3">
-          {t("onboarding.screen1.title")}
+        <Text variant="h2" align="center" className="mb-3">
+          {t("onboarding.screen3.title")}
         </Text>
         <Text variant="body" align="center" className="text-text-secondary px-4">
-          {t("onboarding.screen1.subtitle")}
+          {t("onboarding.screen3.subtitle")}
         </Text>
       </Animated.View>
 
-      {/* Badge "Sources SEC" */}
+      {/* Mock filter chips */}
       <Animated.View
         entering={FadeInDown.delay(300).springify()}
-        className="items-center mb-auto"
+        className="mb-auto"
       >
-        <Badge label="Sources SEC" variant="accent" size="md" />
+        <View className="flex-row flex-wrap gap-2 justify-center">
+          <FilterChip label="Démocrates" selected={true} onPress={() => {}} />
+          <FilterChip label="Tech" selected={true} onPress={() => {}} />
+          <FilterChip label=">$100k" selected={true} onPress={() => {}} />
+          <FilterChip label="Républicains" selected={false} onPress={() => {}} />
+        </View>
       </Animated.View>
 
       {/* CTA + Skip */}
@@ -62,7 +67,7 @@ export default function OnboardingScreen1() {
         className="pb-8"
       >
         <Button
-          label={t("onboarding.screen1.cta")}
+          label={t("onboarding.screen3.cta")}
           variant="primary"
           size="lg"
           onPress={handleContinue}
@@ -71,7 +76,7 @@ export default function OnboardingScreen1() {
 
         <Pressable onPress={handleSkip} className="py-2">
           <Text variant="body-sm" align="center" className="text-text-tertiary">
-            {t("onboarding.screen1.skip")}
+            {t("onboarding.screen3.skip")}
           </Text>
         </Pressable>
       </Animated.View>

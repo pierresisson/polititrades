@@ -1,10 +1,11 @@
 import { View, ScrollView, Pressable, Switch, Alert } from "react-native";
+import { useState } from "react";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
-import { Text, PremiumBadge, ScreenHeader } from "@/components/ui";
+import { Text, PremiumBadge, ScreenHeader, LegalSheet } from "@/components/ui";
 import { colors } from "@/constants/theme";
 import {
   useAuthStore,
@@ -12,6 +13,7 @@ import {
   usePaywallStore,
 } from "@/lib/store";
 import { haptics } from "@/lib/haptics";
+import type { DocumentType } from "@/lib/legal";
 
 interface SettingsItemProps {
   icon: React.ComponentProps<typeof Ionicons>["name"];
@@ -133,6 +135,7 @@ export default function SettingsScreen() {
     setHasCompletedOnboarding,
   } = useSettingsStore();
   const { isPremium, setIsPremium, openPaywall } = usePaywallStore();
+  const [activeLegalDoc, setActiveLegalDoc] = useState<DocumentType | null>(null);
 
   const handleLanguageChange = () => {
     const newLang = language === "en" ? "fr" : "en";
@@ -285,17 +288,17 @@ export default function SettingsScreen() {
           <SettingsItem
             icon="document-text-outline"
             label={t("settings.termsOfService")}
-            onPress={() => {}}
+            onPress={() => setActiveLegalDoc("terms")}
           />
           <SettingsItem
             icon="shield-checkmark-outline"
             label={t("settings.privacyPolicy")}
-            onPress={() => {}}
+            onPress={() => setActiveLegalDoc("privacy")}
           />
           <SettingsItem
             icon="warning-outline"
             label={t("settings.disclaimer")}
-            onPress={() => {}}
+            onPress={() => setActiveLegalDoc("disclaimer")}
           />
         </SettingsSection>
 
@@ -348,6 +351,15 @@ export default function SettingsScreen() {
           />
         </SettingsSection>
       </ScrollView>
+
+      {/* Legal Sheet */}
+      {activeLegalDoc && (
+        <LegalSheet
+          isOpen={activeLegalDoc !== null}
+          onClose={() => setActiveLegalDoc(null)}
+          documentType={activeLegalDoc}
+        />
+      )}
     </View>
   );
 }

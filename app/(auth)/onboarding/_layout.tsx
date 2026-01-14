@@ -3,7 +3,7 @@ import { Slot, usePathname } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated from "react-native-reanimated";
 
-const SCREENS = ["index", "features", "premium"];
+const SCREENS = ["index", "alerts", "filters", "premium"];
 
 function ProgressIndicator({ currentIndex }: { currentIndex: number }) {
   return (

@@ -52,6 +52,7 @@ export { TradeRow, TradeRowWithDivider, TradeDateHeader } from "./TradeRow";
 export { PersonalityCard, PersonalityRowWithDivider } from "./PersonalityCard";
 export { BottomSheet, ActionSheet, ConfirmSheet } from "./BottomSheet";
 export { QuickAddSheet } from "./QuickAddSheet";
+export { LegalSheet } from "./LegalSheet";
 export { Toast } from "./Toast";
 
 // Paywall components
