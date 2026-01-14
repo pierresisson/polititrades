@@ -207,7 +207,7 @@ export default function SearchScreen() {
             {/* Trending Tickers */}
             <View className="px-4 mb-6">
               <SectionHeader title={t("search.tickers")} />
-              <View className="bg-surface-primary rounded-2xl overflow-hidden">
+              <View className="bg-background-card border-2 border-primary-200 rounded-2xl overflow-hidden">
                 {trendingTickers.map((ticker, index) => (
                   <Pressable
                     key={ticker.symbol}
@@ -223,7 +223,7 @@ export default function SearchScreen() {
                     }
                   >
                     <View className="flex-row items-center gap-3">
-                      <View className="w-10 h-10 rounded-lg bg-surface-secondary items-center justify-center">
+                      <View className="w-10 h-10 rounded-lg bg-primary-100 border border-primary-300 items-center justify-center">
                         <Text variant="label" className="text-text">
                           {ticker.symbol.slice(0, 2)}
                         </Text>
@@ -270,7 +270,7 @@ export default function SearchScreen() {
                     className="px-4"
                   />
                   <View className="px-4">
-                    <View className="bg-surface-primary rounded-2xl overflow-hidden">
+                    <View className="bg-background-card border-2 border-primary-200 rounded-2xl overflow-hidden">
                       {politicianResults.map((politician) => (
                         <View key={politician.id}>
                           <PersonalityCard
@@ -293,7 +293,7 @@ export default function SearchScreen() {
               tickerResults.length > 0 && (
                 <View className="px-4 mb-6">
                   <SectionHeader title={t("search.tickers")} />
-                  <View className="bg-surface-primary rounded-2xl overflow-hidden">
+                  <View className="bg-background-card border-2 border-primary-200 rounded-2xl overflow-hidden">
                     {tickerResults.map((ticker, index) => (
                       <Pressable
                         key={ticker.symbol}
@@ -309,7 +309,7 @@ export default function SearchScreen() {
                         }
                       >
                         <View className="flex-row items-center gap-3">
-                          <View className="w-10 h-10 rounded-lg bg-surface-secondary items-center justify-center">
+                          <View className="w-10 h-10 rounded-lg bg-primary-100 border border-primary-300 items-center justify-center">
                             <Text variant="label" className="text-text">
                               {ticker.symbol.slice(0, 2)}
                             </Text>

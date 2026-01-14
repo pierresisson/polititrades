@@ -13,6 +13,9 @@ import {
   TrialBanner,
   TabScreenHeader,
 } from "@/components/ui";
+import { LinearGradient } from "expo-linear-gradient";
+import { gradients } from "@/constants/theme";
+import { Ionicons } from "@expo/vector-icons";
 import { TodayStatsCard } from "@/components/ui/TodayStatsCard";
 import { colors } from "@/constants/theme";
 import { useSettingsStore, usePaywallStore, useWatchlistStore } from "@/lib/store";

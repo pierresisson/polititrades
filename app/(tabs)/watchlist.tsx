@@ -97,7 +97,7 @@ export default function WatchlistScreen() {
         {activeTab === "politicians" && (
           <>
             {followedPoliticiansData.length > 0 ? (
-              <View className="bg-surface-primary rounded-2xl overflow-hidden">
+              <View className="bg-background-card border-2 border-primary-200 rounded-2xl overflow-hidden">
                 {followedPoliticiansData.map((politician, index) => (
                   <View key={politician.id}>
                     <PersonalityCard
@@ -122,7 +122,7 @@ export default function WatchlistScreen() {
         {activeTab === "tickers" && (
           <>
             {followedTickersData.length > 0 ? (
-              <View className="bg-surface-primary rounded-2xl overflow-hidden">
+              <View className="bg-background-card border-2 border-primary-200 rounded-2xl overflow-hidden">
                 {followedTickersData.map((ticker, index) => (
                   <Pressable
                     key={ticker.symbol}
@@ -138,7 +138,7 @@ export default function WatchlistScreen() {
                     }
                   >
                     <View className="flex-row items-center gap-3">
-                      <View className="w-10 h-10 rounded-lg bg-surface-secondary items-center justify-center">
+                      <View className="w-10 h-10 rounded-lg bg-primary-100 border border-primary-300 items-center justify-center">
                         <Text variant="label" className="text-text">
                           {ticker.symbol.slice(0, 2)}
                         </Text>

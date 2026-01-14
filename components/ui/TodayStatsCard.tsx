@@ -47,14 +47,16 @@ function StatItem({ icon, value, label, trend }: StatItemProps) {
 
   return (
     <View className="flex-1 items-center gap-2">
-      <View className="bg-background-elevated border-2 border-primary-200 rounded-xl p-3 w-full items-center gap-3">
+      <View className="bg-background-elevated border-2 border-primary-200 rounded-xl p-3 w-full items-center gap-2">
         <Ionicons name={icon} size={24} color={colors.primary.DEFAULT} />
         <Text variant="h3" className="text-text font-mono">
           {value}
         </Text>
-        <Text variant="secondary-xs" className="text-text-secondary text-center">
-          {label}
-        </Text>
+        <View className="h-8 justify-center">
+          <Text variant="secondary-xs" className="text-text-secondary text-center" numberOfLines={2}>
+            {label}
+          </Text>
+        </View>
         <View className="flex-row items-center gap-1">
           <Ionicons
             name={trendIcon}

@@ -152,7 +152,7 @@ function NewsCard({
   return (
     <Pressable
       onPress={onPress}
-      className="bg-surface-primary rounded-2xl overflow-hidden mb-3"
+      className="bg-background-card border-2 border-primary-200 rounded-2xl overflow-hidden mb-3 active:opacity-90"
     >
       {hasImage && (
         <Image
@@ -185,9 +185,9 @@ function NewsCard({
             {item.relatedTickers.map((ticker) => (
               <View
                 key={ticker}
-                className="bg-surface-secondary px-2 py-1 rounded-md"
+                className="bg-primary-100 border border-primary-300 px-2 py-1 rounded-md"
               >
-                <Text variant="caption" className="text-primary font-inter-semibold">
+                <Text variant="caption" className="text-primary-900 font-inter-semibold">
                   ${ticker}
                 </Text>
               </View>
@@ -211,7 +211,7 @@ function CompactNewsCard({
   return (
     <Pressable
       onPress={onPress}
-      className="bg-surface-primary rounded-xl p-4 mb-2 flex-row"
+      className="bg-background-card border-2 border-primary-200 rounded-xl p-4 mb-2 flex-row active:opacity-90"
     >
       <View className="flex-1 pr-3">
         <View className="flex-row items-center mb-1">

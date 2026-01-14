@@ -192,22 +192,22 @@ export default function SettingsScreen() {
         {!isPremium && (
           <Pressable
             onPress={openPaywall}
-            className="mx-4 mt-4 mb-6 p-4 bg-accent-subtle rounded-2xl border border-accent/20 active:opacity-90"
+            className="mx-4 mt-4 mb-6 p-4 bg-gradient-to-r from-primary-100 to-primary-200 rounded-2xl border-2 border-primary-300 active:opacity-90"
           >
             <View className="flex-row items-center justify-between">
               <View className="flex-row items-center gap-3">
-                <View className="w-12 h-12 rounded-xl bg-accent/20 items-center justify-center">
+                <View className="w-12 h-12 rounded-xl bg-primary items-center justify-center">
                   <Ionicons
                     name="diamond"
                     size={24}
-                    color={colors.accent.DEFAULT}
+                    color="#FFFFFF"
                   />
                 </View>
                 <View>
-                  <Text variant="body" className="font-inter-semibold text-accent">
+                  <Text variant="body" className="font-inter-semibold text-primary-900">
                     {t("premium.title")}
                   </Text>
-                  <Text variant="caption" className="text-accent/80">
+                  <Text variant="caption" className="text-primary-700">
                     {t("premium.subtitle")}
                   </Text>
                 </View>
@@ -215,7 +215,7 @@ export default function SettingsScreen() {
               <Ionicons
                 name="chevron-forward"
                 size={20}
-                color={colors.accent.DEFAULT}
+                color={colors.primary.DEFAULT}
               />
             </View>
           </Pressable>
