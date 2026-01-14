@@ -211,6 +211,5 @@ export default function TickerDetailScreen() {
           )}
         </ScrollView>
       </View>
-    </>
   );
 }

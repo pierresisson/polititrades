@@ -33,12 +33,12 @@ export const colors = {
     muted: "#991B1B", // Red-800
     subtle: "rgba(220, 38, 38, 0.08)",
   },
-  // Background - Light mode with warm beige tints
+  // Background - Light mode with blue-gray subtlety (Twilight Premium)
   background: {
-    DEFAULT: "#F5F3EF", // Warm beige - main app background
-    card: "#FAF8F5", // Écru very light - card surfaces
+    DEFAULT: "#FAFBFC", // Blue-gray ultra-subtle - main app background
+    card: "#FFFFFF", // Pure white - card surfaces
     elevated: "#F3E8FF", // Purple tint - elevated cards (primary-100)
-    hover: "#F0EDE8", // Warm hover states
+    hover: "#F5F6F7", // Subtle hover states
     border: "#E9D5FF", // Purple border (primary-200)
   },
   // Text - Dark for light mode (inverted from dark)
@@ -89,9 +89,9 @@ export const colors = {
   },
   // Surface colors - light mode layering
   surface: {
-    primary: "#FAF8F5", // Warm beige
-    secondary: "#F0EDE8", // Warm secondary
-    tertiary: "#E8E5E0", // Warm tertiary
+    primary: "#FFFFFF", // Pure white
+    secondary: "#F5F6F7", // Blue-gray subtle
+    tertiary: "#E8EAED", // Blue-gray tertiary
   },
   // Info - Sky Blue
   info: {
@@ -140,8 +140,8 @@ export const gradients = {
   hero: ["#A78BFA", "#7C3AED", "#6D28D9"], // 3-stop gradient
 
   // Card gradients
-  card: ["#FAF8F5", "#F5F3EF"], // Warm beige gradient
-  cardReverse: ["#F5F3EF", "#FAF8F5"],
+  card: ["#FFFFFF", "#FAFBFC"], // Pure white to blue-gray
+  cardReverse: ["#FAFBFC", "#FFFFFF"],
 
   // Financial gradients
   profit: ["#22C55E", "#16A34A"], // Green-500 to 600
@@ -149,12 +149,12 @@ export const gradients = {
 
   // Glass morphism
   glass: [
-    "rgba(250, 248, 245, 0.72)",
-    "rgba(245, 243, 239, 0.64)",
+    "rgba(255, 255, 255, 0.72)",
+    "rgba(250, 251, 252, 0.64)",
   ],
 
-  // Shimmer loading (warm beige with purple accent)
-  shimmer: ["#F0EDE8", "#E9D5FF", "#F0EDE8"], // Warm beige to primary-200 to warm beige
+  // Shimmer loading (blue-gray with purple accent)
+  shimmer: ["#F5F6F7", "#E9D5FF", "#F5F6F7"], // Blue-gray to primary-200 to blue-gray
 
   // Legacy gradients (kept for compatibility)
   teal: ["#5EEAD4", "#14B8A6"],

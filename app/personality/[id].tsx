@@ -26,6 +26,7 @@ type ProfileTab = "overview" | "trades" | "holdings";
 export default function PersonalityDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
+  const navigation = useNavigation();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const [activeTab, setActiveTab] = useState<ProfileTab>("overview");
@@ -78,30 +79,30 @@ export default function PersonalityDetailScreen() {
     ? politician.position
     : `${politician.chamber === "Senate" ? "Senator" : "Representative"} - ${politician.state}`;
 
-  return (
-    <>
-      <Stack.Screen
-        options={{
-          title: "",
-          headerStyle: { backgroundColor: colors.background.DEFAULT },
-          headerTintColor: colors.text.DEFAULT,
-          headerShadowVisible: false,
-          headerRight: () => (
-            <Pressable
-              onPress={() => {}}
-              className="w-10 h-10 rounded-full items-center justify-center"
-            >
-              <Ionicons
-                name="share-outline"
-                size={22}
-                color={colors.text.DEFAULT}
-              />
-            </Pressable>
-          ),
-        }}
-      />
+  // Set navigation options
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "",
+      headerStyle: { backgroundColor: colors.background.DEFAULT },
+      headerTintColor: colors.text.DEFAULT,
+      headerShadowVisible: false,
+      headerRight: () => (
+        <Pressable
+          onPress={() => {}}
+          className="w-10 h-10 rounded-full items-center justify-center"
+        >
+          <Ionicons
+            name="share-outline"
+            size={22}
+            color={colors.text.DEFAULT}
+          />
+        </Pressable>
+      ),
+    });
+  }, [navigation]);
 
-      <View className="flex-1 bg-background">
+  return (
+    <View className="flex-1 bg-background">
         <ScrollView
           className="flex-1"
           contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
@@ -326,6 +327,5 @@ export default function PersonalityDetailScreen() {
           )}
         </ScrollView>
       </View>
-    </>
   );
 }

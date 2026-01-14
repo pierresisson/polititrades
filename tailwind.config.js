@@ -42,12 +42,12 @@ module.exports = {
           muted: "#991B1B",
           subtle: "rgba(220, 38, 38, 0.08)",
         },
-        // Background - Light mode with warm beige tints
+        // Background - Light mode with blue-gray subtlety (Twilight Premium)
         background: {
-          DEFAULT: "#F5F3EF",
-          card: "#FAF8F5",
+          DEFAULT: "#FAFBFC",
+          card: "#FFFFFF",
           elevated: "#F3E8FF",
-          hover: "#F0EDE8",
+          hover: "#F5F6F7",
           border: "#E9D5FF",
         },
         // Text - Dark for light mode
@@ -98,9 +98,9 @@ module.exports = {
         },
         // Surface
         surface: {
-          primary: "#FAF8F5",
-          secondary: "#F0EDE8",
-          tertiary: "#E8E5E0",
+          primary: "#FFFFFF",
+          secondary: "#F5F6F7",
+          tertiary: "#E8EAED",
         },
         // Info - Sky Blue
         info: {

@@ -1,8 +1,9 @@
 import { View, ScrollView, Pressable, Linking } from "react-native";
-import { useLocalSearchParams, useRouter, Stack } from "expo-router";
+import { useLocalSearchParams, useRouter, useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import { useLayoutEffect } from "react";
 
 import {
   Text,
@@ -25,6 +26,7 @@ import {
 export default function TradeDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
+  const navigation = useNavigation();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
 
@@ -71,19 +73,18 @@ export default function TradeDetailScreen() {
     });
   };
 
+  // Set navigation options
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: t("tradeDetail.title"),
+      headerStyle: { backgroundColor: colors.background.DEFAULT },
+      headerTintColor: colors.text.DEFAULT,
+      headerShadowVisible: false,
+    });
+  }, [navigation, t]);
 
   return (
-    <>
-      <Stack.Screen
-        options={{
-          title: t("tradeDetail.title"),
-          headerStyle: { backgroundColor: colors.background.DEFAULT },
-          headerTintColor: colors.text.DEFAULT,
-          headerShadowVisible: false,
-        }}
-      />
-
-      <View className="flex-1 bg-background">
+    <View className="flex-1 bg-background">
         <ScrollView
           className="flex-1"
           contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
@@ -273,6 +274,5 @@ export default function TradeDetailScreen() {
           )}
         </ScrollView>
       </View>
-    </>
   );
 }
