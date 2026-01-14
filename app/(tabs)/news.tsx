@@ -124,10 +124,10 @@ function CategoryChip({
     <Pressable
       onPress={onPress}
       className={cn(
-        "px-6 py-3 rounded-full mr-2 border-2 shadow-md",
+        "px-6 py-3 rounded-full",
         selected
-          ? "bg-primary border-primary-700"
-          : "bg-background-card border-primary-300"
+          ? "bg-primary shadow-md"
+          : "bg-white/60 border border-primary-200"
       )}
     >
       <Text
@@ -287,7 +287,7 @@ export default function NewsScreen() {
       />
 
       {/* Search and filters */}
-      <View className="px-4 pb-3 bg-background">
+      <View className="px-4 pb-3">
         <SearchInput
           value={searchQuery}
           onChangeText={setSearchQuery}
@@ -301,6 +301,8 @@ export default function NewsScreen() {
           data={CATEGORIES}
           keyExtractor={(item) => item.value}
           showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ gap: 8 }}
+          className="bg-transparent"
           renderItem={({ item }) => (
             <CategoryChip
               label={t(item.labelKey)}

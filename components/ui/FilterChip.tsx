@@ -34,10 +34,10 @@ export function FilterChip({
       onPress={handlePress}
       disabled={disabled}
       className={cn(
-        "flex-row items-center px-4 py-2 rounded-full border-2",
+        "flex-row items-center px-5 py-2.5 rounded-full",
         selected
-          ? "bg-primary border-primary-700"
-          : "bg-background-card border-primary-200",
+          ? "bg-primary shadow-md"
+          : "bg-white/60 border border-primary-200",
         disabled && "opacity-40",
         "active:opacity-70",
         className
@@ -46,15 +46,15 @@ export function FilterChip({
       {icon && (
         <Ionicons
           name={icon}
-          size={16}
+          size={18}
           color={selected ? "#FFFFFF" : colors.text.secondary}
-          style={{ marginRight: 6 }}
+          style={{ marginRight: 8 }}
         />
       )}
       <Text
-        variant="label"
+        variant="body-sm"
         className={cn(
-          "normal-case tracking-normal font-inter-semibold",
+          "font-inter-semibold",
           selected ? "text-white" : "text-text-secondary"
         )}
       >
@@ -63,13 +63,16 @@ export function FilterChip({
       {count !== undefined && count > 0 && (
         <View
           className={cn(
-            "ml-1.5 px-1.5 py-0.5 rounded-full min-w-[18px] items-center",
-            selected ? "bg-primary" : "bg-surface-tertiary"
+            "ml-2 px-2 py-0.5 rounded-full min-w-[20px] items-center",
+            selected ? "bg-white/20" : "bg-primary-100"
           )}
         >
           <Text
             variant="caption"
-            className={cn(selected ? "text-white" : "text-text-secondary")}
+            className={cn(
+              "font-inter-semibold",
+              selected ? "text-white" : "text-primary-900"
+            )}
           >
             {count}
           </Text>

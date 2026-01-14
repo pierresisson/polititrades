@@ -93,6 +93,7 @@ export function Avatar({
   className,
 }: AvatarProps) {
   const indicatorConfig = partyIndicatorSizes[size || "md"];
+  const partyColor = party ? getPartyColor(party) : colors.text.muted;
 
   return (
     <View className="relative">
@@ -112,11 +113,12 @@ export function Avatar({
 
       {showPartyIndicator && party && (
         <View
+          key={`party-${party}`}
           className="absolute -bottom-0.5 -right-0.5 rounded-full"
           style={{
             width: indicatorConfig.size,
             height: indicatorConfig.size,
-            backgroundColor: getPartyColor(party),
+            backgroundColor: partyColor,
             borderWidth: indicatorConfig.border,
             borderColor: colors.background.DEFAULT,
           }}
