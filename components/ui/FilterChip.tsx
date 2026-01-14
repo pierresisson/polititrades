@@ -37,7 +37,7 @@ export function FilterChip({
         "flex-row items-center px-3 py-2.5 rounded-full",
         selected
           ? "bg-primary shadow-md"
-          : "bg-white/60 border border-primary-200",
+          : "bg-background-card border-2 border-primary-200",
         disabled && "opacity-40",
         "active:opacity-70",
         className

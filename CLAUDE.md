@@ -130,17 +130,6 @@ bun run db:types
 
 ## Design System
 
-### Colors (Dark Theme)
-
-- **Background:** `#0F172A` (dark slate)
-- **Card:** `#1E293B`
-- **Primary:** `#0D9488` (teal)
-- **Profit:** `#22C55E` (green)
-- **Loss:** `#EF4444` (red)
-- **Accent:** `#F59E0B` (gold - premium)
-- **Text:** `#F8FAFC`
-- **Text Secondary:** `#94A3B8`
-
 ### Typography
 
 - Font: Inter (Google Fonts)
