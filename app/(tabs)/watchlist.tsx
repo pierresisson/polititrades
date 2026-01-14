@@ -72,18 +72,21 @@ export default function WatchlistScreen() {
             selected={activeTab === "politicians"}
             onPress={() => setActiveTab("politicians")}
             icon="people-outline"
+            className="flex-1"
           />
           <FilterChip
             label={t("watchlist.tickers")}
             selected={activeTab === "tickers"}
             onPress={() => setActiveTab("tickers")}
             icon="trending-up-outline"
+            className="flex-1"
           />
           <FilterChip
             label={t("watchlist.alerts")}
             selected={activeTab === "alerts"}
             onPress={() => setActiveTab("alerts")}
             icon="notifications-outline"
+            className="flex-1"
           />
         </View>
       </View>

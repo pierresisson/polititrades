@@ -10,7 +10,7 @@ type PartyShort = "D" | "R" | "I";
 type Party = PartyFull | PartyShort;
 
 const avatarVariants = cva(
-  "items-center justify-center bg-surface-secondary overflow-hidden",
+  "items-center justify-center bg-primary-100 overflow-hidden",
   {
     variants: {
       size: {
@@ -33,7 +33,7 @@ const avatarVariants = cva(
   }
 );
 
-const initialsVariants = cva("font-inter-semibold text-text", {
+const initialsVariants = cva("font-inter-bold text-primary-900", {
   variants: {
     size: {
       xs: "text-2xs",
