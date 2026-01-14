@@ -1,8 +1,9 @@
 import { View, ScrollView, Pressable } from "react-native";
-import { useLocalSearchParams, useRouter, Stack } from "expo-router";
+import { useLocalSearchParams, useRouter, useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
+import { useEffect, useLayoutEffect } from "react";
 
 import {
   Text,
@@ -22,12 +23,35 @@ import {
 export default function TickerDetailScreen() {
   const { symbol } = useLocalSearchParams<{ symbol: string }>();
   const router = useRouter();
+  const navigation = useNavigation();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { openPaywall } = usePaywallStore();
 
   const ticker = getTickerBySymbol(symbol || "");
   const trades = getTradesByTicker(symbol || "");
+
+  // Set navigation options
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: symbol || "",
+      headerStyle: { backgroundColor: colors.background.DEFAULT },
+      headerTintColor: colors.text.DEFAULT,
+      headerShadowVisible: false,
+      headerRight: () => (
+        <Pressable
+          onPress={() => {}}
+          className="w-10 h-10 rounded-full items-center justify-center"
+        >
+          <Ionicons
+            name="share-outline"
+            size={22}
+            color={colors.text.DEFAULT}
+          />
+        </Pressable>
+      ),
+    });
+  }, [navigation, symbol]);
 
   if (!ticker) {
     return (
@@ -54,33 +78,11 @@ export default function TickerDetailScreen() {
   const isBullish = sentiment > 50;
 
   return (
-    <>
-      <Stack.Screen
-        options={{
-          title: symbol || "",
-          headerStyle: { backgroundColor: colors.background.DEFAULT },
-          headerTintColor: colors.text.DEFAULT,
-          headerShadowVisible: false,
-          headerRight: () => (
-            <Pressable
-              onPress={() => {}}
-              className="w-10 h-10 rounded-full items-center justify-center"
-            >
-              <Ionicons
-                name="share-outline"
-                size={22}
-                color={colors.text.DEFAULT}
-              />
-            </Pressable>
-          ),
-        }}
-      />
-
-      <View className="flex-1 bg-background">
-        <ScrollView
-          className="flex-1"
-          contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
-          showsVerticalScrollIndicator={false}
+    <View className="flex-1 bg-background">
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ paddingBottom: insets.bottom + 24 }}
+        showsVerticalScrollIndicator={false}
         >
           {/* Ticker Header */}
           <View className="px-4 py-6 bg-surface-primary border-b border-background-border">
