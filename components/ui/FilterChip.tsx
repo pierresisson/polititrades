@@ -34,10 +34,10 @@ export function FilterChip({
       onPress={handlePress}
       disabled={disabled}
       className={cn(
-        "flex-row items-center px-3 py-1.5 rounded-full border",
+        "flex-row items-center px-4 py-2 rounded-full border-2",
         selected
-          ? "bg-primary-subtle border-primary"
-          : "bg-transparent border-background-border",
+          ? "bg-primary border-primary-700"
+          : "bg-background-card border-primary-200",
         disabled && "opacity-40",
         "active:opacity-70",
         className
@@ -46,16 +46,16 @@ export function FilterChip({
       {icon && (
         <Ionicons
           name={icon}
-          size={14}
-          color={selected ? colors.primary.DEFAULT : colors.text.secondary}
-          style={{ marginRight: 4 }}
+          size={16}
+          color={selected ? "#FFFFFF" : colors.text.secondary}
+          style={{ marginRight: 6 }}
         />
       )}
       <Text
         variant="label"
         className={cn(
-          "normal-case tracking-normal",
-          selected ? "text-primary" : "text-text-secondary"
+          "normal-case tracking-normal font-inter-semibold",
+          selected ? "text-white" : "text-text-secondary"
         )}
       >
         {label}

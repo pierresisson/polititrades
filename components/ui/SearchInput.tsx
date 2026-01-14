@@ -80,8 +80,8 @@ export const SearchInput = forwardRef<TextInput, SearchInputProps>(
       <View className={cn("flex-row items-center", containerClassName)}>
         <View
           className={cn(
-            "flex-1 flex-row items-center bg-surface-secondary rounded-xl px-3 h-11",
-            isFocused && "border border-primary",
+            "flex-1 flex-row items-center bg-background-card border-2 rounded-xl px-3 h-11",
+            isFocused ? "border-primary bg-primary-50" : "border-primary-200",
             disabled && "opacity-50",
             className
           )}

@@ -98,6 +98,36 @@ export default function HomeScreen() {
           />
         }
       >
+        {/* Purple Hero Banner */}
+        <View className="mx-4 mb-4 overflow-hidden rounded-2xl">
+          <LinearGradient
+            colors={gradients.premium as string[]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            className="p-4"
+          >
+            <View className="flex-row items-center justify-between">
+              <View className="flex-1">
+                <View className="flex-row items-center gap-2 mb-1">
+                  <Ionicons name="pulse" size={20} color="#FFFFFF" />
+                  <Text className="text-white text-sm font-inter-semibold uppercase tracking-wider">
+                    Live Tracking
+                  </Text>
+                </View>
+                <Text className="text-white text-2xl font-inter-bold">
+                  {todayStats.totalTrades} {t("tabs.trades")}
+                </Text>
+                <Text className="text-white/80 text-sm">
+                  {t("home.todaysActivity")}
+                </Text>
+              </View>
+              <View className="w-16 h-16 rounded-full bg-white/20 items-center justify-center">
+                <Ionicons name="trending-up" size={32} color="#FFFFFF" />
+              </View>
+            </View>
+          </LinearGradient>
+        </View>
+
         {/* Header */}
         <TabScreenHeader
           title="PolitiTrades"

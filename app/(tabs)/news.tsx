@@ -124,8 +124,10 @@ function CategoryChip({
     <Pressable
       onPress={onPress}
       className={cn(
-        "px-4 py-2 rounded-full mr-2",
-        selected ? "bg-primary" : "bg-surface-secondary"
+        "px-4 py-2 rounded-full mr-2 border-2",
+        selected
+          ? "bg-primary border-primary-700"
+          : "bg-background-card border-primary-200"
       )}
     >
       <Text
