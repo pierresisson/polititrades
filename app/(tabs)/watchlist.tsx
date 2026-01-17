@@ -7,6 +7,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import {
   Text,
+  Button,
   FilterChip,
   PersonalityCard,
   EmptyWatchlist,
@@ -198,18 +199,15 @@ export default function WatchlistScreen() {
             >
               {t("alerts.noAlertsDescription")}
             </Text>
-            <Pressable
+            <Button
+              label={t("alerts.create")}
+              variant="primary"
+              size="lg"
               onPress={() => {}}
-              className="flex-row items-center gap-2 bg-primary px-5 py-3 rounded-xl active:opacity-90"
-            >
-              <Ionicons name="add" size={20} color={colors.text.inverse} />
-              <Text
-                variant="body"
-                className="text-text-inverse font-inter-semibold"
-              >
-                {t("alerts.create")}
-              </Text>
-            </Pressable>
+              leftIcon={
+                <Ionicons name="add" size={20} color={colors.text.inverse} />
+              }
+            />
           </View>
         )}
 
@@ -217,15 +215,17 @@ export default function WatchlistScreen() {
         {activeTab !== "alerts" &&
           ((activeTab === "politicians" && followedPoliticiansData.length > 0) ||
             (activeTab === "tickers" && followedTickersData.length > 0)) && (
-            <Pressable
-              onPress={handleExplore}
-              className="flex-row items-center justify-center gap-2 mt-4 py-4 bg-surface-secondary rounded-xl active:opacity-90"
-            >
-              <Ionicons name="add" size={20} color={colors.primary.DEFAULT} />
-              <Text variant="body" className="text-primary font-inter-medium">
-                {t("watchlist.addFirst")}
-              </Text>
-            </Pressable>
+            <View className="mt-4">
+              <Button
+                label={t("watchlist.addFirst")}
+                variant="secondary"
+                size="md"
+                onPress={handleExplore}
+                leftIcon={
+                  <Ionicons name="add" size={20} color={colors.primary.DEFAULT} />
+                }
+              />
+            </View>
           )}
       </ScrollView>
 

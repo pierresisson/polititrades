@@ -8,6 +8,7 @@ import { useLayoutEffect } from "react";
 import {
   Text,
   Avatar,
+  Button,
   TradeBadge,
   Sparkline,
   StatsRow,
@@ -16,7 +17,6 @@ import {
   ProfitText,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
-import { haptics } from "@/lib/haptics";
 import {
   MOCK_TRADES,
   MOCK_TICKERS,
@@ -45,7 +45,6 @@ export default function TradeDetailScreen() {
   const politician = trade.politician;
 
   const handleViewSource = () => {
-    haptics.light();
     // Open SEC filing URL
     Linking.openURL("https://www.sec.gov/cgi-bin/browse-edgar");
   };
@@ -235,19 +234,19 @@ export default function TradeDetailScreen() {
 
           {/* View Source Button */}
           <View className="px-4 mb-6">
-            <Pressable
+            <Button
+              label={t("tradeDetail.viewSource")}
+              variant="secondary"
+              size="md"
               onPress={handleViewSource}
-              className="flex-row items-center justify-center gap-2 py-4 bg-surface-secondary rounded-xl active:opacity-90"
-            >
-              <Ionicons
-                name="open-outline"
-                size={18}
-                color={colors.primary.DEFAULT}
-              />
-              <Text variant="body" className="text-primary font-inter-medium">
-                {t("tradeDetail.viewSource")}
-              </Text>
-            </Pressable>
+              leftIcon={
+                <Ionicons
+                  name="open-outline"
+                  size={18}
+                  color={colors.primary.DEFAULT}
+                />
+              }
+            />
           </View>
 
           {/* Related Trades */}

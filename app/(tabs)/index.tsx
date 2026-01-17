@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import {
   Text,
+  Button,
   SectionHeader,
   TradeRow,
   PersonalityCard,
@@ -13,9 +14,6 @@ import {
   TrialBanner,
   TabScreenHeader,
 } from "@/components/ui";
-import { LinearGradient } from "expo-linear-gradient";
-import { gradients } from "@/constants/theme";
-import { Ionicons } from "@expo/vector-icons";
 import { TodayStatsCard } from "@/components/ui/TodayStatsCard";
 import { colors } from "@/constants/theme";
 import { useSettingsStore, usePaywallStore, useWatchlistStore } from "@/lib/store";
@@ -204,14 +202,12 @@ export default function HomeScreen() {
 
         {/* Dev Reset Button */}
         <View className="px-4">
-          <Pressable
+          <Button
+            label="Reset Onboarding (Dev)"
+            variant="ghost"
+            size="sm"
             onPress={handleResetOnboarding}
-            className="py-3 px-4 bg-surface-secondary rounded-xl"
-          >
-            <Text variant="secondary-sm" align="center">
-              Reset Onboarding (Dev)
-            </Text>
-          </Pressable>
+          />
         </View>
       </ScrollView>
     </View>

@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import {
   Text,
   Button,
+  IconButton,
   FeatureList,
   TrialInfoCard,
   PricingComparison,
@@ -47,7 +48,6 @@ export default function PaywallScreen() {
   const { setIsPremium, closePaywall } = usePaywallStore();
 
   const handleClose = () => {
-    haptics.light();
     router.back();
     closePaywall();
   };
@@ -81,13 +81,18 @@ export default function PaywallScreen() {
 
       <View className="flex-1 bg-background">
         {/* Close Button */}
-        <Pressable
-          onPress={handleClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-surface-secondary items-center justify-center"
+        <View
+          className="absolute top-4 right-4 z-10"
           style={{ top: insets.top + 8 }}
         >
-          <Ionicons name="close" size={24} color={colors.text.DEFAULT} />
-        </Pressable>
+          <IconButton
+            icon={<Ionicons name="close" size={24} color={colors.text.DEFAULT} />}
+            variant="ghost"
+            size="lg"
+            onPress={handleClose}
+            accessibilityLabel="Close paywall"
+          />
+        </View>
 
         <ScrollView
           className="flex-1"

@@ -1,4 +1,4 @@
-import { View, Pressable } from "react-native";
+import { View } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import Animated, { FadeInDown, SlideInRight } from "react-native-reanimated";
@@ -19,7 +19,6 @@ export default function OnboardingScreen2() {
   };
 
   const handleSkip = () => {
-    haptics.light();
     router.push("/(auth)/onboarding/premium");
   };
 
@@ -82,11 +81,12 @@ export default function OnboardingScreen2() {
           className="w-full mb-4"
         />
 
-        <Pressable onPress={handleSkip} className="py-2">
-          <Text variant="body-sm" align="center" className="text-text-tertiary">
-            {t("onboarding.screen2.skip")}
-          </Text>
-        </Pressable>
+        <Button
+          label={t("onboarding.screen2.skip")}
+          variant="ghost"
+          size="md"
+          onPress={handleSkip}
+        />
       </Animated.View>
     </View>
   );

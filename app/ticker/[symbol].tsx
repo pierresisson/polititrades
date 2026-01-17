@@ -3,17 +3,17 @@ import { useLocalSearchParams, useRouter, useNavigation } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
-import { useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 
 import {
   Text,
+  Button,
   Sparkline,
   SectionHeader,
   TradeRow,
   Badge,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
-import { haptics } from "@/lib/haptics";
 import { usePaywallStore } from "@/lib/store";
 import {
   getTickerBySymbol,
@@ -66,7 +66,6 @@ export default function TickerDetailScreen() {
   };
 
   const handleSetAlert = () => {
-    haptics.light();
     openPaywall();
   };
 
@@ -172,19 +171,19 @@ export default function TickerDetailScreen() {
 
           {/* Set Alert Button */}
           <View className="px-4 mb-6">
-            <Pressable
+            <Button
+              label={t("personality.setAlert")}
+              variant="outline"
+              size="md"
               onPress={handleSetAlert}
-              className="flex-row items-center justify-center gap-2 py-3 rounded-xl border border-background-border"
-            >
-              <Ionicons
-                name="notifications-outline"
-                size={18}
-                color={colors.text.DEFAULT}
-              />
-              <Text variant="body" className="font-inter-semibold">
-                {t("personality.setAlert")}
-              </Text>
-            </Pressable>
+              leftIcon={
+                <Ionicons
+                  name="notifications-outline"
+                  size={18}
+                  color={colors.text.DEFAULT}
+                />
+              }
+            />
           </View>
 
           {/* Recent Trades */}

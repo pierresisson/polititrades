@@ -8,13 +8,13 @@ import { Ionicons } from "@expo/vector-icons";
 import {
   Text,
   Avatar,
+  Button,
   FilterChip,
   StatsRow,
   SectionHeader,
   TradeRow,
 } from "@/components/ui";
 import { colors } from "@/constants/theme";
-import { haptics } from "@/lib/haptics";
 import { useWatchlistStore, usePaywallStore } from "@/lib/store";
 import {
   getPoliticianById,
@@ -50,7 +50,6 @@ export default function PersonalityDetailScreen() {
   }
 
   const handleFollow = () => {
-    haptics.light();
     if (isFollowing) {
       removePolitician(id || "");
     } else {
@@ -59,7 +58,6 @@ export default function PersonalityDetailScreen() {
   };
 
   const handleSetAlert = () => {
-    haptics.light();
     // Navigate to alert creation or open paywall
     openPaywall();
   };
@@ -141,40 +139,35 @@ export default function PersonalityDetailScreen() {
             </View>
 
             {/* Action Buttons */}
-            <View className="flex-row gap-3 mt-6">
-              <Pressable
+            <View className="flex-row gap-3 mt-6 w-full px-4">
+              <Button
+                label={isFollowing ? t("personality.following") : t("personality.follow")}
+                variant={isFollowing ? "secondary" : "primary"}
+                size="md"
                 onPress={handleFollow}
-                className={`flex-1 flex-row items-center justify-center gap-2 py-3 rounded-xl ${
-                  isFollowing ? "bg-surface-secondary" : "bg-primary"
-                }`}
-              >
-                <Ionicons
-                  name={isFollowing ? "checkmark" : "add"}
-                  size={18}
-                  color={isFollowing ? colors.text.DEFAULT : colors.text.inverse}
-                />
-                <Text
-                  variant="body"
-                  className={`font-inter-semibold ${
-                    isFollowing ? "text-text" : "text-text-inverse"
-                  }`}
-                >
-                  {isFollowing ? t("personality.following") : t("personality.follow")}
-                </Text>
-              </Pressable>
-              <Pressable
+                leftIcon={
+                  <Ionicons
+                    name={isFollowing ? "checkmark" : "add"}
+                    size={18}
+                    color={isFollowing ? colors.text.DEFAULT : colors.text.inverse}
+                  />
+                }
+                className="flex-1"
+              />
+              <Button
+                label={t("personality.setAlert")}
+                variant="outline"
+                size="md"
                 onPress={handleSetAlert}
-                className="flex-1 flex-row items-center justify-center gap-2 py-3 rounded-xl border border-background-border"
-              >
-                <Ionicons
-                  name="notifications-outline"
-                  size={18}
-                  color={colors.text.DEFAULT}
-                />
-                <Text variant="body" className="font-inter-semibold">
-                  {t("personality.setAlert")}
-                </Text>
-              </Pressable>
+                leftIcon={
+                  <Ionicons
+                    name="notifications-outline"
+                    size={18}
+                    color={colors.text.DEFAULT}
+                  />
+                }
+                className="flex-1"
+              />
             </View>
           </View>
 

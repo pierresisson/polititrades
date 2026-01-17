@@ -1,4 +1,4 @@
-import { View, Pressable, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -31,7 +31,6 @@ export default function OnboardingScreen4() {
   };
 
   const handleSkip = () => {
-    haptics.light();
     setHasCompletedOnboarding(true);
     router.replace("/(tabs)");
   };
@@ -78,11 +77,12 @@ export default function OnboardingScreen4() {
             className="w-full mb-4"
           />
 
-          <Pressable onPress={handleSkip} className="py-2">
-            <Text variant="body-sm" align="center" className="text-text-tertiary">
-              {t("onboarding.screen4.skip")}
-            </Text>
-          </Pressable>
+          <Button
+            label={t("onboarding.screen4.skip")}
+            variant="ghost"
+            size="md"
+            onPress={handleSkip}
+          />
         </Animated.View>
       </View>
     );
@@ -139,11 +139,12 @@ export default function OnboardingScreen4() {
             className="w-full mb-4"
           />
 
-          <Pressable onPress={handleSkip} className="py-2">
-            <Text variant="body-sm" align="center" className="text-text-tertiary">
-              {t("onboarding.paywall.skip")}
-            </Text>
-          </Pressable>
+          <Button
+            label={t("onboarding.paywall.skip")}
+            variant="ghost"
+            size="md"
+            onPress={handleSkip}
+          />
         </Animated.View>
       </View>
     </ScrollView>
